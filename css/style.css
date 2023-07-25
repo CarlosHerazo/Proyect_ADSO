@@ -1,0 +1,153 @@
+*{
+    margin: 0%;
+}
+
+/**Diseño de la navegacion**/
+.navegacion-principal{
+    height: 80px;
+    background-color: #83AF6F;
+    display: flex;
+    justify-content:space-around;
+    align-items:center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    color: white;
+    
+}
+.links-navegacion a, .sesion-navegacion a{
+    padding-right:20px;
+    text-decoration:none;
+    color: white;
+}
+.navegacion-principal .sesion-navegacion{
+    display: flex;
+    align-items: center;
+    
+}
+.usuario-navegacion{
+    width: 45px;
+}
+
+/**Diseño de la sesion1**/
+
+.sesion-imagen{
+    background-image: url(/img/R090LWA-DÍA-DEL-CAMPESINO--1250x800.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+
+    height: 700px;
+}
+
+.sesion-imagen .texto-sesion{
+    color:white;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 40px;
+    position: absolute;
+    top: 400px;
+    left: 80px;
+}
+
+.sesion-imagen .link-sesion{
+    text-decoration: none;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 20px;
+    color: white;
+    background-color: #F9BB0B;
+    border-radius: 15px;
+    height: 50px;
+    width: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 600px;
+    left: 80px;
+}
+
+/**Diseño del main**/
+
+.contenido-principal{
+    margin-top: 30px;
+    font-family: arial;
+}
+.contenido-principal h2{
+    text-align: center;
+}
+.productos{
+    display: grid;
+    grid-template-columns:repeat(3, 1fr);
+    margin-top:30px ;
+}
+
+.productos .producto {
+    text-align:center;
+}
+
+.producto .platano{
+    margin-bottom: 15px;
+    width: 270px;
+}
+.producto img{
+    margin-bottom: 15px;
+    width: 300px;
+}
+
+.producto .link-contenido{
+    text-decoration: none;
+    margin-top: 20px;
+    margin-right: 40px;
+    text-align: right;
+   
+}
+
+.producto .link-contenido a{
+    text-decoration: none;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 15px;
+    color: white;
+    background-color: #F9BB0B;
+    border-radius: 15px;
+    padding: 10px;
+}
+
+
+/**Diseño de sesion**/
+
+.sesion-frase{
+    background-image: url(/img/a4-CAMPESINO.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+
+    height: 350px;
+    margin-top: 30px;
+    position: relative;
+}
+
+.sesion-frase p{
+    color: white;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 30px;
+    text-align: center;
+    position: absolute;
+    top: 25%;
+    left: 20%;
+}
+
+/** footer **/
+
+.footer{
+    background-color: #83AF6F;
+    color: white;
+    font-family: arial;
+    font-size: 30px;
+    height: 150px;
+    margin:auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
