@@ -16,10 +16,17 @@
  
 }
 
+.header{
+  display: flex;
+}
+
+
 /* Agrega un color de fondo negro a la navegación superior */
  .topnav {
     background-color: #333;
     overflow: hidden;
+    width: 100%;
+    
   }
 
   
