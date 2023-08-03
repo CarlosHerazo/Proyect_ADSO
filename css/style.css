@@ -13,11 +13,16 @@
     display: flex;
     justify-content: center;
     align-items: center;
- 
 }
 
 .header{
   display: flex;
+  position: fixed; /*agregar el header fijo*/
+  left: 0;
+  top: 0;
+  width: 100%;
+  z-index: 999; /*traer el header al frente*/
+  box-shadow: 0px 0px 10px #333;
 }
 
 .titulo-nav { 
@@ -35,7 +40,7 @@
 
 }
 .icon-nav{
-  background-color: #333;
+  background-color: #333; 
   display: flex;
   justify-content: center;
   align-items: center;
@@ -45,6 +50,13 @@
 .icon-nav svg{
   margin-right: 20px;
   margin-left: 20px;
+}
+
+.icon-nav svg:hover{
+  cursor: pointer;
+  transition: 1s;
+  font-size: 20px;
+  box-shadow: 0px 0px 10px #fff;
 }
 
 
@@ -57,6 +69,7 @@
     width: 100%;
     display: flex;
     justify-content: center;
+    align-items: center;
     
   }
 
@@ -120,14 +133,39 @@
 /**Diseño de la sesion1**/
 
 .sesion-imagen{
-    background-image: url(/img/R090LWA-DÍA-DEL-CAMPESINO--1250x800.jpg);
+    
+
+    background-size: 100% 100%;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
     max-width: 100%;
+    height: 800px;
 
-    height: 700px;
+      animation: banner 10s infinite;
+      animation-direction: alternate;
+
+}
+@keyframes banner {
+      0%, 30% {
+        background-image: url(./../img/imagenes_banner/banner_1.jpg);
+        opacity: 1;
+      }
+        31%,34% {
+          opacity: 0.1;
+        }
+      35%, 65% {
+        background-image: url(./../img/imagenes_banner/banner_2.jpg);
+        opacity: 1;
+      } 
+      66%,69% {
+        opacity: 0.1;
+      }
+      70%, 100% {
+        opacity: 1;
+        background-image: url(./../img/imagenes_banner/banner_3.jpg);
+      }
 }
 
 .sesion-imagen .texto-sesion{
@@ -138,6 +176,12 @@
     top: 400px;
     left: 80px;
 }
+
+.contenido-sesion__imagen{
+  position: relative;
+  padding: 0;
+  margin: 0;
+ }
 
 .sesion-imagen .link-sesion{
     text-decoration: none;
@@ -155,6 +199,14 @@
     top: 600px;
     left: 80px;
 }
+.link-sesion:hover{
+  box-shadow: 0px 0px 10px #F9BB0B;
+}
+
+.producto .link-contenido a:hover {
+  box-shadow: 0px 0px 10px #F9BB0B;
+}
+
 
 /**Diseño del main**/
 
@@ -168,20 +220,29 @@
 .productos{
     display: grid;
     grid-template-columns:repeat(3, 1fr);
-    margin-top:30px ;
 }
+.titulo__productos{
+  text-align: center;
+  padding: 2rem;
+  font-size: 30px;
+}
+
 
 .productos .producto {
     text-align:center;
 }
 
-.producto .platano{
-    margin-bottom: 15px;
-    width: 270px;
-}
 .producto img{
-    margin-bottom: 15px;
-    width: 300px;
+  max-width: 70%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  border-radius: 30px;
+
+}
+
+.producto img:hover{
+  box-shadow: 0px 0px 10px #333;
+  transition: 0.5s;
 }
 
 .producto .link-contenido{
@@ -191,6 +252,7 @@
     text-align: right;
    
 }
+
 
 .producto .link-contenido a{
     text-decoration: none;
@@ -203,26 +265,27 @@
 }
 
 
+
+
 /**Diseño de sesion**/
 
 .sesion-frase{
-    background-image: url(/img/a4-CAMPESINO.jpg);
+    background-image: url(./../img/imagenes_banner/banner_4.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
-
     height: 350px;
     margin-top: 30px;
-    position: relative;
+    display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .sesion-frase p{
-    color: white;
+    color: #fff;
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-size: 30px;
     text-align: center;
-    position: absolute;
-    top: 25%;
-    left: 20%;
+    font-weight: bold;
 }
