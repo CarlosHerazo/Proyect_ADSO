@@ -3,17 +3,7 @@
     padding: 0;
     font-family: Arial, Helvetica, sans-serif;
 }
-.footer {
-    background-color: #83AF6F;
-    color: white;
-    font-family: arial;
-    font-size: 30px;
-    height: 150px;
-    margin: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+
 
 .header{
   display: flex;
@@ -45,18 +35,18 @@
   justify-content: center;
   align-items: center;
   padding: 14px 16px;
+  
 }
 
 .icon-nav svg{
   margin-right: 20px;
   margin-left: 20px;
+  transition: transform 1s ease
 }
 
 .icon-nav svg:hover{
   cursor: pointer;
-  transition: 1s;
-  font-size: 20px;
-  box-shadow: 0px 0px 10px #fff;
+  transform: scale(1.5);
 }
 
 
@@ -130,6 +120,41 @@
       text-align: left;
     }
   } 
+
+/*estilos para el footer*/
+
+.footer {
+  padding: auto;
+  background-color: #333;
+  color: white;
+}
+
+.contenedor-footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 30px;
+
+}
+
+.span_footer {
+  font-size: small;
+  font-style: italic;
+}
+
+/*estilos para los iconos*/
+
+.icon {
+  width: 30px;
+}
+
+.contenedor-img {
+  display: flex;
+  gap: 7px;
+}
+
+
+
+
 /**Diseño de la sesion1**/
 
 .sesion-imagen{
@@ -216,6 +241,7 @@
 .contenido-principal h2{
     text-align: center;
 }
+/*diseño de seccion productos*/
 .productos{
     display: grid;
     grid-template-columns:repeat(3, 1fr);
@@ -236,12 +262,13 @@
   aspect-ratio: 1/1;
   object-fit: cover;
   border-radius: 30px;
-
+  transition: transform 0.3s ease
 }
 
 .producto img:hover{
   box-shadow: 0px 0px 10px #fff;
-  transition: 0.5s;
+  transform: scale(0.7);
+  cursor: pointer;
 }
 
 .producto .link-contenido{
