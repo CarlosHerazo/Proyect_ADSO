@@ -1,7 +1,13 @@
+:root{
+  --fuente-principal: 'Raleway', sans-serif;
+  --fuente-segundaria: 'Roboto', sans-serif;
+}
+
 *{
     margin: 0;
     padding: 0;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family:  var(--fuente-principal);
+    
 }
 
 
@@ -84,12 +90,6 @@
 
   }
   
-/* Añadir una clase activa para resaltar la página actual */
-  .topnav a.active {
-    background-color: #04AA6D;
-    color: white;
-      
-  }
   
 /* Ocultar el enlace que debería abrir y cerrar la navegación superior en pantallas pequeñas */
   .topnav .icon {
@@ -194,7 +194,6 @@
 
 .sesion-imagen .texto-sesion{
     color:white;
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-size: 40px;
     position: absolute;
     top: 400px;
@@ -209,7 +208,6 @@
 
 .sesion-imagen .link-sesion{
     text-decoration: none;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-size: 20px;
     color: white;
     background-color: #F9BB0B;
@@ -222,6 +220,7 @@
     position: absolute;
     top: 600px;
     left: 80px;
+    font-family:  var(--fuente-segundaria);
 }
 .link-sesion:hover{
   box-shadow: 0px 0px 10px #F9BB0B;
@@ -236,7 +235,6 @@
 
 .contenido-principal{
     margin-top: 80px;
-    font-family: arial;
 }
 .contenido-principal h2{
     text-align: center;
@@ -262,7 +260,8 @@
   aspect-ratio: 1/1;
   object-fit: cover;
   border-radius: 30px;
-  transition: transform 0.3s ease
+  transition: transform 0.3s ease;
+  
 }
 
 .producto img:hover{
@@ -276,13 +275,11 @@
     margin-top: 20px;
     margin-right: 40px;
     text-align: right;
-   
 }
 
 
 .producto .link-contenido a{
     text-decoration: none;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-size: 15px;
     color: white;
     background-color: #F9BB0B;
@@ -290,6 +287,26 @@
     padding: 10px;
 }
 
+/*descripcion de los productos*/
+
+.imagen__producto-container {
+  position: relative;
+  display: inline-block; /* Para que el contenedor se ajuste al tamaño de la imagen */
+  transition: 1s ease;
+} 
+
+.descripcion-emergente {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color:  #498805;
+  color: #fff;
+  padding: 2rem;
+  border-radius: 50px 10px;
+  display: none;
+  background-image: linear-gradient(#F9BB0B, transparent);
+}
 
 
 
@@ -310,14 +327,14 @@
     position: relative;
     height: 350px;
     display: flex;
-  justify-content: center;
-  align-items: center;
+    justify-content: center;
+    align-items: center;
 }
 
 .sesion-frase p{
     color: #fff;
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-size: 30px;
     text-align: center;
     font-weight: bold;
 }
+
