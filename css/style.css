@@ -38,7 +38,7 @@
 .icon-nav{
   background-color: #333; 
   display: flex;
-  justify-content: center;
+  justify-content: right;
   align-items: center;
   padding: 14px 16px;
   
@@ -55,6 +55,27 @@
   transform: scale(1.5);
 }
 
+ul, ol {
+  list-style: none;
+}
+
+.nav > li{
+  float: left;
+}
+
+/* Ocultar los submenu del menu de servicios */
+
+.nav li ul {
+  display: none;
+  position: absolute;
+  min-width: 140px;
+
+}
+
+.nav li:hover > ul {
+  background-color: #333;
+  display: block;
+}
 
 
 /* Agrega un color de fondo negro a la navegación superior */
@@ -63,9 +84,9 @@
     background-color: #333;
     overflow: hidden;
     width: 100%;
-    display: flex;
+    /*display: flex;*/
     justify-content: center;
-    align-items: center;
+    align-items:center;
     
   }
 
@@ -152,6 +173,30 @@
   gap: 7px;
 }
 
+.map-container {
+      position: relative;
+      overflow: hidden;
+      padding-bottom: 56.25%; /* Relación de aspecto 16:9 para mantener proporciones */
+      height: 0;
+      max-width: 400px; /* Ajustar el ancho del contenedor */
+      margin: 0 auto; /* Para centrar el mapa horizontalmente */
+    }
+
+.map {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.contenedor-desarrolladores {
+  display: flex;
+  justify-content: space-between;
+  padding: 30px;
+  text-align: center;
+  justify-content: center;
+}
 
 
 
@@ -239,7 +284,8 @@
 .contenido-principal h2{
     text-align: center;
 }
-/*diseño de seccion productos*/
+
+/**Diseño de seccion productos**/
 .productos{
     display: grid;
     grid-template-columns:repeat(3, 1fr);
@@ -311,7 +357,7 @@
 
 
 /**Diseño de sesion**/
-.seccion__backgroud{
+.section__background{
   background-color: #2f1d04;
   color: #fff;
   padding-bottom: 2rem;
@@ -332,7 +378,8 @@
 }
 
 .sesion-frase p{
-    color: #fff;
+    color: black;
+    font-weight: bold;
     font-size: 30px;
     text-align: center;
     font-weight: bold;
