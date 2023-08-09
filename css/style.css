@@ -69,6 +69,7 @@ ul, ol {
   display: none;
   position: absolute;
   min-width: 140px;
+  top: 50px;
 
 }
 
@@ -84,8 +85,8 @@ ul, ol {
     background-color: #333;
     overflow: hidden;
     width: 100%;
-    /*display: flex;*/
-    justify-content: center;
+    display: flex;
+    justify-content: end; /*colocar el heder al final --- hacia la izquierda*/
     align-items:center;
     
   }
