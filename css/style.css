@@ -78,6 +78,16 @@ ul, ol {
   display: block;
 }
 
+.submenu__servicios ul li a{
+  width: 200px;
+text-align: left;
+border-bottom: 1px solid #fff;
+}
+
+html{
+  scroll-behavior: smooth;
+}
+
 
 /* Agrega un color de fondo negro a la navegación superior */
  
