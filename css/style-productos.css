@@ -141,6 +141,7 @@
 
     .div-todo{
       display: grid;
+      position: relative;
       grid-template-columns: 400px 1000px;
       margin-left: 50px;
       margin-top: 100px;
@@ -151,18 +152,27 @@
     .div-principal{
         height: 950px;
         background-color: #6F4E37;
-        width: 400px;
+        max-width: 100%;
+        height: 900px;
         padding-top: 60px;
         border-radius: 30px;
         margin-bottom: 100px;
         
     }
 
+    .titulo-productos{
+      color: #333;
+      margin-top: 100px;
+      text-align: center;
+      font-size: 50px;
+
+    }
+
 
     .div-productos{
         background-color:white;
-        width: 400px;
-        height: 950px;
+        max-width: 100%;
+        max-height: auto;
         box-shadow: 0px 0px 13px 1px rgba(128,128,128,0.79);
         border-radius: 30px;
         border-top-right-radius: 0px;
@@ -180,6 +190,40 @@
     .Producto img{
         width: 100px;
         margin: 10px;
+    }
+    .link-comprar, .link-comprar-producto{
+      display: flex;
+      margin: 20px;
+      justify-content: space-evenly;
+      align-items: center;
+      background-color: rgb(21, 69, 21);
+
+    }
+
+
+    .link-comprar-producto{
+      justify-content: center;
+      background-color: #2f1d04;
+    }
+    .link-comprar-producto:hover{
+      cursor: pointer;
+      transform: scale(0.9);
+      transition: 0.5s;
+      background-color:  rgb(21, 69, 21);;
+    }
+
+    .link-comprar:hover{
+      cursor: pointer;
+      transform: scale(0.9);
+      transition: 0.5s;
+      background-color: #2f1d04;
+    }
+    .texto-compra{
+      text-decoration: none;
+      color: #fff;
+      font-size: 20px;
+      font-family: var(--fuente-segundaria);
+      padding: 15px;
     }
 
     .Producto .barra{
