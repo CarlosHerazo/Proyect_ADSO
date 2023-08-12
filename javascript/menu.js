@@ -29,7 +29,13 @@ function undir() {
 }
   }*/
 
-function undirLupaNavegacion() {
+let lupa = document.getElementById("icon-nav-lupa")
+
+lupa.addEventListener("click", undirLupaNavegacion())
+
+
+function undirLupaNavegacion() 
+{
   const divPadre = document.querySelector(".lupa-nav");
   const elementInput = document.createElement("input");
   elementInput.className = "icon-nav-input";
@@ -39,5 +45,6 @@ function undirLupaNavegacion() {
   elementInput.style.borderRadius = "15px";
   elementInput.style.borderStyle = "none";
   elementInput.style.textAlign = "center";
+
   divPadre.appendChild(elementInput);
 }
