@@ -191,9 +191,8 @@ html {
   display: flex;
   align-items: center;
   background-color: white;
-  width: 300px;
+  width: 100%;
   height: 150px;
-
 }
 
 .Producto img {
@@ -243,7 +242,7 @@ html {
 .Producto .barra {
   width: 15px;
   height: 150px;
-  background-color: green;
+  background-color: white;
 }
 
 #producto-info {
