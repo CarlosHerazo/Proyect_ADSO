@@ -17,11 +17,11 @@
 <body>
     <header class="header">
         <div class="titulo-nav">
-            <a href="./index.html" class="active">AgroAdonai</a>
+            <a href="./../index.html" class="active">AgroAdonai</a>
         </div>
         <nav class="topnav">
             <ul class="nav">
-                <li><a href="./index.html">Inicio</a></li>
+                <li><a href="./../index.html">Inicio</a></li>
                 <li  class="submenu__servicios"><a href="#NuestrosServicios">Servicios</a>
                     <ul>
                         <li><a href="#domicilio">Envío a domicilio</a></li>
@@ -29,15 +29,15 @@
                         <li><a href="#atencion">Atención al cliente</a></li>
                     </ul>
                 </li>
-                <li><a href="./page/nosotros.html">Nosotros</a></li>
+                <li><a href="./nosotros.html">Nosotros</a></li>
                 <li><a href="./page/productos.html">Productos</a></li>
-                <a href="javascript:void(0);" class="icon" onclick="undir()">
-                    <i class="fa fa-bars"></i>
-                </a>
+               
             </ul>
             </div>
             <div class="icon-nav">
-                <svg xmlns="http://www.w3.org/2000/svg" height="1em"
+                <div class="contenedor-carrito">
+                    <p id="contador"></p>
+                    <svg xmlns="http://www.w3.org/2000/svg" height="1em"
                     viewBox="0 0 576 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
                     <style>
                         svg {
@@ -47,13 +47,19 @@
                     <path
                         d="M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z" />
                 </svg>
+                </div>
+               
                 <div class="lupa-nav"></div>
                 <svg xmlns="http://www.w3.org/2000/svg" id="icon-nav-lupa" onclick="undirLupaNavegacion()" height="1em"
                     viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
                     <path
                         d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z" />
                 </svg>
+                <a href="javascript:void(0);" class="icon" onclick="undir()">
+                    <i class="fa fa-bars"></i>
+                </a>           
             </div>
+ 
     </header>
     <!--Termina la navegacion-->
     <main class="main">
@@ -114,7 +120,7 @@
                     </p>
                     <br><br><br>
                 </div>
-                <p id="precio-producto">Precio por Unidad: $500 <br>
+                <p id="precio-producto">Precio por Unidad: $500 - Aplica para personas de la misma localidad  <br>
                     Precio por Bulto: $50,000 </p>
                 <div class="link-comprar-producto" id="comprar">
                     <a href="#" class="texto-compra">Agregar al</a>
@@ -131,7 +137,7 @@
                             <img class="imagen__producto" src="/img/Productos/platano.jpg" class="platano">
                         </div>
                         <h3>Platano Verde</h3>
-                        <div class="link-comprar">
+                        <div class="link-comprar" id="comprar">
                             <a href="#" class="texto-compra">Agregar al</a>
                             <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><style>svg{fill:#ffffff}</style><path d="M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"/></svg>
 
@@ -141,7 +147,7 @@
                         <div class="imagen__producto-container">
                             <img class="imagen__producto" src="/img/Productos/yuca.jpg">
                         <h3>Yuca</h3>
-                        <div class="link-comprar">
+                        <div class="link-comprar" id="comprar">
                             <a href="#" class="texto-compra">Agregar al</a>
                             <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><style>svg{fill:#ffffff}</style><path d="M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"/></svg>
                         </div>
@@ -151,7 +157,7 @@
                             <img class="imagen__producto" src="/img/Productos/guayaba.jpg">
                         </div>
                         <h3>Guayaba</h3>
-                        <div class="link-comprar">
+                        <div class="link-comprar" id="comprar">
                             <a href="#" class="texto-compra">Agregar al</a>
                             <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><style>svg{fill:#ffffff}</style><path d="M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"/></svg>
                         </div>
@@ -161,7 +167,7 @@
                             <img class="imagen__producto" src="/img/Productos/guayaba.jpg">
                         </div>
                         <h3>Guayaba</h3>
-                        <div class="link-comprar">
+                        <div class="link-comprar" id="comprar">
                             <a href="#" class="texto-compra">Agregar al</a>
                             <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><style>svg{fill:#ffffff}</style><path d="M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"/></svg>
                         </div>
@@ -181,26 +187,20 @@
       <!--Aqui empieza la ventana emergente de comprar -->
       <div class="ventanaEmergente">
         <div class="contenedor__header__ventanaEmergente">
-            <p class="parrafo__ventanaEmergente">Iniciar Sesion</p>
+            <p class="parrafo__ventanaEmergente">Agregar al Carrito</p>
             <svg class="icono__ventanaEmergente" xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 0 384 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><style>svg{fill:#ffffff}</style><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg>
         </div>
-       <h3 class="parrafo__ventanaInferior">Inicia sesion para agregar al carrito</h3>
+       <h3 class="parrafo__ventanaInferior">¿Cuantos Bultos desea para este producto?</h3>
         <div class="contenedor__form">
 
             <form action="" class="formulario">
                 <div class="seccion__inputs">
-                    <label for="">Correo</label>
-                <input type="text">
+                    <label for="">Escriba el numero de bultos</label>
+                <input type="number" placeholder="#Bultos" id="numeroBultos">
                 </div>
 
-                <div class="seccion__inputs">
-                    <label for=""> Contraseña</label>
-                <input type="password">
-                </div>
                 
-                <button class="Boton_ventanaEmergente">Iniciar</button>
-                <p class="span">¿No tienes cuenta aún?</p><a class="span span-a" href="">Registrate aquí</a>
-            
+                <button class="Boton_ventanaEmergente">Agregar</button>
             </form>
         </div>
     </div>
@@ -250,7 +250,7 @@
         </div>
     </div>
     </footer>
-    <script src="./javascript/menu.js"></script>
+    <script src="./../javascript/menu.js"></script>
     <script src="./../javascript/ventanaComprar.js"></script>
     <script src="/javascript/hoverProductos.js"></script>
     <script src="/javascript/onclickProductos.js"></script>

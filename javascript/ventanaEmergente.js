@@ -1,4 +1,5 @@
 // Obtener todos los contenedores de imágenes
+//comentario de imagen arriba
 const imagenContainers = document.querySelectorAll('.imagen__producto-container');
 
 // Agregar eventos para mostrar y ocultar la descripción emergente

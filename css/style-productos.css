@@ -136,7 +136,7 @@ html {
 
 
 @media screen and (max-width: 600px) {
-  .topnav a:not(:first-child) {
+  .nav a {
     display: none;
   }
 
@@ -145,6 +145,18 @@ html {
     display: block;
   }
 }
+
+@media screen and (max-width: 600px) {
+  .nav a {
+    display: none;
+  }
+
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+}
+
 
 /*Aqui empieza todo lo relacionado con el main*/
 
@@ -166,6 +178,23 @@ html {
   padding-top: 60px;
   border-radius: 30px;
   margin-bottom: 100px;
+
+}
+@media screen and (max-width: 1200px) {
+  .div-principal {
+    display: none;
+
+  }
+
+  .div-todo {
+    display: grid;
+    grid-template-columns: 1fr;
+    margin:70px;
+    margin-left: 0px;
+    max-width: 100%;
+  
+  }
+  
 
 }
 
@@ -249,6 +278,20 @@ html {
   width: 250px;
 }
 
+@media screen and (max-width: 1200px) {
+  #producto-info {
+    max-width: 250px;
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+
+
+}
+
+
+
 /*Diseño informacion del producto*/
 
 .info-producto {
@@ -292,8 +335,29 @@ html {
   grid-template-columns: repeat(3, 1fr);
 }
 
+@media screen and (max-width: 700px) {
+  .productos {
+    grid-template-columns: 1fr;
+    max-width: 100%;
+  }
+  
+
+
+}
+
+
 .productos .producto {
   text-align: center;
+}
+
+@media screen and (max-width: 700px) {
+  .productos .producto {
+    text-align: center;
+    column-gap: 10px;
+  }
+  
+
+
 }
 
 .producto img {
@@ -430,6 +494,21 @@ html {
   padding: 30px;
 
 }
+
+@media screen and (max-width: 800px) {
+  .contenedor-footer {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 70px;
+  text-align: center;
+  
+  }
+  
+
+
+}
+
 
 .span_footer {
   font-size: small;
@@ -620,4 +699,22 @@ html {
   .contenedor__form {
       width: 95%;
   }
+}
+
+/*contador carrito*/
+#contador{
+  position: absolute;
+  color: #f2f2f2;
+  bottom: 80%;
+  left: 70%;
+  background-color: #e57373;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  border-radius: 50%;
+  font-size: 15px;
+  display: none;
+}
+.contenedor-carrito{
+  position: relative;
 }
