@@ -125,38 +125,76 @@ html {
   color: black;
 
 }
-
-
+ 
 /* Ocultar el enlace que debería abrir y cerrar la navegación superior en pantallas pequeñas */
 .topnav .icon {
   display: none;
-}
-
+} 
 /* Cuando la pantalla tiene menos de 600 píxeles de ancho, oculta todos los enlaces, excepto el primero ("Inicio"). Mostrar el enlace que contiene debe abrir y cerrar el topnav (.icon) */
 
 
 @media screen and (max-width: 700px) {
-  .nav a {
+  .topnav a {
     display: none;
   }
-
   .topnav a.icon {
     float: right;
     display: block;
   }
 }
 
-@media screen and (max-width: 700px) {
-  .nav a {
-    display: none;
-  }
 
-  .topnav a.icon {
-    float: right;
-    display: block;
-  }
+.menu__responsive{
+  position: absolute;
+  top: 0%;
+  background-color: #333;
+  height: 700%;
+  width: 70%;
+  z-index: 999;
+  display: none;
 }
 
+.responsive2  ul li a{
+  color: #ddd;
+  text-decoration: none;
+  
+}
+.nav2  a:hover{
+  text-decoration: none;
+  
+}
+.nav2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+  position: fixed;
+  margin-top: 100px;
+  padding: 20px 30px;
+}
+
+.nav2 li ul {
+  display: none;
+  position: absolute;
+  min-width: 140px;
+  top: 50px;
+
+ 
+}
+.nav2 li{
+    padding: 20px 80px;
+}
+.nav2 li:hover{
+  background-color: #2f1d04 ;
+  
+}
+
+/* .ventanaemergente svg{
+    position: absolute;
+    bottom: 0%;
+    left: 0%;
+} */
 
 /*Aqui empieza todo lo relacionado con el main*/
 

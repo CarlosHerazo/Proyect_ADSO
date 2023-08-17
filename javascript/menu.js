@@ -1,11 +1,13 @@
 function undir() {
-  var x = document.getElementById("myTopnav");
-  if (x.className === "topnav") {
-    x.className += "responsive";
-  } else {
-    x.className = "topnav";
-  }
+  let menuResponsive = document.querySelector('.menu__responsive');
+  menuResponsive.style.display = "block";
 }
+
+let iconoquitar = document.getElementById("iconoQuitar");
+let menuResponsive = document.querySelector('.menu__responsive');
+iconoquitar.addEventListener("click", ()=>{
+  menuResponsive.style.display = "none";
+})
 
 /*function undirLupaNavegacion(){
   let counter = 0
