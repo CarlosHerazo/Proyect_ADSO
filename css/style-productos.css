@@ -135,7 +135,7 @@ html {
 /* Cuando la pantalla tiene menos de 600 píxeles de ancho, oculta todos los enlaces, excepto el primero ("Inicio"). Mostrar el enlace que contiene debe abrir y cerrar el topnav (.icon) */
 
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 700px) {
   .nav a {
     display: none;
   }
@@ -146,7 +146,7 @@ html {
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 700px) {
   .nav a {
     display: none;
   }
