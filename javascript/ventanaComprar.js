@@ -37,11 +37,13 @@ icono.addEventListener("click", () => {
 })
 
 //-------------------------------Fin del codigo de la ventana de agregar bultos-----------//
-
+ 
 
 let boton = document.querySelector('.Boton_ventanaEmergente');
 let ContenedorCarrito = document.querySelector('.contenedor-carrito');
 let contador = document.getElementById("contador");
+
+
 
 // Inicializamos el contador
 
@@ -56,13 +58,21 @@ let contador = document.getElementById("contador");
         let ventanaEmergente = document.querySelector(".ventanaEmergente");
         ventanaEmergente.classList.remove("mostrar");
         main.style.filter = "blur(0px)"
-        document.body.style.overflow = "auto"; // desplazamiento mientras la ventana emergente está cerrada
-        
+        document.body.style.overflow = "auto";
     
         // Retraso para dar tiempo a la transición antes de ocultar la ventana
         setTimeout(() => {
             ventanaEmergente.style.display = "none";
             main.style.overflow = "auto"
         }, 500); // Igual a la duración de la transición en CSS
+/*
+       const producto = {
+        imagen : document.getElementById('producto-info').src,
+        titulo : document.getElementById("titulo-info-producto").textContent,
+        precio : document.getElementById("Texto-info-producto").textContent
+       }
 
-    });
+        console.log(producto)*/
+    }
+
+    );
