@@ -59,6 +59,7 @@ function Platano(){
      let imagen = document.getElementById("producto-info")
      let textoInfo = document.getElementById("Texto-info-producto")
      let precio = document.getElementById("precio-producto")
+     
      id.id = "producto2"
      titulo.innerHTML="Plátano verde"
      imagen.src = "/img/Productos/descarga.jfif"
@@ -75,6 +76,7 @@ function Platano(){
      let imagen = document.getElementById("producto-info")
      let textoInfo = document.getElementById("Texto-info-producto")
      let precio = document.getElementById("precio-producto")
+
      id.id = "producto3"
      titulo.innerHTML="Auyama"
      imagen.src = "/img/Productos/istockphoto-471688238-612x612.jpg"
@@ -91,6 +93,7 @@ function Platano(){
      let imagen = document.getElementById("producto-info")
      let textoInfo = document.getElementById("Texto-info-producto")
      let precio = document.getElementById("precio-producto")
+
      id.id = "producto4"
      titulo.innerHTML="Limon"
      imagen.src = "/img/Productos/limón criollo.jpg"
@@ -107,6 +110,7 @@ function Platano(){
      let imagen = document.getElementById("producto-info")
      let textoInfo = document.getElementById("Texto-info-producto")
      let precio = document.getElementById("precio-producto")
+
      id.id = "producto5"
      titulo.innerHTML="Ñame"
      imagen.src = "/img/Productos/vegetales-dieta_vegetariana-nutricion_421718519_132322710_1706x960.jpg"
@@ -123,6 +127,7 @@ function Platano(){
      let imagen = document.getElementById("producto-info")
      let textoInfo = document.getElementById("Texto-info-producto")
      let precio = document.getElementById("precio-producto")
+
      id.id = "producto6"
      titulo.innerHTML="Guayaba"
      imagen.src = "/img/Productos/NUTE7EOPZVG4TBLG5EXKA5GAIA.avif"

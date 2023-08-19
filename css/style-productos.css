@@ -759,8 +759,17 @@ html {
 
 /*Diseño de pagina carrito*/
 
-#div-info{
+#contenido-carrito{
+  background-color:gray;
+  position: absolute;
+  width: 500px;
+  right: 0px;
+  top: 35px;
+  border-radius: 12px;
+  padding: 10px;
   -webkit-box-shadow: 0px 0px 15px 1px rgba(0,0,0,0.47);
   -moz-box-shadow: 0px 0px 15px 1px rgba(0,0,0,0.47);
    box-shadow: 0px 0px 15px 1px rgba(0,0,0,0.47);
+   display: none;
 }
+

@@ -11,79 +11,78 @@ function seleccionarProductos(){
 
     productosagregados.push(producto)
 
-
+    
+/*
     console.log(producto)
 
-    let divPadre = document.getElementById("contenido-carrito");
-    let carrito = document.getElementById("carrito")
-    let imagen = document.getElementById("imagen-carrito")
-    let divhijo = document.createElement("div")
+    let divhijo = document.getElementById("lista-carrito")
     let texto = document.createElement("p")
     let texto2 = document.createElement("p")
-    let img = document.createElement("img")
+    let imagenDelete = document.createElement("div")
+    let div = document.createElement("div")
 
-    divhijo.id = "divhijo"
-    carrito.style.width = "300px"
-    carrito.style.backgroundColor = "white"
-    carrito.style.position = "absolute"
-    carrito.style.right = "0px"
-    carrito.style.top = "35px "
     texto.innerHTML = producto.titulo
     texto2.innerHTML = producto.precio
-    img.src = "/img/servicios/x.png"
-    img.style.width = "33px"
-    carrito.style.display = "flex"
+    imagenDelete.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><style>svg{fill:#000000}</style><path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"/></svg>'
+    div.style.display = "flex"    
+    imagenDelete.id = "hola"
 
     
     
+    div.appendChild(texto)
+    div.appendChild(texto2)
+    div.appendChild(imagenDelete)
+    divhijo.appendChild(div)    
     
-    divhijo.appendChild(texto)
-    divhijo.appendChild(texto2)
-    imagen.appendChild(img)
-    divPadre.appendChild(divhijo)
-    carrito.appendChild(divPadre)
-
+*/
 }
 
 
 document.getElementById("div-carrito").addEventListener("click", carrito)
 
 
+function carrito(){
 
 
-function carrito(event){
-
-    
 
     for(let i=0 ; i<productosagregados.length ; i++){
 
         let titulo = productosagregados[i].titulo
         let precio = productosagregados[i].precio
 
-    
-    let divPadre = document.getElementById("contenido-carrito");
-    let divhijo = document.createElement("div")
+    let divPadre = document.getElementById("contenido-carrito")
+    let divhijo = document.getElementById("lista-carrito")
     let texto = document.createElement("p")
     let texto2 = document.createElement("p")
+    let div2= document.createElement("div")
+    let div = document.createElement("div")
+    let img = document.createElement("p")
 
-    divhijo.id = "divhijo"
-    divPadre.style.width = "300px"
-    divPadre.style.backgroundColor = "white"
-    divPadre.style.position = "absolute"
-    divPadre.style.right = "0px"
-    divPadre.style.top = "35px "
+    img.id=i
+    img.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" id='+i+' onclick = borrar(this.id) height="1em" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><style>svg{fill:#}</style><path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"  /></svg>'
+    div2.setAttribute("id", i)  
+    div2.className = "delete" 
     texto.innerHTML = titulo
     texto2.innerHTML = precio
+    div.style.display = "flex" 
+    div.id = i
+    texto.style.margin = "10px"
+    texto2.style.margin = "10px"
+    divPadre.style.display = "block"
 
-    
-    
-    divhijo.appendChild(texto)
-    divhijo.appendChild(texto2)
-    divPadre.appendChild(divhijo)
 
-    event.target.removeEventListener(event.type, carrito)
+    div2.appendChild(img)    
+    div.appendChild(texto)
+    div.appendChild(texto2)
+    div.appendChild(div2)
+    divhijo.appendChild(div)    
+    
 }
 }
+function borrar(botonid){
+    productosagregados.splice(botonid, 1)
+}
+
 
 
 
