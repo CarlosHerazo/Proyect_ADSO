@@ -44,7 +44,6 @@ let ContenedorCarrito = document.querySelector('.contenedor-carrito');
 let contador = document.getElementById("contador");
 
 
-
 // Inicializamos el contador
 
     let totalClicks = 0;
@@ -65,14 +64,6 @@ let contador = document.getElementById("contador");
             ventanaEmergente.style.display = "none";
             main.style.overflow = "auto"
         }, 500); // Igual a la duración de la transición en CSS
-/*
-       const producto = {
-        imagen : document.getElementById('producto-info').src,
-        titulo : document.getElementById("titulo-info-producto").textContent,
-        precio : document.getElementById("Texto-info-producto").textContent
-       }
 
-        console.log(producto)*/
     }
-
     );

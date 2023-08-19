@@ -338,7 +338,7 @@ html {
 
 }
 
-#producto-info1 {
+#producto2 {
   text-align: center;
 }
 
@@ -759,24 +759,8 @@ html {
 
 /*Diseño de pagina carrito*/
 
-#Titulo-carrito{
-  margin-top: 140px;
-  margin-left: 70px;
-}
-
-#Titulo-carrito #titulocarrito{
-  font-size: 40px;
-  margin-bottom: 5px;
-}
-
-#Titulo-carrito #lineacarrito{
-  width: 1000px;
-  border-color:gray;
-  
-}
-
-#productos-carrito{
-  display: flex;
-  align-items: center;
-  padding: 30px;
+#div-info{
+  -webkit-box-shadow: 0px 0px 15px 1px rgba(0,0,0,0.47);
+  -moz-box-shadow: 0px 0px 15px 1px rgba(0,0,0,0.47);
+   box-shadow: 0px 0px 15px 1px rgba(0,0,0,0.47);
 }
