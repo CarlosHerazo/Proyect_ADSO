@@ -207,6 +207,15 @@ html {
   margin-right: 0px;
 
 }
+@media screen and (max-width: 800px) {
+ 
+  .div-todo{
+    display: block;
+    justify-content: center;
+    align-items: center;
+    left: 13px;
+  }
+}
 
 .div-principal {
   height: 950px;
@@ -267,7 +276,7 @@ html {
   margin: 10px;
 }
 
-.link-comprar,
+.link-comprar, .link-detalles,
 .link-comprar-producto {
   display: flex;
   margin: 20px;
@@ -276,7 +285,20 @@ html {
   background-color: rgb(21, 69, 21);
 
 }
+.link-detalles{
+  display: none;
+}
+@media screen and (max-width: 1200px) {
+  .link-comprar{
+   display: none;
+  }
+  .link-detalles{
+    display: block;
+    padding: 20px;
+  }
 
+
+}
 
 .link-comprar-producto {
   justify-content: center;
@@ -292,6 +314,13 @@ html {
 }
 
 .link-comprar:hover {
+  cursor: pointer;
+  transform: scale(0.9);
+  transition: 0.5s;
+  background-color: #2f1d04;
+}
+
+.link-detalles:hover {
   cursor: pointer;
   transform: scale(0.9);
   transition: 0.5s;
@@ -316,17 +345,18 @@ html {
   width: 250px;
 }
 
-@media screen and (max-width: 1200px) {
-  #producto-info {
-    max-width: 250px;
-    margin-top: 100px;
-    display: flex;
-    flex-direction: column;
+@media screen and (max-width: 700px) {
+  .producto-info {
+   display: flex;
+   flex-direction: column;
   }
-  
+
 
 
 }
+
+
+
 
 
 
@@ -356,6 +386,15 @@ html {
   font-size: 60px;
   font-weight: bold;
   margin-right: 15px;
+}
+@media screen and (max-width: 1200px) {
+  .Tituloinfo-producto {
+    display: flex;
+    flex-direction: column;
+  }
+
+
+
 }
 
 .Texto-info-producto {
@@ -627,11 +666,21 @@ html {
   display: none;
 }
 
+@media screen and (max-width: 800px) {
+  .ventanaEmergente {
+   max-width: 300px;
+   left: 5%;
+  }
+
+}
+
+
 /*desenfocar el html*/
 .main{
   overflow: hidden; /* Evita el desplazamiento del contenido mientras está desenfocado */
  
 }
+
 
 .mostrar {
   display: block;
@@ -661,6 +710,13 @@ html {
   background-color: #333;
   border-radius: 50px 50px 0px 0px;
 }
+@media screen and (max-width: 800px) {
+  .parrafo__ventanaEmergente {
+   max-width: 300px;
+   left: 5%;
+  }
+
+}
 
 .parrafo__ventanaInferior {
   font-weight: 700;
@@ -677,6 +733,14 @@ html {
   background-color: #333;
 
 }
+@media screen and (max-width: 800px) {
+  .contenedor__form{
+   max-width: 200px;
+   left: 5%;
+  }
+
+}
+
 
 /*Formulario*/
 
@@ -699,6 +763,15 @@ html {
   color: #333;
 
 }
+
+@media screen and (max-width: 800px) {
+  .seccion__inputs {
+    margin: 0;
+    margin-bottom: 20px;
+  }
+
+}
+
 
 .seccion__inputs input:focus {
   outline: none;
@@ -761,6 +834,7 @@ html {
 
 #contenido-carrito{
   background-color:gray;
+  color: #fff;
   position: absolute;
   width: 500px;
   right: 0px;
@@ -772,4 +846,5 @@ html {
    box-shadow: 0px 0px 15px 1px rgba(0,0,0,0.47);
    display: none;
 }
+
 
