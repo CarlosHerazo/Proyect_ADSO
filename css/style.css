@@ -9,7 +9,28 @@
     font-family:  var(--fuente-principal);
     
 }
+.contenedor__logo{
+  position: fixed; /*agregar el header fijo*/
+  left: 0;
+  top: 85%;
+  width: 100%;
 
+}
+
+.logo_whatsapp img{
+  width: 8rem;
+}
+
+@media screen and (max-width: 700px) {
+  .contenedor__logo{
+
+    left: 60%;
+    top: 80%;
+ }
+  
+}
+  
+ 
 
 .header{
   display: flex;
