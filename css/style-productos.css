@@ -7,7 +7,7 @@
   margin: 0;
   padding: 0;
   font-family: var(--fuente-principal);
-
+  
 }
 
 .header {
@@ -833,13 +833,14 @@ html {
 /*Diseño de pagina carrito*/
 
 #contenido-carrito{
-  background-color:gray;
+  background-color:white;
   color: #fff;
-  position: absolute;
-  width: 500px;
-  right: 0px;
-  top: 35px;
-  border-radius: 12px;
+  position: fixed;
+  width: 600px;
+  height: 99%;
+  right: -75px;
+  top: 0px;
+  border-radius: 12px 0px 0px 12px;
   padding: 10px;
   -webkit-box-shadow: 0px 0px 15px 1px rgba(0,0,0,0.47);
   -moz-box-shadow: 0px 0px 15px 1px rgba(0,0,0,0.47);
@@ -847,4 +848,81 @@ html {
    display: none;
 }
 
+#contenido-carrito #titulo-carrito{
+  color: #154515;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 30px;
+  margin-top: 20px;
+  margin-bottom: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+#titulo-carrito #borrar-carrito{
+  position: relative;
+  right: -100px;
+  
+}
+#borrar-carrito1{
+  width: 25px;
+}
+#borrar-carrito:hover{
+  cursor: pointer;
+}
+
+#contenido-carrito #boton-iracarrito{
+  position: absolute;
+  bottom: 20px;
+  text-align: center;
+  width: 550px;
+}
+
+#contenido-carrito #boton-iracarrito p{
+  font-family: 'Krub', sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  margin: 20px;
+  color: black;
+}
+
+#contenido-carrito #boton-iracarrito hr{
+  width: 400px;
+  margin: auto;
+  border-color: black;
+}
+
+#contenido-carrito #boton-iracarrito button{
+  background-color: #154515;
+  border: none;
+  border-radius: 10px;
+  padding:15px 40px 15px 40px;
+  transition: 0.5s;
+  
+}
+
+#contenido-carrito #boton-iracarrito a{
+  font-family: 'Krub', sans-serif;
+  font-size: 20px;
+  color: white;
+  text-decoration: none;
+}
+
+#contenido-carrito #boton-iracarrito button:hover{
+  cursor: pointer;
+  padding:20px 45px 20px 45px;
+  
+}
+
+#select-carrito{
+  width: 100px;
+  height: 40px;
+  background-color: #333333;
+  color: white;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+  border-radius: 20px;
+}
