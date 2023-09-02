@@ -140,6 +140,8 @@ function borrar(botonid){
             // Si hay solo un hijo en el contenedor, elimina también el contenedor
             if (contenedorCarrito.children.length === 1) {
                 divPadreCarrito.parentNode.removeChild(divPadreCarrito);
+                const main = document.querySelector(".main");
+                main.style.filter = "blur(0px)";
             } else {
                 contenedorCarrito.removeChild(productoAQuitar);
             }

@@ -7,7 +7,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Krub:ital,wght@0,400;0,700;1,700&family=Open+Sans:wght@800&family=Oswald:wght@500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Krub:ital,wght@0,400;0,700;1,700&family=Open+Sans:ital,wght@0,800;1,700&family=Oswald:wght@500&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Krub:ital,wght@0,400;0,700;1,700&family=Open+Sans:ital,wght@0,300;0,800;1,700&family=Oswald:wght@500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/style-productos.css">
+    <link rel="stylesheet" href="/css/style-carrito.css">
     <link rel="stylesheet" href="/css/style-carrito.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -85,6 +92,130 @@
     </header>
     <!--Termina la navegacion-->
 
+    <main>  
+        
+        <div class="todo-contenido-carrito">
+                <section>
+                    <div id="productos-selecionados-carrito">
+                        <div id="titulo-producto-carrito">
+                            <div>
+                                <h1 id="titulo-carrito-producto">Carrito</h1>
+                            </div>
+                            <div id="titulo-producto-carrito2">
+                                <h2 class="titulo-producto-carrito2-h2">Cantidad</h2>
+                                <h2 class="titulo-producto-carrito2-h2">Precio</h2>
+                            </div>
+                        </div>
+                            <hr id="linea-titulo-carrito">
+                                <div id="productos-selecionados">
+                                    <div class="producto-selecionado-producto1">
+                                        <div class="div-productos-selecionados">
+                                            <img src="/img/imagenes_alternas/x.png" id="borrar-producto">
+                                        </div>
+                                        <div class="div-productos-selecionados">
+                                            <img src="/img/Productos/descarga.jfif" class="img-producto-seleccionado">
+                                        </div>
+                                        <div class="div-productos-selecionados">
+                                            <div id="div-info-producto-selecionado">
+                                                <h2>Platano verde</h2>
+                                            <p>El plátano que ofrecemos es de la más alta calidad y frescura garantizada. Cada fruto de plátano es cuidadosamente
+                                                seleccionado y cultivado en nuestras tierras, utilizando métodos sostenibles y respetuosos con el medio ambiente.
+                                            </p>
+                                            </div>
+                                        </div>
+                                        <div class="div-productos-selecionados">
+                                            <select id="select-carrito">
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                            </select>
+                                        </div>
+                                        <div class="div-productos-selecionados">
+                                            <p>
+                                                $5,000
+                                            </p>
+                                        </div>
+
+                                    </div>
+                                    <div class="producto-selecionado-producto1">
+                                        <div class="div-productos-selecionados">
+                                            <img src="/img/imagenes_alternas/x.png" id="borrar-producto">
+                                        </div>
+                                        <div class="div-productos-selecionados">
+                                            <img src="/img/Productos/Auyama-comun-400x400.webp" class="img-producto-seleccionado">
+                                        </div>
+                                        <div class="div-productos-selecionados">
+                                            <div id="div-info-producto-selecionado">
+                                                <h2>Auyama</h2>
+                                            <p>
+                                                La auyama o ahuyama (ambas formas son correctas según la Real Academia de la Lengua Española-RAE) es uno de los alimentos con múltiples beneficios para el organismo. 
+                                                Este vegetal contiene calcio, sodio, magnesio, zinc, hierro, potasio, fósforo, vitaminas A, C y B.
+                                            </p>
+                                            </div>
+                                        </div>
+                                        <div class="div-productos-selecionados">
+                                            <select id="select-carrito">
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                            </select>
+                                        </div>
+                                        <div class="div-productos-selecionados">
+                                            <p>
+                                                $5,000
+                                            </p>
+                                        </div>
+
+                                    </div>
+                                </div>
+                    </div>
+                </section>
+                <aside>
+                    <div id="compra-resumida">
+                        <div class="bolante-compra-resumida">
+                            <div id="titulo-bolante-compra">
+                                <h2>Orden</h2>
+                            </div>
+                            <div id="precio-bolante-compra">
+                                <div class="precios-bolante"> 
+                                    <p>$Subtotal</p>
+                                    <p>4,000</p>
+                                </div>
+                                <div class="precios-bolante">
+                                    <div class="precios-bolante">
+                                        <img id="img-envio-bolante" src="/img/imagenes_alternas/entrega-rapida.png">
+                                        <p>Envio</p>
+                                    </div>
+                                    <p>XXXX</p>
+                                </div>
+                                <div class="precios-bolante">
+                                    <p>$Iva</p>
+                                    <p>XXXX</p>
+                                </div>
+                            </div>
+                                <div id="finalizarcompra-bolante"> 
+                                    <button id="boton-finalizar"><a href="/page/carrito.html">Finalizar compra</a></button> 
+                                </div>
+                                <div id="linea-bolante">
+                                    <hr>
+                                </div>
+                                <div id="pagos-bolante">
+                                    <p>Puedes pagar con</p>
+                                    <div>
+                                        <img src="/img/imagenes_alternas/bancolombia.png" class="imagenes-pago-bolante">
+                                        <img src="/img/imagenes_alternas/davivienda.jpg" class="imagenes-pago-bolante">
+                                        <img src="/img/imagenes_alternas/MasterCard_early_1990s_logo.svg.png" class="imagenes-pago-bolante">
+                                        <img src="/img/imagenes_alternas/nequi.png" class="imagenes-pago-bolante">
+                                        
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                </aside>
+        </div>
+    </main>
+    <!--Termina el contenido-->
+   
     
 </body>
 </html>
