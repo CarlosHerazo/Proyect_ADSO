@@ -1,0 +1,13 @@
+main{
+    margin-top: 50px;
+}
+.titulo-nosotros{
+    margin-top: 50px;
+    z-index: 9999;
+}
+
+.col-md-5{
+    max-width: 100px;
+    border-radius: 50%;
+    border: 1px solid #000;
+}
