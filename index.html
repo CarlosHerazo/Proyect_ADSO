@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200;300;400&family=Roboto:ital,wght@0,100;0,400;0,700;1,100&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <title>AgroAdonai</title>
 </head>
 
@@ -66,7 +67,7 @@
               </ul>
               
               <form class="d-flex mt-3 mt-lg-0" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
                 <button class="btn btn-outline-success" type="submit">Buscar</button>
               </form>
             </div>
@@ -77,8 +78,12 @@
 </header>
 
     <!--Termina la navegacion-->
-
-    carusel-container
+    <div class="contenido-sesion__imagen">
+        <section class="sesion-imagen">
+          <h2 class="titulo-nosotros">Nosotros</h2>
+        </section>
+      </div>
+  
         <!--Termina la sesion1-->
 
    <main class="main__container">
@@ -129,7 +134,7 @@
         <div class="servicios">
 
             <section class="servicio">
-                <div class="imagen__servicio-container">
+                <div data-aos="zoom-in" class="imagen__servicio-container">
                     <img class="imagen__servicio" src="./img/servicios/delivery.png" id="domicilio">
                     </div>
                    <div>
@@ -140,7 +145,7 @@
 
             </section>
             <section class="servicio">
-                <div class="imagen__servicio-container">
+                <div data-aos="zoom-in" class="imagen__servicio-container">
                     <img class="imagen__servicio" src="./img/servicios/asesoramiento.png" id="asesoramiento">
                 
                 </div>
@@ -152,7 +157,7 @@
 
             </section>
             <section class="servicio">
-                <div class="servicio-container">
+                <div data-aos="zoom-in" class="servicio-container">
                     <img class="imagen__servicio" src="./img/servicios/atencion.png" id="atencion">
                     </div>
                     <div>
@@ -223,6 +228,13 @@
     </footer>
     <script src="./javascript/ventanaEmergente.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        easing: 'ease-out-back',
+        duration: 1000
+      });
+    </script>
 </body>
 
 </html>
