@@ -775,3 +775,7 @@ html {
   font-size: 20px;
   border-radius: 20px;
 }
+
+.filtro{
+  display: none;
+}
