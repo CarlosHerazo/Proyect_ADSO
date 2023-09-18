@@ -249,14 +249,14 @@ html{
 
 @keyframes banner {
       0%, 30% {
-        background-image: url(./../img/imagenes_banner/banner_1.jpg);
+        background-image: url(./../build/img/imagenes_banner/banner_1.webp);
         opacity: 1;
       }
         31%,34% {
           opacity: 0.1;
         }
       35%, 65% {
-        background-image: url(./../img/imagenes_banner/banner_2.jpg);
+        background-image: url(./../build/img/imagenes_banner/banner_2.webp);
         opacity: 1;
       } 
       66%,69% {
@@ -264,7 +264,7 @@ html{
       }
       70%, 100% {
         opacity: 1;
-        background-image: url(./../img/imagenes_banner/banner_3.jpg);
+        background-image: url(./../build/img/imagenes_banner/banner_3.webp);
       }
 }
 
@@ -425,7 +425,7 @@ html{
 }
 
 .sesion-frase{
-    background-image: url(./../img/imagenes_banner/banner_4.jpg);
+    background-image: url(./../build/img/imagenes_banner/banner_4.webp);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
