@@ -8,7 +8,7 @@ if(!empty($_POST["btnIngresar"])){
         $password = $_POST["password"];
         $sql=$conex->query("SELECT * FROM usuario WHERE usuario='$usuario' AND password='$password'");
         if($datos = $sql->fetch_object()){
-            header("Location:paginaAdmin.php");
+            header("Location:./../dashboar_Admin/index.php");
         }else{
             echo '<div class="alert alert-danger">Credenciales Incorrectas</div>';
         }
