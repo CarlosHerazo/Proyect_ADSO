@@ -11,7 +11,7 @@ filtroInput.addEventListener('input', () => {
 
     // Itera sobre los productos y muestra/oculta según coincidan con el filtro
     productos.forEach(producto => {
-        const nombreProducto = producto.querySelector('h3').textContent.toLowerCase();
+        const nombreProducto = producto.querySelector('span').textContent.toLowerCase();
         if (nombreProducto.includes(filtroTexto)) {
             producto.style.display = 'block';
         } else {
