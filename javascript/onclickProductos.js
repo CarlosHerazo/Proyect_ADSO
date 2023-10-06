@@ -52,26 +52,32 @@ document.querySelectorAll("#Producto6").forEach(informacion => {
 
 
 function yuca(){
-    let id = document.getElementsByClassName("producto-info");
+    /*let id = document.getElementsByClassName("producto-info");
     let titulo = document.getElementById("titulo-info-producto");
     let imagen = document.getElementById("producto-info");
     let textoInfo = document.getElementById("Texto-info-producto");
-    let precio = document.getElementById("precio-producto");
+    let precio = document.getElementById("precio-producto");*/
+    let codigo = "1"
 
-    id.id = "producto1"
+    console.log("codigo "+codigo)
+    location.href = "../page/productos.php?codigo="+codigo;
+
+   /* id.id = "producto1"
     titulo.innerHTML="Yuca"
-    imagen.src = "/img/Productos/yuca (1).jpg"
+    imagen.src = "../build/img/Productos/yuca (1).webp"
     textoInfo.innerHTML="La yuca es un tubérculo del arbusto Manihot Esculenta, de aspecto leñoso por fuera, ya que está recubierto por una cáscara de gran dureza y de color marrón que no es comestible. Esta consistencia firme también se encuentra en su pulpa, de color blanco y que presenta fibras longitudinales."
     precio.innerHTML = "Precio por Unidad: $400 - Aplica para personas de la misma localidad <br> Precio por Bulto: $450"
 
     textoInfo.style.marginTop = "50px"
     precio.style.marginTop = "40px"
-    precio.style.marginBottom = "60px"
+    precio.style.marginBottom = "60px"*/
+    
+    
 
 }
 
 function Platano(){
-    let id = document.getElementsByClassName("producto-info");
+   /* let id = document.getElementsByClassName("producto-info");
     let titulo = document.getElementById("titulo-info-producto");
      let imagen = document.getElementById("producto-info");
      let textoInfo = document.getElementById("Texto-info-producto");
@@ -85,10 +91,14 @@ function Platano(){
  
      textoInfo.style.marginTop = "50px"
      precio.style.marginTop = "40px"
-     precio.style.marginBottom = "60px"
+     precio.style.marginBottom = "60px"*/
+     let codigo = "3"
+
+    console.log("codigo "+codigo)
+    location.href = "../page/productos.php?codigo="+codigo;
  }
  function auyama(){
-    let id = document.getElementsByClassName("producto-info");
+    /*let id = document.getElementsByClassName("producto-info");
     let titulo = document.getElementById("titulo-info-producto");
      let imagen = document.getElementById("producto-info");
      let textoInfo = document.getElementById("Texto-info-producto");
@@ -102,10 +112,14 @@ function Platano(){
  
      textoInfo.style.marginTop = "50px";
      precio.style.marginTop = "40px";
-     precio.style.marginBottom = "60px";
+     precio.style.marginBottom = "60px";*/
+     let codigo = "4"
+
+    console.log("codigo "+codigo)
+    location.href = "../page/productos.php?codigo="+codigo;
  }
  function limon(){
-    let id = document.getElementsByClassName("producto-info");
+    /*let id = document.getElementsByClassName("producto-info");
     let titulo = document.getElementById("titulo-info-producto");
      let imagen = document.getElementById("producto-info");
      let textoInfo = document.getElementById("Texto-info-producto");
@@ -119,10 +133,14 @@ function Platano(){
  
      textoInfo.style.marginTop = "50px";
      precio.style.marginTop = "40px";
-     precio.style.marginBottom = "60px";
+     precio.style.marginBottom = "60px";*/
+     let codigo = "6"
+
+    console.log("codigo "+codigo)
+    location.href = "../page/productos.php?codigo="+codigo;
  }
  function ñame(){
-    let id = document.getElementsByClassName("producto-info");
+    /*let id = document.getElementsByClassName("producto-info");
     let titulo = document.getElementById("titulo-info-producto");
      let imagen = document.getElementById("producto-info");
      let textoInfo = document.getElementById("Texto-info-producto");
@@ -136,10 +154,14 @@ function Platano(){
  
      textoInfo.style.marginTop = "50px";
      precio.style.marginTop = "40px";
-     precio.style.marginBottom = "60px";
+     precio.style.marginBottom = "60px";*/
+     let codigo = "7"
+
+    console.log("codigo "+codigo)
+    location.href = "../page/productos.php?codigo="+codigo;
  }
  function guayaba(){
-    let id = document.getElementsByClassName("producto-info");
+   /* let id = document.getElementsByClassName("producto-info");
     let titulo = document.getElementById("titulo-info-producto");
      let imagen = document.getElementById("producto-info");
      let textoInfo = document.getElementById("Texto-info-producto");
@@ -153,6 +175,10 @@ function Platano(){
  
      textoInfo.style.marginTop = "50px";
      precio.style.marginTop = "40px";
-     precio.style.marginBottom = "60px";
+     precio.style.marginBottom = "60px";*/
+     let codigo = "8"
+
+    console.log("codigo "+codigo)
+    location.href = "../page/productos.php?codigo="+codigo;
  }
 

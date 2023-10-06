@@ -38,7 +38,7 @@ function seleccionarProductos(){
 */
 }
 
-
+/*
 document.getElementById("div-carrito").addEventListener("click", carrito)
 
 
@@ -162,7 +162,7 @@ document.getElementById("borrar-carrito").addEventListener("click", function eli
 }
 )
 
-/**logica del boton "ir al carrito"*/   
+/**logica del boton "ir al carrito"
 
 
 
