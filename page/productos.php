@@ -53,14 +53,11 @@ include '../global/cabecera.php';
 
     <br>
     <?php if ($mensaje != "") { ?>
-        <div class="alert alert-success" role="alert">
-            <?php
-
-            echo $mensaje; ?><br><?php
-                                    ?>
-            <button href="../page/carrito.php" class="btn btn-primary">Ver carrito</button>
-        </div>
-    <?php } ?>
+    <div class="alert alert-success" role="alert">
+        <?php echo $mensaje; ?><br>
+        <a href="../page/carrito.php" class="btn btn-primary">Ver carrito</a>
+    </div>
+<?php } ?>
     <div class="div-todo">
         <aside>
             <div class="div-principal">
@@ -210,7 +207,7 @@ if (isset($_GET["codigo"])) {
                 foreach ($listaproductos as $producto) { ?>
 
 
-                    <div class="col-3 m-3 ">
+                    <div class="col-md m-3 text-center">
                         <div class="">
                             <img title="Titulo producto" width="200" height="200" class="" alt="Titulo" src="<?php echo $producto['imagen'] ?>" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="" data-bs-toggle="popover" data-bs-trigger="hover" data-bs-title="<?php echo $producto['nombre'] ?>" data-bs-content="<?php echo $producto['descripcion'] ?>" height="327px">
                             <div class="card-body">
@@ -312,6 +309,7 @@ if (isset($_GET["codigo"])) {
         const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
         const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
     </script>
+    
 </body>
 
 </html>

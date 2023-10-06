@@ -83,9 +83,9 @@ include './logicacarrito.php';
                             <button class="btn btn-primary btn-block" type="submit" name="btn-action" value="proceder">
                                 Proceder a pagar
                             </button>
-                            <button class="btn btn-primary btn-block"  id="btn-elegirmasproductos">
+                            <a href="./productos.php" class="btn btn-primary btn-block"  id="btn-elegirmasproductos">
                                 Elegir mas productos
-                            </button>
+                            </a>
                         </form>
                     </td>
                 </tr>
