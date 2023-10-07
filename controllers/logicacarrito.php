@@ -1,6 +1,6 @@
 <?php
     session_start();
-    $mensaje = "";
+$mensaje = "";
 
         if(isset($_POST['btn-action'])){
             switch($_POST['btn-action']){
@@ -57,7 +57,7 @@
                 $producto['cantidad'] += $cantidad;
                 $mensaje = "Cantidad del producto aumentada en el carrito";
                 break; // Puedes salir del bucle una vez que se actualice la cantidad
-                $_SESSION['cantidad'] = $cantidad;
+                //$_SESSION['cantidad'] = $cantidad;
 
             }
         }

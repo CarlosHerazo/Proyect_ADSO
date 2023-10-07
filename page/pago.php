@@ -1,7 +1,7 @@
 <?php
-    include '../model/config.php';
-    include '../model/conexion.php';
-    include './logicacarrito.php';
+include '../model/config.php';
+include '../model/conexion.php';
+include './logicacarrito.php';
 ?>
 <?php
 if ($_POST) {
@@ -25,12 +25,12 @@ if ($_POST) {
         $idProducto = $producto['id'];
         $precioUnitario = $producto['precio'];
         $cantidad = $producto['cantidad'];
-    
+
         // Verificar que $idProducto no sea nulo antes de ejecutar la consulta
         if (!is_null($idProducto)) {
             $sentencia = $pdo->prepare("INSERT INTO `detallepedido` (`id`, `id_venta`, `id_producto`, `precio_unitario`, `cantidad`, `descargado`)
             VALUES (NULL, :idVenta, :idProducto, :precioUnitario, :cantidad, '0');");
-    
+
             $sentencia->bindParam(":idVenta", $idVenta);
             $sentencia->bindParam(":idProducto", $idProducto);
             $sentencia->bindParam(":precioUnitario", $precioUnitario);
@@ -38,7 +38,7 @@ if ($_POST) {
             $sentencia->execute();
         }
     }
-}    
+}
 
 //echo "<h3>$total</h3>";
 ?>
@@ -47,12 +47,12 @@ if ($_POST) {
     <h1 class="display-4">¡Paso Final!</h1>
     <hr class="my-2">
     <p class="lead">Estas a punto de pagar la cantidad de:
-        <h4>$<?php echo number_format($total,2) ?></h4>
+    <h4>$<?php echo number_format($total, 2) ?></h4>
     </p>
-    
-    
-    <p class="lead"> <br/>
+
+
+    <p class="lead"> <br />
         <strong>(Para aclaraciones: agroadonai@gmail.com)</strong>
-</p>
+    </p>
 
 </div>

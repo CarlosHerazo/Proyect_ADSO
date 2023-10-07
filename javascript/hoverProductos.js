@@ -81,16 +81,7 @@ DivProducto1.addEventListener("mouseover", function() {
 
   
 
-/*
-  DivProducto1.addEventListener("mouseover", Onmouseover("barra2","brown"))
-  
-  
-     function Onmouseover(id,Color) {
-      let barra = document.getElementById(id)
-      barra.style.background = Color;
-      console.log ("hola")
-    };
-*/
+
    
 
 
