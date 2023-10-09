@@ -59,7 +59,7 @@ include 'controllers/logicacarrito.php';
                                 <div id="cantidad-carrito"><?php echo (empty($_SESSION['carrito'])) ? 0 : count($_SESSION['carrito']); ?></div>
                                 <div class="icon-nav">
 
-                                    <a href="../page/carrito.php"> <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512">
+                                    <a href="./page/carrito.php"> <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512">
                                             <style>
                                                 svg {
                                                     fill: #ffffff

@@ -143,13 +143,13 @@ include '../global/cabecera.php';
                         </div>
                         <p id="precio-producto">Precio por Unidad: <?php echo $productos['precio'] ?></p>
                     </div>
-                    <div class="link-comprar-producto" id="comprar">
+                    <div  id="comprar">
                         <form action="" method="post">
                             <input type="hidden" name="id" id="id" value="<?php echo openssl_encrypt($productos['codigo'], COD, KEY) ?>">
                             <input type="hidden" name="nombre" id="nombre" value="<?php echo openssl_encrypt($productos['nombre'], COD, KEY) ?>">
                             <input type="hidden" name="precio" id="precio" value="<?php echo openssl_encrypt($productos['precio'], COD, KEY) ?>">
                             <input type="hidden" name="cantidad" id="cantidad" value="<?php echo openssl_encrypt(1, COD, KEY) ?>">
-                            <button class="btn btn-primary" name="btn-action" value="agregar" id="comprar" type="submit">Agregar al carrito</button>
+                            <button class="btn btn-success  w-100" name="btn-action" value="agregar" id="comprar" type="submit">Agregar al carrito</button>
                         </form>
                         <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512">
                             <!-- Icono SVG aquí -->
@@ -178,13 +178,13 @@ include '../global/cabecera.php';
                         </div>
                         <p id="precio-producto">Precio por Unidad: <?php echo $productos['precio'] ?></p>
                     </div>
-                    <div class="link-comprar-producto" id="comprar">
+                    <div  id="comprar">
                         <form action="" method="post">
                             <input type="hidden" name="id" id="id" value="<?php echo openssl_encrypt($productos['codigo'], COD, KEY) ?>">
                             <input type="hidden" name="nombre" id="nombre" value="<?php echo openssl_encrypt($productos['nombre'], COD, KEY) ?>">
                             <input type="hidden" name="precio" id="precio" value="<?php echo openssl_encrypt($productos['precio'], COD, KEY) ?>">
                             <input type="hidden" name="cantidad" id="cantidad" value="<?php echo openssl_encrypt(1, COD, KEY) ?>">
-                            <button class="btn btn-primary" name="btn-action" id="comprar" value="agregar" type="submit">Agregar al carrito</button>
+                            <button class="btn btn-success w-100" name="btn-action" id="comprar" value="agregar" type="submit">Agregar al carrito</button>
                         </form>
                         <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512">
                             <!-- Icono SVG aquí -->
@@ -211,7 +211,7 @@ include '../global/cabecera.php';
                 foreach ($listaproductos as $producto) { ?>
 
 
-                    <div class="col-3 m-3 ">
+                    <div class="col-md m-3 text-center">
                         <div class="">
                             <img title="Titulo producto" width="200" height="200" class="" alt="Titulo" src="<?php echo $producto['imagen'] ?>" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="" data-bs-toggle="popover" data-bs-trigger="hover" data-bs-title="<?php echo $producto['nombre'] ?>" data-bs-content="<?php echo $producto['descripcion'] ?>" height="327px">
                             <div class="card-body">
@@ -229,7 +229,6 @@ include '../global/cabecera.php';
                                     <input type="hidden" name="nombre" id="nombre" value="<?php echo openssl_encrypt($producto['nombre'], COD, KEY) ?>">
                                     <input type="hidden" name="precio" id="precio" value="<?php echo openssl_encrypt($producto['precio'], COD, KEY) ?>">
                                     <input type="hidden" name="cantidad" id="cantidad" value="<?php echo openssl_encrypt(1, COD, KEY) ?>">
-
                                     <button class="btn btn-primary" name="btn-action" id="comprar" value="agregar" type="submit">Agregar al carrito</button>
 
                                 </form>
