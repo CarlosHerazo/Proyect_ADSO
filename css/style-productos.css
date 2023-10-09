@@ -777,13 +777,16 @@ html {
 }
 
 #cantidad-carrito{
-  background-color: red;
-  width: 20px;
-  height: 20px;
-  color: white;
-  font-size: 20px;
+  background-color: #007BFF; /* Color de fondo */
+  color: #FFF; /* Color de texto */
+  border: 2px solid #007BFF; /* Borde */
+  border-radius: 50%; /* Forma redonda */
+  width: 30px; /* Ancho */
+  height: 30px; /* Altura */
   display: flex;
-  justify-content: center;
   align-items: center;
-  border-radius: 20px;
+  justify-content: center;
+  font-weight: bold; /* Texto en negrita */
+  font-size: 16px; /* Tamaño de fuente */
+
 }

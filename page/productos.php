@@ -143,7 +143,7 @@ include '../global/cabecera.php';
                         </div>
                         <p id="precio-producto">Precio por Unidad: <?php echo $productos['precio'] ?></p>
                     </div>
-                    <div  id="comprar">
+                    <div id="comprar">
                         <form action="" method="post">
                             <input type="hidden" name="id" id="id" value="<?php echo openssl_encrypt($productos['codigo'], COD, KEY) ?>">
                             <input type="hidden" name="nombre" id="nombre" value="<?php echo openssl_encrypt($productos['nombre'], COD, KEY) ?>">
@@ -250,6 +250,7 @@ include '../global/cabecera.php';
         const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
         const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
     </script>
+    <script src="./../javascript/hoverProductos.js"></script>
 </body>
 
 </html>
