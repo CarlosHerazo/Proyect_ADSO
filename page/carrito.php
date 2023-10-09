@@ -29,6 +29,9 @@ include '../controllers/logicacarrito.php';
 <body>
     <?php include "../global/cabecera.php"; ?>
     <br><br><br><br><br>
+   
+
+    <div class="container">
     <div>
         <h1 id="titulo-carrito-producto">Carrito</h1>
     </div>
@@ -102,8 +105,9 @@ include '../controllers/logicacarrito.php';
 
     <?php } ?>
 
-    <br><br><br><br><br><br><br><br>
-
+    </div>
+    
+<br><br><br><br><br><br>
     <?php include "../global/footer.php"; ?>
 
     <!--Termina el contenido-->
