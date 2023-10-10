@@ -454,11 +454,10 @@ html{
 
 /*Diseño para la pagina del carrito*/
 
-#todo-carrito{
-  margin-top: 200px;
-}
 
-#cantidad-carrito{
+
+ /* #cantidad-carrito{
+  position: absolute;
   background-color: red;
   width: 20px;
   height: 20px;
@@ -468,4 +467,4 @@ html{
   justify-content: center;
   align-items: center;
   border-radius: 20px;
-}
+}  */
