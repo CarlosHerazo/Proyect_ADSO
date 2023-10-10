@@ -1,6 +1,6 @@
 <?php
 
-require_once("./Conexion.php");
+require_once("conexion.php");
 
 class ModeloProducto{
     public static  function mdlMostrarProducto(){

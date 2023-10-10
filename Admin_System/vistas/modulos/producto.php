@@ -252,7 +252,7 @@
                         "sortable": false,
                         "render": function (data, type, full, meta) {
                             return "<center>" +
-                                        "<button type='button' class='btn btn-primary btn-sm btnEditar' data-toggle='modal' data-target='modal-actualizar-producto'>"+"<i class='fas fa-pencil-alt'></i>" + 
+                                        "<button type='button' class='btn btn-primary btn-sm btnEditar' data-toggle='modal' data-target='modal-actualizar-categoria'>"+"<i class='fas fa-pencil-alt'></i>" + 
                                         "</button>" +
                                         "<button type='button' class='btn btn-danger btn-sm btnEliminar'>"+"<i class='fas fa-trash'></i>" + 
                                         "</button>" +
@@ -260,13 +260,13 @@
                         }
                        }
                     ],
-                    "colums":[
-                        {"data":"codigo"},
-                        {"data":"nombre"},
-                        {"data":"precio"},
-                        {"data":"descripcion"},
-                        {"data":"imagen"},
-                        {"data":"acciones"},
+                "columns":[
+                        {"data": "codigo"},
+                        {"data": "nombre"},
+                        {"data": "precio"},
+                        {"data": "descripcion"},
+                        {"data": "imagen"},
+                        {"data": "acciones"}
                     ]
         });
     })
