@@ -7,7 +7,7 @@ class ModeloProducto{
         $stnt = Conexion::conectar() -> prepare("SELECT `codigo`, `nombre`, `precio`, `descripcion`, `imagen`,'x' as acciones FROM `productos`;");
         $stnt -> execute();
         return $stnt -> fetchAll();
-        $stnt = null;
+        // $stnt = null;
     }
 }
 
