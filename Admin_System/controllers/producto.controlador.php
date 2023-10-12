@@ -10,5 +10,10 @@ class ControladorProducto{
         $respuesta = ModeloProducto::mdlRegistrarProducto($nombre, $precio, $descripcion, $imagen);
         return $respuesta;
     }
+
+    static public function crtEliminarProducto($codigo){    
+             $respuesta = ModeloProducto::mdlEliminarProducto($codigo);
+        return $respuesta;
+    }
     
 }

@@ -18,7 +18,7 @@
 <!--  Content-->
 <section class="container-fluid">
 
-    <div class="btn-agregar-producto">
+    <div class="btn-agregar-producto btn-agregar">
         <button type="button" class="btn btn-info btn-sm mb-4" data-toggle="modal" data-target="#modal-actualizar-producto" data-dismiss="modal"><i class="fas fa-plus-square"></i>
             Agregar Producto </button>
     </div>
@@ -97,6 +97,14 @@
 
 <script>
     $(document).ready(function() {
+        let accion = "";
+
+        let Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000 
+        });
 
         let table = $("#tablaProductos").DataTable({
             "ajax": {
@@ -290,10 +298,10 @@
                 "targets": 5,
                 "sortable": false,
                 "render": function(data, type, full, meta) {
-                    return "<div style='display:flex'>" +
+                    return "<div style='display:flex;'>" +
                         "<button style='whith:20px' type='button' class='btn btn-primary btn-sm btnEditar' data-toggle='modal' data-target='modal-actualizar-categoria'>" + "<i class='fas fa-pencil-alt'></i>" +
                         "</button>" +
-                        "<button type='button' class='btn btn-danger btn-sm btnEliminar'>" + "<i class='fas fa-trash'></i>" +
+                        "<button type='button' class='btn btn-danger btn-sm btnEliminar'> " + "<i class='fas fa-trash'></i>" +
                         "</button>" +
                         "</div>";
                 }
@@ -323,31 +331,119 @@
         });
 
 
-        $("#btnGuardar").on('click', () => {
+        $("btn-agregar-producto").on("click",()=>{
+            accion = "registrar"
+        })
+        
 
-            let nombre = $("#nombreP").val(),
-             precio = $("#precioP").val(),
-             descripcion = $("#descripcionP").val(),
-             imagen = $("#imagenP").val()
+        // GUARDAR LA INFORMACION DEL PRODUCTO DESDE LA VENTANA MODAL
+        $("#btnGuardar").on('click', function() {
 
-            let datos = new FormData();
-            datos.append('nombre', nombre);
-            datos.append('precio', precio);
-            datos.append('descripcion', descripcion);
-            datos.append('imagen', imagen);
-            $.ajax({
-                url: "ajax/producto.ajax.php",
-                method: "POST",
-                data: datos,
-                cache: false,
-                contentType: false,
-                processData: false,
-                success: function(respuesta) {
-                    console.log(respuesta);
-                    $("#modal-actualizar-producto").modal('hide');
-                    table.ajax.reload(null, false);            
+            Swal.fire({
+                title: "¡CONFIRMAR!",
+                text: "¿Está seguro que desea registrar el producto?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: "Sí, Registrar",
+                cancelButtonText: "Cancelar"
+
+            }).then(resultado => {
+                if (resultado.value) {
+
+                    let nombre = $("#nombreP").val(),
+                        precio = $("#precioP").val(),
+                        descripcion = $("#descripcionP").val(),
+                        imagen = $("#imagenP").val()
+
+                    let datos = new FormData();
+                    datos.append('nombre', nombre);
+                    datos.append('precio', precio);
+                    datos.append('descripcion', descripcion);
+                    datos.append('imagen', imagen);
+                    datos.append('accion', accion);
+                    
+                    $.ajax({
+                        url: "ajax/producto.ajax.php",
+                        method: "POST",
+                        data: datos,
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        success: function(respuesta) {
+                            //console.log(respuesta);
+                            $("#modal-actualizar-producto").modal('hide');
+                            table.ajax.reload(null, false);
+
+                            $("#nombreP").val("");
+                            $("#precioP").val("");
+                            $("#descripcionP").val("");
+                            $("#imagenP").val("");
+                            
+                            Toast.fire({
+                                icon: 'success',
+                                title: respuesta
+                            })
+                       
+                        }
+                    })
+                   
+                } else {
+
                 }
             })
+
+
+            $("#tablaProductos tbody").on('click', '.btnEliminar', function() {
+            let data = table.row($(this).parents('tr')).data();
+           
+          let id = data.codigo
+
+            let datos = new FormData();
+            datos.append('accion', 'eliminar')
+            datos.append('codigo', id);
+
+            Swal.fire({
+                title: 'CONFIRMACION',
+                text: "¿Está seguro de eliminar el registro?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si, Eliminar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+
+                    // LLAMADO AJAX
+                      $.ajax({
+                        url: "ajax/producto.ajax.php",
+                        method: "POST",
+                        data: datos,
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        success: function(respuesta) {
+                            //console.log(respuesta);
+                            console.log(respuesta)
+                            table.ajax.reload(null, false);
+
+                            Toast.fire({
+                                icon: 'success',
+                                title: 'Confirmacion',
+                                text: 'El producto fue eliminado con exito',
+                                confirmButtonText: "Cerrar"
+                            })
+
+                        }
+                    })
+                }else{
+                    // alert("no se modifico el producto??")
+                }
+            })
+        })
+
+
+
+
         })
     })
 

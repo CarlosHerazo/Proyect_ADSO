@@ -12,8 +12,6 @@ class ModeloProducto{
 
     static public function mdlRegistrarProducto($nombre, $precio, $descripcion, $imagen){
         // Establecer la conexión a la base de datos
-        
-        
         // Preparar la consulta SQL (no es necesario usar comillas en los marcadores de posición)
         $stmt = Conexion::conectar()->prepare("INSERT INTO `productos` (`nombre`, `precio`, `descripcion`, `imagen`) VALUES (:nombre, :precio, :descripcion, :imagen)");
         
@@ -31,7 +29,30 @@ class ModeloProducto{
         }
         
         // Cerrar la declaración y la conexión
-        // $stmt = null;
+        $stmt = null;
+        // $pdo = null;
+    }
+
+
+    static public function mdlEliminarProducto($codigo){
+        // Establecer la conexión a la base de datos
+        
+        
+        // Preparar la consulta SQL (no es necesario usar comillas en los marcadores de posición)
+        $stmt = Conexion::conectar()->prepare("DELETE FROM `productos` WHERE codigo = :codigo");
+        
+        // Vincular los valores a los marcadores de posición
+        $stmt->bindParam(":codigo", $codigo, PDO::PARAM_INT);
+        
+        // Ejecutar la consulta
+        if($stmt->execute()){
+            return "El producto se elimino perfectamente";
+        } else {
+            return "Error, no se pudo eliminar el producto";
+        }
+        
+        // Cerrar la declaración y la conexión
+        $stmt = null;
         // $pdo = null;
     }
 
