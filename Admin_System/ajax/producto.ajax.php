@@ -24,7 +24,15 @@ class ajaxCategoria {
         echo json_encode($respuesta, JSON_UNESCAPED_UNICODE);
     }
 
+    public function actualizarProducto(){
+        $respuesta = ControladorProducto::crtActualizarProducto($this->codigo, $this->nombre, $this->precio, $this->descripcion, $this->imagen);
+        echo json_encode($respuesta, JSON_UNESCAPED_UNICODE);
+    }
+
+
 }
+
+ 
 
 if(!isset($_POST["accion"])){
     $respuesta = new ajaxCategoria();
@@ -44,5 +52,14 @@ if(!isset($_POST["accion"])){
         $eliminar ->codigo = $_POST['codigo'];
         $eliminar ->eliminarProducto();
     }
-    
+
+    if($_POST["accion"] == "actualizar"){
+        $actualizar = new ajaxCategoria();
+        $actualizar ->codigo = $_POST['codigo'];
+        $actualizar ->nombre = $_POST['nombre'];
+        $actualizar ->precio = $_POST['precio'];
+        $actualizar ->descripcion = $_POST['descripcion'];
+        $actualizar ->imagen = $_POST['imagen'];
+        $actualizar ->actualizarProducto();
+    }
 }

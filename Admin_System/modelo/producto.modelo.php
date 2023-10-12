@@ -56,7 +56,36 @@ class ModeloProducto{
         // $pdo = null;
     }
 
-}
+    static public function mdlActualizarProducto($codigo, $nombre, $precio, $descripcion, $imagen){
+         // Establecer la conexión a la base de datos
+        // Preparar la consulta SQL (no es necesario usar comillas en los marcadores de posición)
+        $stmt = Conexion::conectar()->prepare("UPDATE `productos` 
+                                                
+                                                SET nombre = :nombre,
+                                                    precio = :precio,
+                                                    descripcion = :descripcion,
+                                                    imagen = :imagen
+                                                    
+                                                WHERE codigo = :codigo");
+        
+        // Vincular los valores a los marcadores de posición
+        $stmt->bindParam(":codigo", $codigo, PDO::PARAM_INT);
+        $stmt->bindParam(":nombre", $nombre, PDO::PARAM_STR);
+        $stmt->bindParam(":precio", $precio, PDO::PARAM_STR);
+        $stmt->bindParam(":descripcion", $descripcion, PDO::PARAM_STR);
+        $stmt->bindParam(":imagen", $imagen, PDO::PARAM_STR);
+        
+        // Ejecutar la consulta
+        if($stmt->execute()){
+            return "El producto se actualizo perfectamente";
+        } else {
+            return "Error, no se pudo actualizar el producto";
+        }
+        
+        // Cerrar la declaración y la conexión
+        $stmt = null;
+        // $pdo = null;
+}   }
 
 $productos = ModeloProducto::mdlMostrarProducto();
 
