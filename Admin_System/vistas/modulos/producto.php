@@ -338,7 +338,7 @@
             $.ajax({
                 url: "ajax/producto.ajax.php",
                 method: "POST",
-                data: "datos",
+                data: datos,
                 cache: false,
                 contentType: false,
                 processData: false,
