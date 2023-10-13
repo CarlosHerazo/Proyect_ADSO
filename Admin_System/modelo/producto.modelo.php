@@ -11,7 +11,6 @@ class ModeloProducto{
     }
 
     static public function mdlRegistrarProducto($nombre, $precio, $descripcion, $imagen){
-        // Establecer la conexión a la base de datos
         // Preparar la consulta SQL (no es necesario usar comillas en los marcadores de posición)
         $stmt = Conexion::conectar()->prepare("INSERT INTO `productos` (`nombre`, `precio`, `descripcion`, `imagen`) VALUES (:nombre, :precio, :descripcion, :imagen)");
         
@@ -28,17 +27,16 @@ class ModeloProducto{
             return "Error, no se pudo registrar el producto";
         }
         
-        // Cerrar la declaración y la conexión
+        // Cerrar la declaración 
         $stmt = null;
-        // $pdo = null;
+      
     }
 
 
     static public function mdlEliminarProducto($codigo){
-        // Establecer la conexión a la base de datos
         
         
-        // Preparar la consulta SQL (no es necesario usar comillas en los marcadores de posición)
+        // Preparar la consulta SQL 
         $stmt = Conexion::conectar()->prepare("DELETE FROM `productos` WHERE codigo = :codigo");
         
         // Vincular los valores a los marcadores de posición
@@ -51,14 +49,14 @@ class ModeloProducto{
             return "Error, no se pudo eliminar el producto";
         }
         
-        // Cerrar la declaración y la conexión
+        // Cerrar la declaración 
         $stmt = null;
-        // $pdo = null;
+        
     }
 
     static public function mdlActualizarProducto($codigo, $nombre, $precio, $descripcion, $imagen){
-         // Establecer la conexión a la base de datos
-        // Preparar la consulta SQL (no es necesario usar comillas en los marcadores de posición)
+      
+        // Preparar la consulta SQL
         $stmt = Conexion::conectar()->prepare("UPDATE `productos` 
                                                 
                                                 SET nombre = :nombre,
@@ -82,9 +80,9 @@ class ModeloProducto{
             return "Error, no se pudo actualizar el producto";
         }
         
-        // Cerrar la declaración y la conexión
+        // Cerrar la declaración 
         $stmt = null;
-        // $pdo = null;
+      
 }   }
 
 $productos = ModeloProducto::mdlMostrarProducto();
