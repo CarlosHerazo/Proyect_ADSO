@@ -1,10 +1,22 @@
 <!-- Main Sidebar Container -->
+
+<?php 
+
+if(isset($_SESSION['nombre'])){
+    $nombre = $_SESSION['nombre'];
+} else {
+    // El usuario no ha iniciado sesión, puedes redirigirlo a la página de inicio de sesión.
+    header("Location: ../index.php"); // Asegúrate de ajustar la URL de redirección según tu estructura de carpetas
+}
+
+?>
+
 <aside class="main-sidebar sidebar-dark-primary elevation-4 menu_lateral">
 
     <!-- Brand Logo -->
     <a href="index.php" class="brand-link">
         <img src="vistas/assets/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light">AGROADONAI</span>
+        <span class="brand-text font-weight-light"><?php echo $nombre ?></span>
     </a>
 
     <!-- Sidebar -->
@@ -58,7 +70,7 @@
 
             <ul class="nav nav-pills nav-sidebar nav_profile">
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="./../logout.php" class="nav-link">
                         <i class="nav-icon fas fa-sign-out-alt"></i>                        
                         <p>
                             Cerrar Sesion
