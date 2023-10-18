@@ -1,3 +1,51 @@
+<?php
+require '../model/config.php';
+require '../model/conexion.php';
+// Verifica si la conexión a la base de datos se ha establecido correctamente
+if ($pdo) {
+    if ($_SERVER["REQUEST_METHOD"] === "POST") {
+        $usuario = $_POST['usuario'];
+        $contra = $_POST['contra'];
+
+
+        // Consulta SQL para verificar las credenciales del usuario
+        $sql = "SELECT id, contra, nombre FROM admin WHERE usuario = :usuario";
+
+        // Preparar la consulta
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(":usuario", $usuario, PDO::PARAM_STR);
+        if ($stmt->execute()) {
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            
+            if ($row) {
+                $hashedPassword = $row['contra'];
+                
+                $pass_c = sha1($contra);
+                // Verificar la contraseña
+                if (sha1($contra) === $hashedPassword) {
+                    // La contraseña es correcta, puedes permitir el acceso
+                    $_SESSION['nombre'] = $row['nombre'];
+                    header("Location: ../Admin_System/index.php");
+                } else {
+                    // La contraseña no coincide
+                    echo "<div class='alert alert-danger' role='alert'>Contraseña incorrecta. Acceso denegado.</div>";
+                }
+            } else {
+                // No se encontró el usuario en la base de datos
+                echo "<div class='alert alert-danger' role='alert'>Usuario no encontrado. Acceso denegado.</div>";
+            }
+        } else {
+            echo "<div class='alert alert-danger' role='alert'>Error al ejecutar la consulta.</div>";
+        }
+    }
+} else {
+    echo "Error: No se pudo establecer la conexión a la base de datos.";
+}
+?>
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,7 +70,7 @@
             <div class="col-md-6 col-lg-7 d-flex align-items-center">
               <div class="card-body p-4 p-lg-5 text-black">
 
-                <form method ="POST">
+                <form method ="POST" action="<?php echo $_SERVER["PHP_SELF"];?>">
 
                   <div class="d-flex align-items-center mb-3 pb-1">
                     <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
@@ -32,12 +80,12 @@
                   <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Inicia sesión si eres administrador</h5>
 
                   <div class="form-outline mb-4">
-                    <input type="text" id="form2Example17" name="user" class="form-control form-control-lg" />
+                    <input type="text" id="form2Example17" name="usuario" class="form-control form-control-lg" />
                     <label class="form-label"  for="form2Example17">Usuario</label>
                   </div>
 
                   <div class="form-outline mb-4">
-                    <input type="password" name="password" id="form2Example27" class="form-control form-control-lg" />
+                    <input type="password" name="contra" id="form2Example27" class="form-control form-control-lg" />
                     <label class="form-label" for="form2Example27">Contraseña</label>
                   </div>
 
