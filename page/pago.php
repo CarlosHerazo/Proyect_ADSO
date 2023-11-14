@@ -1,7 +1,7 @@
 <?php
 include '../model/config.php';
 include '../model/conexion.php';
-include './logicacarrito.php';
+include '../controllers/logicacarrito.php';
 ?>
 <?php
 if ($_POST) {
@@ -40,7 +40,7 @@ if ($_POST) {
     }
 }
 
-//echo "<h3>$total</h3>";
+// echo "<h3>$total</h3>";
 ?>
 
 <div class="jumbotron text-center">
