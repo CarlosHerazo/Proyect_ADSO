@@ -3,6 +3,8 @@
 
     define("KEY", "proyecto-adso");
     define("COD", "AES-128-ECB");
+    define("CURRENCY", "USD");
+    define("CLIENT_ID", "Ac8u12LEw7fPX4B2mBVc2YqsQr9AtTGWX6HLoD30Nf6wyKDjoA_PlBN7Pe5OO18-t46mvOMqBF2usgJa");
 
 
     define("SERVIDOR", 'localhost');
