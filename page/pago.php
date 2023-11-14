@@ -71,17 +71,17 @@ if ($_POST) {
     <table class="table">
             <tbody>
                 <tr>
-                    <th width="40%">Producto</th>
-                    <th width="15%" class="text-center">Cantidad</th>
-                    <th width="20%" class="text-center">Precio</th>
+                    <th class="text-center">Producto</th>
+                    <th class="text-center">Cantidad</th>
+                    <th class="text-center">Precio</th>
                 </tr>
                 <?php $total = 0; ?>
                 <?php
                 foreach ($_SESSION['carrito'] as $indice => $producto) {  ?>
                     <tr>
-                        <td width="40%"><?php echo htmlspecialchars($producto['nombre'], ENT_QUOTES, 'UTF-8') ?></td>
-                        <td width="15%" class="text-center"><?php echo $producto['cantidad'] ?></td>
-                        <td width="20%" class="text-center">$<?php echo number_format($producto['cantidad'] * $producto['precio'], 2) ?></td>
+                        <td class="text-center"><?php echo htmlspecialchars($producto['nombre'], ENT_QUOTES, 'UTF-8') ?></td>
+                        <td class="text-center"><?php echo $producto['cantidad'] ?></td>
+                        <td class="text-center">$<?php echo number_format($producto['cantidad'] * $producto['precio'], 2) ?></td>
                         
                     </tr>
                     <?php $total = $total + ($producto['precio'] * $producto['cantidad']); ?>
