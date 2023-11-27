@@ -3,12 +3,11 @@
 <section class="content-header">
     <style>
         .admin-color {
-            background-color: #FFD700;
-            border-radius: 5px;
+            background-color: #ed7855;
         }
 
         .supervisor-color {
-            background-color: #00FF00;
+            background-color: #ffa477;
             /* Color para supervisores */
         }
     </style>
