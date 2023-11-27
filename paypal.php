@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,38 +9,26 @@
 <body>
     
 
-<div id="paypal-button-container"></div>
+<form action="">
+<script type="text/javascript" src="https://checkout.epayco.co/checkout.js">
 
-<script src="https://www.paypal.com/sdk/js?client-id=Ac8u12LEw7fPX4B2mBVc2YqsQr9AtTGWX6HLoD30Nf6wyKDjoA_PlBN7Pe5OO18-t46mvOMqBF2usgJa"></script>
+</script>
+
+
+</form>
 
 <script>
-    paypal.Buttons({
-        style:{
-            color:'blue',
-            shape:'pill',
-            label:'pay'
-        },
-        createOrder: function(data,actions){
-            return actions.order.create({
-                purchase_units:[{ 
-                    amount: {
-                        value: 100
-                    }
-                }]
-            });
-        },
+    var handler = ePayco.checkout.configure({
+    key: '45b960805ced5c27ce34b1600b4b9f54',
+    test: true
 
-        onApprove: function(data, actions){
-            actions.order.capture().then(function(detalles){
-                //redirection
-            });
-        },
 
-        onCancel: function(data){
-            alert("Pago Cancelado");
-        }
-    }).render('#paypal-button-container')
+})
+
+
 </script>
+
+
 
 </body>
 </html>

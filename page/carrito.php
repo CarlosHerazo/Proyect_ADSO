@@ -37,6 +37,7 @@ include '../controllers/logicacarrito.php';
     <?php
     if (!empty($_SESSION['carrito'])) {
     ?>
+   
         <table class="table">
             <tbody>
                 <tr>

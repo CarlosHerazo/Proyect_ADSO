@@ -65,6 +65,8 @@ if (isset($_POST['btn-action'])) {
                 }
             }
             break;
+    
+
 
 case 'eliminar':
     if(is_numeric( openssl_decrypt($_POST['id'], COD, KEY))){
@@ -82,5 +84,8 @@ case 'eliminar':
     }  
     break;
     }
-}
+
+} 
+
+
 ?>
