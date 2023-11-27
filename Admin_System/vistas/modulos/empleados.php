@@ -4,6 +4,7 @@
     <style>
         .admin-color {
             background-color: #ed7855;
+            font-weight: 700;
         }
 
         .supervisor-color {
