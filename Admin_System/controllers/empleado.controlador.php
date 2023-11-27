@@ -8,9 +8,9 @@ class ControladorEmpleados
         return $respuesta;
     }
 
-    static public function crtRegistrarEmpleados($nombre, $rol, $user, $contra)
+    static public function crtRegistrarEmpleados($rol, $nombre, $user, $contra)
     {
-        $respuesta = ModeloEmpleados::mdlRegistrarEmpleados($nombre,$rol, $user, $contra);
+        $respuesta = ModeloEmpleados::mdlRegistrarEmpleados($rol, $nombre, $user, $contra);
         return $respuesta;
     }
 

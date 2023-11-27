@@ -14,12 +14,12 @@ class ModeloEmpleados
     }
 
     // registrar nuevo empleado
-    public static function mdlRegistrarEmpleados($nombre,$rol, $user, $contra)
+    public static function mdlRegistrarEmpleados($rol, $nombre, $user, $contra)
     {
         // Convertir la contraseña a SHA-1
         $contrasenaSha1 = sha1($contra);
         // Preparar la consulta SQL (no es necesario usar comillas en los marcadores de posición)
-        $stmt = Conexion::conectar()->prepare("INSERT INTO `admin` (`contra`, `usuario`,`rol`, `nombre`) VALUES (:pass, :usuario, :nombre, :rol)");
+        $stmt = Conexion::conectar()->prepare("INSERT INTO `admin` (`contra`, `usuario`,`rol`, `nombre`) VALUES (:pass, :usuario, :rol, :nombre)");
 
         $stmt->bindParam(":pass", $contrasenaSha1, PDO::PARAM_STR); 
         $stmt->bindParam(":usuario", $user, PDO::PARAM_STR);
