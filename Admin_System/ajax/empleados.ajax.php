@@ -10,6 +10,7 @@ class AjaxEmpleados
     public $nombre;
     public $user;
     public $pass;
+    public $rol;
 
     public function MostrarEmpleados()
     {
@@ -20,7 +21,7 @@ class AjaxEmpleados
 
     public function registrarEmpleados()
     {
-        $respuesta = ControladorEmpleados::crtRegistrarEmpleados($this->nombre, $this->user, $this->pass);
+        $respuesta = ControladorEmpleados::crtRegistrarEmpleados($this->rol,$this->nombre, $this->user, $this->pass);
         echo json_encode($respuesta, JSON_UNESCAPED_UNICODE);
     }
 
@@ -34,7 +35,7 @@ class AjaxEmpleados
 
 
     public function actualizarEmpleados(){
-        $respuesta = ControladorEmpleados::crtActualizarEmpleados($this->id, $this->nombre, $this->user, $this->pass);
+        $respuesta = ControladorEmpleados::crtActualizarEmpleados($this->id,$this->rol, $this->nombre, $this->user, $this->pass);
         echo json_encode($respuesta, JSON_UNESCAPED_UNICODE);
     }
 
@@ -49,6 +50,7 @@ if (!isset($_POST["accion"])) {
         $insertar = new AjaxEmpleados();
         $insertar->nombre = $_POST['nombre'];
         $insertar->user = $_POST['user'];
+        $insertar->rol = $_POST['rol'];
         $insertar->pass = $_POST['contra'];
         $insertar->registrarEmpleados();
     }
@@ -64,6 +66,7 @@ if (!isset($_POST["accion"])) {
         $actualizar->id = $_POST['id'];
         $actualizar->nombre = $_POST['nombre'];
         $actualizar->user = $_POST['user'];
+        $actualizar->rol = $_POST['rol'];
         $actualizar->pass = $_POST['contra'];
         $actualizar->actualizarEmpleados();
     }

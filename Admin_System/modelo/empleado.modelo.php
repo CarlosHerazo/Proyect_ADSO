@@ -7,23 +7,23 @@ class ModeloEmpleados
     // lsitar los empleados
     public static  function mdlMostrarEmpleados()
     {
-        $stnt = Conexion::conectar()->prepare("SELECT `id`, `contra`, `usuario`,  `nombre`, 'x' as Acciones FROM `admin`;");
+        $stnt = Conexion::conectar()->prepare("SELECT `id`, `contra`, `usuario`,`rol`,  `nombre`, 'x' as Acciones FROM `admin`;");
         $stnt->execute();
         return $stnt->fetchAll();
         // $stnt = null;
     }
 
     // registrar nuevo empleado
-    public static function mdlRegistrarEmpleados($nombre, $user, $contra)
+    public static function mdlRegistrarEmpleados($nombre,$rol, $user, $contra)
     {
         // Convertir la contraseña a SHA-1
         $contrasenaSha1 = sha1($contra);
         // Preparar la consulta SQL (no es necesario usar comillas en los marcadores de posición)
-        $stmt = Conexion::conectar()->prepare("INSERT INTO `admin` (`contra`, `usuario`, `nombre`) VALUES (:pass, :usuario, :nombre)");
+        $stmt = Conexion::conectar()->prepare("INSERT INTO `admin` (`contra`, `usuario`,`rol`, `nombre`) VALUES (:pass, :usuario, :nombre, :rol)");
 
-        // Vincular los valores a los marcadores de posición
-        $stmt->bindParam(":pass", $contrasenaSha1, PDO::PARAM_STR); // Cambiado de :contra a :pass
+        $stmt->bindParam(":pass", $contrasenaSha1, PDO::PARAM_STR); 
         $stmt->bindParam(":usuario", $user, PDO::PARAM_STR);
+        $stmt->bindParam(":rol", $rol, PDO::PARAM_STR);
         $stmt->bindParam(":nombre", $nombre, PDO::PARAM_STR);
 
 
@@ -59,7 +59,7 @@ class ModeloEmpleados
         $stmt = null;
     }
 
-    public static function mdlActualizarEmpleados($id, $nombre, $user, $contra)
+    public static function mdlActualizarEmpleados($id,$rol, $nombre, $user, $contra)
     {
         // Convertir la contraseña a SHA-1
         $contrasenaSha1 = sha1($contra);     
@@ -68,6 +68,7 @@ class ModeloEmpleados
                                                 
                                                 SET contra = :pass,
                                                      usuario = :user,
+                                                     rol = :rol,
                                                      nombre = :nombre
                                                     
                                                     
@@ -78,6 +79,7 @@ class ModeloEmpleados
         $stmt->bindParam(":id", $id, PDO::PARAM_INT);
         $stmt->bindParam(":nombre", $nombre, PDO::PARAM_STR);
         $stmt->bindParam(":user", $user, PDO::PARAM_STR);
+        $stmt->bindParam(":rol", $rol, PDO::PARAM_STR);
         $stmt->bindParam(":pass", $contrasenaSha1, PDO::PARAM_STR);
 
         

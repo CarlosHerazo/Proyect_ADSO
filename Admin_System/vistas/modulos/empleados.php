@@ -1,5 +1,17 @@
 <!-- CONTENT HEADER -->
+
 <section class="content-header">
+    <style>
+        .admin-color {
+            background-color: #FFD700;
+            border-radius: 5px;
+        }
+
+        .supervisor-color {
+            background-color: #00FF00;
+            /* Color para supervisores */
+        }
+    </style>
     <div class="container-fluid">
         <div class="row md-2">
             <div class="col-sm-6">
@@ -31,6 +43,7 @@
                 <th>ID</th>
                 <th>Contraseña</th>
                 <th>Usuario</th>
+                <th>Rol</th>
                 <th>Nombre</th>
                 <th>Acciones</th>
             </tr>
@@ -71,6 +84,13 @@
                     <div class="col-sm-4">
                         <label for="user">Usuario</label>
                         <input type="text" class="form-control" name="usuario" id="user">
+                    </div>
+                    <div class="col-sm-4">
+                        <label for="user">Rol</label>
+                        <select class="form-control select2bs4" name="rol" id="textRol">
+                            <option value="Administrador">Administrador</option>
+                            <option value="Supervisor">Supervisor</option>
+                        </select>
                     </div>
 
                     <div class="col-sm-4">
@@ -293,7 +313,7 @@
                 "info": "Mostrando de _START_ a _END_ de _TOTAL_ entradas"
             },
             "columnDefs": [{
-                "targets": 4,
+                "targets": 5,
                 "sortable": false,
                 "render": function(data, type, full, meta) {
                     return "<center>" +
@@ -317,6 +337,9 @@
                     "data": "usuario"
                 },
                 {
+                    "data": "rol"
+                },
+                {
                     "data": "nombre"
                 },
                 {
@@ -324,6 +347,14 @@
                 },
 
             ],
+            "createdRow": function(row, data, dataIndex) {
+                // Añade una clase CSS basada en el valor de la columna "rol"
+                if (data.rol === "Administrador") {
+                    $(row).find('td:eq(3)').addClass('admin-color');
+                } else if (data.rol === "Supervisor") {
+                    $(row).find('td:eq(3)').addClass('supervisor-color');
+                }
+            },
 
         });
 
@@ -338,13 +369,14 @@
 
             let data = table.row($(this).parents('tr')).data();
             accion = "actualizar";
-         let hola =  $("#id").val(data[0])
-            alert(hola)
+            $("#id").val(data[0])
             $("#pasword").val(data[1]);
             $("#user").val(data[2]);
-            $("#name").val(data[3]);
+            $("#textRol").val(data[3]);
+            $("#name").val(data[4]);
 
         })
+
 
         // GUARDAR LA INFORMACION DEL USUARIO DESDE LA VENTANA MODAL
         $("#btnGuardar").on('click', function() {
@@ -352,12 +384,14 @@
 
             nombre = $("#name").val(),
                 usuario = $("#user").val(),
+                rol = $("#textRol").val(),
                 password = $("#pasword").val()
             let datos = new FormData();
 
             datos.append('id', id)
             datos.append('nombre', nombre)
             datos.append('user', usuario)
+            datos.append('rol', rol)
             datos.append('contra', password)
             datos.append('accion', accion)
 
