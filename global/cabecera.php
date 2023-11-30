@@ -47,7 +47,7 @@
               </div>
 
             <li class="nav-link">
-              <a href="../page/login.html"><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+              <a href="../page/login.php"><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
                   <style>
                     svg {
                       fill: #ffffff
@@ -60,7 +60,7 @@
           </ul>
 
           <form class="d-flex mt-3 mt-lg-0" role="search">
-            <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
+            <input class="form-control me-2" type="search" id="buscador" placeholder="Buscar" aria-label="Search">
             <button class="btn btn-outline-success" type="submit">Buscar</button>
           </form>
         </div>

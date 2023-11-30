@@ -211,11 +211,11 @@ include '../global/cabecera.php';
                 foreach ($listaproductos as $producto) { ?>
 
 
-                    <div class="col-md m-3 text-center">
+                    <div class="col-md m-3 text-center articulo">
                         <div class="">
                             <img title="Titulo producto" width="200" height="200" class="" alt="Titulo" src="<?php echo $producto['imagen'] ?>" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="" data-bs-toggle="popover" data-bs-trigger="hover" data-bs-title="<?php echo $producto['nombre'] ?>" data-bs-content="<?php echo $producto['descripcion'] ?>" height="327px">
                             <div class="card-body">
-                                <span><?php echo $producto['nombre'] ?></span>
+                                <span class="name-product"><?php echo $producto['nombre'] ?></span>
                                 <h5 class="card-title">
                                     <?php echo $producto['precio']  ?>
                                 </h5>
@@ -245,12 +245,12 @@ include '../global/cabecera.php';
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
     <script src="../javascript/onclickProductos.js"></script>
-    <script src="../javascript/ventanaComprar.js"></script>
     <script>
         const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
         const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
     </script>
     <script src="./../javascript/hoverProductos.js"></script>
+<script src="./../javascript/buscador.js"></script>
 </body>
 
 </html>

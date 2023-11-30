@@ -58,6 +58,7 @@ include '../controllers/logicacarrito.php';
         </div>
         <?php
         if (!empty($_SESSION['carrito'])) {
+        
         ?>
 
             <table class="table">
