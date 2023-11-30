@@ -146,7 +146,7 @@ include '../controllers/logicacarrito.php';
         function increment(productId) {
             var cantidadElemento = document.getElementById('cantidad_' + productId);
             var cantidad = parseInt(cantidadElemento.textContent);
-            let cant =  cantidadElemento.textContent = cantidad + 1;
+            let cant = cantidadElemento.textContent = cantidad + 1;
             console.log(cant)
             enviarDatos(productId, cant);
         }
@@ -155,28 +155,30 @@ include '../controllers/logicacarrito.php';
             var cantidadElemento = document.getElementById('cantidad_' + productId);
             var cantidad = parseInt(cantidadElemento.textContent);
             if (cantidad > 1) {
-             let cant =  cantidadElemento.textContent = cantidad - 1;
-             console.log(cant)
+                let cant = cantidadElemento.textContent = cantidad - 1;
+                console.log(cant)
                 enviarDatos(productId, cant);
             }
         }
 
         function enviarDatos(productId, cant) {
-            let url = '../ajax/actualizarCarrito.php'
+            let url = '/ajax/actualizarCarrito.php'
             let formData = new FormData()
             formData.append('action', 'agregar');
             formData.append('id', productId);
             formData.append('cantidad', cant);
-            
-            console.log("id del producto: " + formData.get('id'))
-            console.log("cantidad: " + formData.get('cantidad'))
-            console.log("Accion: " + formData.get('action'))
+            // console.log("id del producto: " + formData.get('id'))
+            // console.log("cantidad: " + formData.get('cantidad'))
+            // console.log("Accion: " + formData.get('action'))
             fetch(url, {
                     method: 'POST',
                     body: formData,
                     mode: 'cors'
-            })
-                
+                })
+                .then(response => response.json())
+                .then(data => console.log(data))
+                .catch(error => console.error('Error:', error));
+
         }
     </script>
 </body>
