@@ -145,36 +145,42 @@ include '../controllers/logicacarrito.php';
     <script src="../javascript/carrito.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
     <script>
-        // Funciones JavaScript para manejar cambios en la cantidad
         function increment(productId) {
-            var cantidadElemento = document.getElementById('cantidad_' + productId);
-            var cantidad = parseInt(cantidadElemento.textContent);
-            cantidadElemento.textContent = cantidad + 1;
-        }
+        var cantidadElemento = document.getElementById('cantidad_' + productId);
+        var cantidad = parseInt(cantidadElemento.textContent);
+        cantidadElemento.textContent = cantidad + 1;
+        enviarDatos(productId, cantidad + 1);
+    }
 
-        function decrement(productId) {
-            var cantidadElemento = document.getElementById('cantidad_' + productId);
-            var cantidad = parseInt(cantidadElemento.textContent);
-            if (cantidad > 1) {
-                cantidadElemento.textContent = cantidad - 1;
+    function decrement(productId) {
+        var cantidadElemento = document.getElementById('cantidad_' + productId);
+        var cantidad = parseInt(cantidadElemento.textContent);
+        if (cantidad > 1) {
+            cantidadElemento.textContent = cantidad - 1;
+            enviarDatos(productId, cantidad - 1);
+        }
+    }
+
+    function enviarDatos(productId, nuevaCantidad) {
+        // Realizar la solicitud AJAX
+        var xhr = new XMLHttpRequest();
+        var url = 'tu_ruta_de_solicitud_ajax.php'; // Reemplaza esto con la URL correcta de tu servidor
+
+        xhr.open('POST', url, true);
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+        // Puedes enviar los datos como parámetros en el cuerpo de la solicitud
+        var params = 'id=' + productId + '&cantidad=' + nuevaCantidad;
+
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                // Manejar la respuesta del servidor si es necesario
+                console.log(xhr.responseText);
             }
         }
 
-        // Observador de mutaciones para el contenido del span
-        var productId = <?php echo $producto['id']; ?>;
-        var cantidadContainer = document.getElementById('cantidadContainer_' + productId);
-        var observer = new MutationObserver(function(mutations) {
-            mutations.forEach(function(mutation) {
-                // Llamando a la función de devolución de llamada con el nuevo contenido y la cantidad anterior
-                acCantidad(mutation.target.textContent, <?php echo $producto['cantidad'] ?>);
-            });
-        });
-
-        var config = {
-            characterData: true,
-            subtree: true
-        };
-        observer.observe(cantidadContainer, config);
+        xhr.send(params);
+    }
     </script>
 </body>
 
