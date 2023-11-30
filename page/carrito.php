@@ -64,7 +64,7 @@ include '../controllers/logicacarrito.php';
                 <tbody>
                     <tr>
                         <th width="40%">Producto</th>
-                        <th class="text-center">Cantidad</th>
+                        <th class="text-center">Bultos</th>
                         <th width="20%" class="text-center">Precio</th>
                         <th width="20%" class="text-center">SubTotal</th>
                         <th width="5%"></th>
@@ -72,18 +72,17 @@ include '../controllers/logicacarrito.php';
                     <?php $total = 0; ?>
                     <?php
                     foreach ($_SESSION['carrito'] as $indice => $producto) {  ?>
-                        <tr>
+                        <tr >
                             <td width="40%"><?php echo htmlspecialchars($producto['nombre'], ENT_QUOTES, 'UTF-8') ?></td>
                             <td class="text-center d-flex justify-content-center">
                                 <button class="btn btn-outline-danger" onclick="decrement(<?php echo $producto['id']; ?>)">-</button>
-                                <div class="m-0 p-0" id="cantidadContainer_<?php echo $producto['id']; ?>">
-                                    <span id="cantidad_<?php echo $producto['id']; ?>"><?php echo $producto['cantidad'] ?></span>
-
+                                <div class="d-flex align-items-center m-0 p-0" id="cantidadContainer_<?php echo $producto['id']; ?>">
+                                    <span class="m-0 p-0" id="cantidad_<?php echo $producto['id'];?>"><?php echo $producto['cantidad'] ?></span>
                                 </div>
                                 <button class="btn btn-outline-success" onclick="increment(<?php echo $producto['id']; ?>)">+</button>
                             </td>
-                            <td width="20%" class="text-center">$<?php echo $producto['precio'] ?></td>
-                            <td width="20%" class="text-center">$<?php echo number_format($producto['cantidad'] * $producto['precio'], 2) ?></td>
+                            <td width="20%" class="text-center"><?php echo MONEDA.$producto['precio'] ?></td>
+                            <td width="20%" id="subtotal_<?php echo $producto['id']; ?>" class="text-center"><?php  echo MONEDA.number_format($producto['cantidad'] * $producto['precio'], 2) ?></td>
                             <td width="5%">
                                 <form action="" method="post">
                                     <input type="hidden" name="id" value="<?php echo openssl_encrypt($producto['id'], COD, KEY); ?>">
@@ -174,11 +173,40 @@ include '../controllers/logicacarrito.php';
                     method: 'POST',
                     body: formData,
                     mode: 'cors'
-                })
-                
+                }).then(response => response.json())
+                .then(data => {
+                    if (data.ok) {
+
+                        let divSubtotal = document.getElementById("subtotal_" + productId)
+                        divSubtotal.innerHTML = data.sub
+                    }
+                }).catch(error => {
+                    console.error('Error en la petición fetch:', error);
+                });
+
 
         }
     </script>
 </body>
 
 </html>
+
+
+<!-- 
+$.ajax({
+            type: 'POST',
+            url: url,
+            data: formData,
+            dataType: 'json',
+            processData: false,  // Evita que jQuery procese los datos
+            contentType: false   // Evita que jQuery establezca el tipo de contenido
+        })
+        .done(function(data) {
+            if (data.ok) {
+                let divSubtotal = $("#subtotal_" + productId);
+                divSubtotal.html(data.sub);
+            }
+        })
+        .fail(function(jqXHR, textStatus, errorThrown) {
+            console.error('Error en la petición Ajax:', errorThrown);
+        }); -->
