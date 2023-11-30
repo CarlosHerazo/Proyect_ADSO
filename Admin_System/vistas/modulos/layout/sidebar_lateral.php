@@ -70,7 +70,7 @@ if(isset($_SESSION['nombre'])){
 
             <ul class="nav nav-pills nav-sidebar nav_profile">
                 <li class="nav-item">
-                    <a href="./../logout.php" class="nav-link">
+                    <a href="./vistas/modulos/logout.php" class="nav-link">
                         <i class="nav-icon fas fa-sign-out-alt"></i>                        
                         <p>
                             Cerrar Sesion

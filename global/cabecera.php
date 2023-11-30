@@ -60,7 +60,7 @@
           </ul>
 
           <form class="d-flex mt-3 mt-lg-0" role="search">
-            <input class="form-control me-2" type="search" id="buscador" placeholder="Buscar" aria-label="Search">
+            <input class="form-control me-2" type="search" id="buscador" placeholder="Buscar un producto" aria-label="Search">
             <button class="btn btn-outline-success" type="submit">Buscar</button>
           </form>
         </div>
