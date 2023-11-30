@@ -162,7 +162,7 @@ include '../controllers/logicacarrito.php';
         }
 
         function enviarDatos(productId, cant) {
-            let url = '/ajax/actualizarCarrito.php'
+            let url = '../ajax/actualizarCarrito.php'
             let formData = new FormData()
             formData.append('action', 'agregar');
             formData.append('id', productId);
@@ -175,9 +175,7 @@ include '../controllers/logicacarrito.php';
                     body: formData,
                     mode: 'cors'
                 })
-                .then(response => response.json())
-                .then(data => console.log(data))
-                .catch(error => console.error('Error:', error));
+                
 
         }
     </script>
