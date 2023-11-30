@@ -466,3 +466,25 @@ html{
   align-items: center;
   border-radius: 50%;
 } 
+
+.card-article{
+  border-radius: 5px;
+  border: rgb(248, 246, 246)1px solid;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn-cafe {
+  color: #fff; /* Texto en color blanco */
+  background-image: linear-gradient(to right, #28a745 50%, transparent 50%); /* Fondo con gradiente horizontal */
+  background-size: 200% 100%; /* Tamaño del gradiente */
+  border: none;
+  padding: 10px 20px; /* Relleno del botón */
+  transition: background-position 0.3s ease; /* Transición suave de la posición del fondo */
+  border-radius: 20px;
+  
+}
+
+.btn-cafe:hover {
+  background-position: -100% 0; /* Mueve el gradiente hacia la izquierda al pasar el ratón (hover) */
+  background-color: rgb(51, 51, 51);
+}

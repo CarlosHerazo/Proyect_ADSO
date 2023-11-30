@@ -19,6 +19,8 @@ include '../controllers/logicacarrito.php';
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plq7G5tGm0rU+1SPhVotteLpBERwTkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200;300;400&family=Roboto:ital,wght@0,100;0,400;0,700;1,100&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 
@@ -30,27 +32,9 @@ include '../global/cabecera.php';
 
 ?>
 
-<!--
-<nav class="navbar navbar-expand-sm navbar-light bg-light">
-        <a class="navbar-brand" href="index.php">Tienda</a>
-        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="collapsibleNavId">
-            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                <li class="nav-item active">
-                    <a class="nav-link" href="index.php">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link"  href="../page/carrito.php">Carrito(<?php /*echo 
-                    (empty($_SESSION['carrito']))?0:count($_SESSION['carrito']);*/ ?>)</a>
-                </li>
-            </ul>
-        </div>
-    </nav> -->
 
 <body>
-
+  
     <br>
     <?php if ($mensaje != "") { ?>
         <div class="alert alert-success" role="alert">
@@ -63,6 +47,7 @@ include '../global/cabecera.php';
         </div>
     <?php } ?>
     <div class="div-todo">
+  
         <aside>
             <div class="div-principal">
                 <div class="div-productos">
@@ -178,7 +163,7 @@ include '../global/cabecera.php';
                         </div>
                         <p id="precio-producto">Precio por Unidad: <?php echo $productos['precio'] ?></p>
                     </div>
-                    <div  id="comprar">
+                    <div id="comprar">
                         <form action="" method="post">
                             <input type="hidden" name="id" id="id" value="<?php echo openssl_encrypt($productos['codigo'], COD, KEY) ?>">
                             <input type="hidden" name="nombre" id="nombre" value="<?php echo openssl_encrypt($productos['nombre'], COD, KEY) ?>">
@@ -211,8 +196,8 @@ include '../global/cabecera.php';
                 foreach ($listaproductos as $producto) { ?>
 
 
-                    <div class="col-md m-3 text-center articulo">
-                        <div class="">
+                    <div  class="col-md m-3 text-center articulo">
+                        <div data-aos="zoom-in"  class="card-article pb-3 bg-white">
                             <img title="Titulo producto" width="200" height="200" class="" alt="Titulo" src="<?php echo $producto['imagen'] ?>" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="" data-bs-toggle="popover" data-bs-trigger="hover" data-bs-title="<?php echo $producto['nombre'] ?>" data-bs-content="<?php echo $producto['descripcion'] ?>" height="327px">
                             <div class="card-body">
                                 <span class="name-product"><?php echo $producto['nombre'] ?></span>
@@ -226,10 +211,13 @@ include '../global/cabecera.php';
                                 <form action="" method="post">
 
                                     <input type="hidden" name="id" id="id" value="<?php echo openssl_encrypt($producto['codigo'], COD, KEY)  ?>">
-                                    <input type="hidden" name="nombre" id="nombre" value="<?php echo openssl_encrypt($producto['nombre'], COD, KEY) ?>">
+                                    <input class="text-success" type="hidden" name="nombre" id="nombre" value="<?php echo openssl_encrypt($producto['nombre'], COD, KEY) ?>">
                                     <input type="hidden" name="precio" id="precio" value="<?php echo openssl_encrypt($producto['precio'], COD, KEY) ?>">
                                     <input type="hidden" name="cantidad" id="cantidad" value="<?php echo openssl_encrypt(1, COD, KEY) ?>">
-                                    <button class="btn btn-primary" name="btn-action" id="comprar" value="agregar" type="submit">Agregar al carrito</button>
+                                    <button class="btn-cafe" name="btn-action" id="comprar" value="agregar" type="submit">
+                                        Agregar al carrito 
+                                    <i class="fas fa-shopping-cart"></i> <!-- Icono de carrito -->
+                                    </button>
 
                                 </form>
                             </div>
@@ -245,12 +233,19 @@ include '../global/cabecera.php';
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
     <script src="../javascript/onclickProductos.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
         const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
         const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
     </script>
     <script src="./../javascript/hoverProductos.js"></script>
-<script src="./../javascript/buscador.js"></script>
+    <script src="./../javascript/buscador.js"></script>
+    <script>
+        AOS.init({
+            easing: 'ease-out-back',
+            duration: 1000
+        });
+    </script>
 </body>
 
 </html>
