@@ -43,8 +43,6 @@ include '../controllers/logicacarrito.php';
         button:active {
             background-color: #3e8e41;
         }
-
-        
     </style>
 </head>
 
@@ -79,8 +77,8 @@ include '../controllers/logicacarrito.php';
                             <td class="text-center d-flex justify-content-center">
                                 <button class="btn btn-outline-danger" onclick="decrement(<?php echo $producto['id']; ?>)">-</button>
                                 <div class="m-0 p-0" id="cantidadContainer_<?php echo $producto['id']; ?>">
-                                  <span id="cantidad_<?php echo $producto['id']; ?>"><?php echo $producto['cantidad'] ?></span> 
-                                  
+                                    <span id="cantidad_<?php echo $producto['id']; ?>"><?php echo $producto['cantidad'] ?></span>
+
                                 </div>
                                 <button class="btn btn-outline-success" onclick="increment(<?php echo $producto['id']; ?>)">+</button>
                             </td>
@@ -146,41 +144,40 @@ include '../controllers/logicacarrito.php';
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
     <script>
         function increment(productId) {
-        var cantidadElemento = document.getElementById('cantidad_' + productId);
-        var cantidad = parseInt(cantidadElemento.textContent);
-        cantidadElemento.textContent = cantidad + 1;
-        enviarDatos(productId, cantidad + 1);
-    }
-
-    function decrement(productId) {
-        var cantidadElemento = document.getElementById('cantidad_' + productId);
-        var cantidad = parseInt(cantidadElemento.textContent);
-        if (cantidad > 1) {
-            cantidadElemento.textContent = cantidad - 1;
-            enviarDatos(productId, cantidad - 1);
+            var cantidadElemento = document.getElementById('cantidad_' + productId);
+            var cantidad = parseInt(cantidadElemento.textContent);
+            let cant =  cantidadElemento.textContent = cantidad + 1;
+            console.log(cant)
+            enviarDatos(productId, cant);
         }
-    }
 
-    function enviarDatos(productId, nuevaCantidad) {
-        // Realizar la solicitud AJAX
-        var xhr = new XMLHttpRequest();
-        var url = 'tu_ruta_de_solicitud_ajax.php'; // Reemplaza esto con la URL correcta de tu servidor
-
-        xhr.open('POST', url, true);
-        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-
-        // Puedes enviar los datos como parámetros en el cuerpo de la solicitud
-        var params = 'id=' + productId + '&cantidad=' + nuevaCantidad;
-
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState == 4 && xhr.status == 200) {
-                // Manejar la respuesta del servidor si es necesario
-                console.log(xhr.responseText);
+        function decrement(productId) {
+            var cantidadElemento = document.getElementById('cantidad_' + productId);
+            var cantidad = parseInt(cantidadElemento.textContent);
+            if (cantidad > 1) {
+             let cant =  cantidadElemento.textContent = cantidad - 1;
+             console.log(cant)
+                enviarDatos(productId, cant);
             }
         }
 
-        xhr.send(params);
-    }
+        function enviarDatos(productId, cant) {
+            let url = '../ajax/actualizarCarrito.php'
+            let formData = new FormData()
+            formData.append('action', 'agregar');
+            formData.append('id', productId);
+            formData.append('cantidad', cant);
+            
+            console.log("id del producto: " + formData.get('id'))
+            console.log("cantidad: " + formData.get('cantidad'))
+            console.log("Accion: " + formData.get('action'))
+            fetch(url, {
+                    method: 'POST',
+                    body: formData,
+                    mode: 'cors'
+            })
+                
+        }
     </script>
 </body>
 
