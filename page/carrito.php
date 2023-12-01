@@ -4,13 +4,14 @@ include '../controllers/logicacarrito.php';
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="shortcut icon" href="../img/logos/campesino.png" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Krub:ital,wght@0,400;0,700;1,700&family=Open+Sans:wght@800&family=Oswald:wght@500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -51,8 +52,7 @@ include '../controllers/logicacarrito.php';
     <?php include "../global/cabecera.php"; ?>
     <br><br><br><br><br>
 
-
-    <div class="container">
+    <main class="container ">
         <div>
             <h1 id="titulo-carrito-producto">Carrito</h1>
         </div>
@@ -128,13 +128,13 @@ include '../controllers/logicacarrito.php';
             <div class="alert alert-success">
                 No hay productos en el carrito...
             </div>
-            <button class="btn btn-primary btn-block" type="submit" id="btn-elegirmasproductos">
+            <button class="btn btn-primary btn-block " type="submit" id="btn-elegirmasproductos">
                 Elegir mas productos
             </button>
 
         <?php } ?>
 
-    </div>
+     </main>
 
     <br><br><br><br><br><br>
     <?php include "../global/footer.php"; ?>

@@ -8,7 +8,7 @@
     );
 
     if ($pdo) {
-        echo "Conexión exitosa a la base de datos.";
+        // echo "Conexión exitosa a la base de datos.";
     } else {
         die("Error al conectar a la base de datos.");
     }

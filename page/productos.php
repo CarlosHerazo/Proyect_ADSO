@@ -34,7 +34,7 @@ include '../global/cabecera.php';
 
 
 <body>
-  
+
     <br>
     <?php if ($mensaje != "") { ?>
         <div class="alert alert-success" role="alert">
@@ -47,7 +47,7 @@ include '../global/cabecera.php';
         </div>
     <?php } ?>
     <div class="div-todo">
-  
+
         <aside>
             <div class="div-principal">
                 <div class="div-productos">
@@ -196,8 +196,8 @@ include '../global/cabecera.php';
                 foreach ($listaproductos as $producto) { ?>
 
 
-                    <div  class="col-md m-3 text-center articulo">
-                        <div data-aos="zoom-in"  class="card-article pb-3 bg-white">
+                    <div class="col-md m-3 text-center articulo">
+                        <div data-aos="zoom-in" class="card-article pb-3 bg-white">
                             <img title="Titulo producto" width="200" height="200" class="" alt="Titulo" src="<?php echo $producto['imagen'] ?>" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="" data-bs-toggle="popover" data-bs-trigger="hover" data-bs-title="<?php echo $producto['nombre'] ?>" data-bs-content="<?php echo $producto['descripcion'] ?>" height="327px">
                             <div class="card-body">
                                 <span class="name-product"><?php echo $producto['nombre'] ?></span>
@@ -215,8 +215,8 @@ include '../global/cabecera.php';
                                     <input type="hidden" name="precio" id="precio" value="<?php echo openssl_encrypt($producto['precio'], COD, KEY) ?>">
                                     <input type="hidden" name="cantidad" id="cantidad" value="<?php echo openssl_encrypt(1, COD, KEY) ?>">
                                     <button class="btn-cafe" name="btn-action" id="comprar" value="agregar" type="submit">
-                                        Agregar al carrito 
-                                    <i class="fas fa-shopping-cart"></i> <!-- Icono de carrito -->
+                                        Agregar al carrito
+                                        <i class="fas fa-shopping-cart"></i> <!-- Icono de carrito -->
                                     </button>
 
                                 </form>
@@ -227,6 +227,110 @@ include '../global/cabecera.php';
             </div>
         </section>
     </div>
+    <br><br>
+    <div class="container">
+        <hr class="my-4">
+    </div>
+    <section>
+        <div class="container">
+            <h1 class="display-4">Categoria Frutas</h1>
+            <p class="lead">Texto descriptivo o cualquier otro contenido aquí.</p>
+
+            <div class="row d-flex align-items-center justify-content-center">
+
+                <?php
+                $sentencia = $pdo->prepare("SELECT * FROM productos WHERE categoria_id = 2");
+                $sentencia->execute();
+                $listaproductos = $sentencia->fetchAll(PDO::FETCH_ASSOC);
+                // print_r($listaproductos);
+                ?>
+
+                <?php
+
+                foreach ($listaproductos as $producto) { ?>
+
+
+                    <div class="col-md m-3 text-center articulo">
+                        <div data-aos="zoom-in" class="card-article pb-3 bg-white">
+                            <img title="Titulo producto" width="200" height="200" class="" alt="Titulo" src="<?php echo $producto['imagen'] ?>" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="" data-bs-toggle="popover" data-bs-trigger="hover" data-bs-title="<?php echo $producto['nombre'] ?>" data-bs-content="<?php echo $producto['descripcion'] ?>" height="327px">
+                            <div class="card-body">
+                                <span class="name-product"><?php echo $producto['nombre'] ?></span>
+                                <h5 class="card-title">
+                                    <?php echo $producto['precio']  ?>
+                                </h5>
+                                <p class="card-text">
+                                    Description
+                                </p>
+
+                                <form action="" method="post">
+
+                                    <input type="hidden" name="id" id="id" value="<?php echo openssl_encrypt($producto['codigo'], COD, KEY)  ?>">
+                                    <input class="text-success" type="hidden" name="nombre" id="nombre" value="<?php echo openssl_encrypt($producto['nombre'], COD, KEY) ?>">
+                                    <input type="hidden" name="precio" id="precio" value="<?php echo openssl_encrypt($producto['precio'], COD, KEY) ?>">
+                                    <input type="hidden" name="cantidad" id="cantidad" value="<?php echo openssl_encrypt(1, COD, KEY) ?>">
+                                    <button class="btn-cafe" name="btn-action" id="comprar" value="agregar" type="submit">
+                                        Agregar al carrito
+                                        <i class="fas fa-shopping-cart"></i> <!-- Icono de carrito -->
+                                    </button>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                <?php } ?>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-image">
+        <div class="container">
+            <h1 class="display-4">Categoria Tuberculos</h1>
+            <p class="lead">Texto descriptivo o cualquier otro contenido aquí.</p>
+
+            <div class="row d-flex align-items-center justify-content-center">
+
+                <?php
+                $sentencia = $pdo->prepare("SELECT * FROM productos WHERE categoria_id= 1");
+                $sentencia->execute();
+                $listaproductos = $sentencia->fetchAll(PDO::FETCH_ASSOC);
+                // print_r($listaproductos);
+                ?>
+
+                <?php
+
+                foreach ($listaproductos as $producto) { ?>
+
+                    <div class="col-md m-3 text-center articulo">
+                        <div data-aos="zoom-in" class="card-article pb-3 bg-white">
+                            <img title="Titulo producto" width="200" height="200" class="" alt="Titulo" src="<?php echo $producto['imagen'] ?>" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="" data-bs-toggle="popover" data-bs-trigger="hover" data-bs-title="<?php echo $producto['nombre'] ?>" data-bs-content="<?php echo $producto['descripcion'] ?>" height="327px">
+                            <div class="card-body">
+                                <span class="name-product"><?php echo $producto['nombre'] ?></span>
+                                <h5 class="card-title">
+                                    <?php echo $producto['precio']  ?>
+                                </h5>
+                                <p class="card-text">
+                                    Description
+                                </p>
+
+                                <form action="" method="post">
+
+                                    <input type="hidden" name="id" id="id" value="<?php echo openssl_encrypt($producto['codigo'], COD, KEY)  ?>">
+                                    <input class="text-success" type="hidden" name="nombre" id="nombre" value="<?php echo openssl_encrypt($producto['nombre'], COD, KEY) ?>">
+                                    <input type="hidden" name="precio" id="precio" value="<?php echo openssl_encrypt($producto['precio'], COD, KEY) ?>">
+                                    <input type="hidden" name="cantidad" id="cantidad" value="<?php echo openssl_encrypt(1, COD, KEY) ?>">
+                                    <button class="btn-cafe" name="btn-action" id="comprar" value="agregar" type="submit">
+                                        Agregar al carrito
+                                        <i class="fas fa-shopping-cart"></i> <!-- Icono de carrito -->
+                                    </button>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                <?php } ?>
+            </div>
+        </div>
+    </section>
     <br><br>
     <?php include "../global/footer.php"; ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
