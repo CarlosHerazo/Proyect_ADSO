@@ -35,7 +35,7 @@ include '../global/cabecera.php';
 
 <body>
 
-    <br>
+    <br><br><br>
     <?php if ($mensaje != "") { ?>
         <div class="alert alert-success" role="alert">
             <?php

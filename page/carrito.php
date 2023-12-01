@@ -58,7 +58,7 @@ include '../controllers/logicacarrito.php';
         </div>
         <?php
         if (!empty($_SESSION['carrito'])) {
-        
+
         ?>
 
             <table class="table">
@@ -73,17 +73,17 @@ include '../controllers/logicacarrito.php';
                     <?php $total = 0; ?>
                     <?php
                     foreach ($_SESSION['carrito'] as $indice => $producto) {  ?>
-                        <tr >
+                        <tr>
                             <td width="40%"><?php echo htmlspecialchars($producto['nombre'], ENT_QUOTES, 'UTF-8') ?></td>
                             <td class="text-center d-flex justify-content-center">
-                                <button class="btn btn-outline-danger" onclick="decrement(<?php echo $producto['id']; ?>)">-</button>
+                                <button class="btn btn-outline-danger" onclick="decrement(<?php echo $indice; ?>)">-</button>
                                 <div class="d-flex align-items-center m-0 p-0" id="cantidadContainer_<?php echo $producto['id']; ?>">
-                                    <span class="m-0 p-0" id="cantidad_<?php echo $producto['id'];?>"><?php echo $producto['cantidad'] ?></span>
+                                    <span class="m-0 p-0" id="cantidad_<?php echo $indice; ?>"><?php echo $producto['cantidad'] ?></span>
                                 </div>
-                                <button class="btn btn-outline-success" onclick="increment(<?php echo $producto['id']; ?>)">+</button>
+                                <button class="btn btn-active btn-outline-success" value="agrega" onclick="increment(<?php echo $indice; ?>)">+</button>
                             </td>
-                            <td width="20%" class="text-center"><?php echo MONEDA.$producto['precio'] ?></td>
-                            <td width="20%" id="subtotal_<?php echo $producto['id']; ?>" class="text-center"><?php  echo MONEDA.number_format($producto['cantidad'] * $producto['precio'], 2) ?></td>
+                            <td width="20%" class="text-center"><?php echo MONEDA . $producto['precio'] ?></td>
+                            <td width="20%" id="subtotal_<?php echo $producto['id']; ?>" class="text-center"><?php echo MONEDA . number_format($producto['cantidad'] * $producto['precio'], 2) ?></td>
                             <td width="5%">
                                 <form action="" method="post">
                                     <input type="hidden" name="id" value="<?php echo openssl_encrypt($producto['id'], COD, KEY); ?>">
@@ -134,7 +134,7 @@ include '../controllers/logicacarrito.php';
 
         <?php } ?>
 
-     </main>
+    </main>
 
     <br><br><br><br><br><br>
     <?php include "../global/footer.php"; ?>
@@ -162,30 +162,51 @@ include '../controllers/logicacarrito.php';
         }
 
         function enviarDatos(productId, cant) {
-            let url = '../ajax/actualizarCarrito.php'
-            let formData = new FormData()
-            formData.append('action', 'agregar');
-            formData.append('id', productId);
-            formData.append('cantidad', cant);
-            // console.log("id del producto: " + formData.get('id'))
-            // console.log("cantidad: " + formData.get('cantidad'))
-            // console.log("Accion: " + formData.get('action'))
-            fetch(url, {
-                    method: 'POST',
-                    body: formData,
-                    mode: 'cors'
-                }).then(response => response.json())
-                .then(data => {
-                    if (data.ok) {
 
-                        let divSubtotal = document.getElementById("subtotal_" + productId)
-                        divSubtotal.innerHTML = data.sub
-                    }
-                }).catch(error => {
-                    console.error('Error en la petición fetch:', error);
-                });
+            var myHeaders = new Headers();
+            myHeaders.append("Cookie", "PHPSESSID=64lsvf56ldb8ib5mh1971mma00");
+
+            var formdata = new FormData();
+            formdata.append("action", "agregar");
+            formdata.append("id", productId);
+            formdata.append("cantidad", cant);
+           
+
+            var requestOptions = {
+                method: 'POST',
+                headers: myHeaders,
+                body: formdata,
+                redirect: 'follow'
+            };
+
+            fetch("../ajax/actualizarCarrito.php", requestOptions)
+                .then(response => response.text())
+                .then(result => console.log(result))
+                .catch(error => console.log('error', error));
 
 
+
+
+            // var myHeaders = new Headers();
+            // myHeaders.append("Content-Type", "application/json");
+
+            // var raw = JSON.stringify({
+            //     "action": "agregar",
+            //     "cantidad": cant,
+            //     "id": productId
+            // });
+
+            // var requestOptions = {
+            //     method: 'POST',
+            //     headers: myHeaders,
+            //     body: raw,
+            //     redirect: 'follow'
+            // };
+
+            // fetch("../ajax/actualizarCarrito.php", requestOptions)
+            //     .then(response => response.text())
+            //     .then(result => console.log(result))
+            //     .catch(error => console.log('error', error));
         }
     </script>
 </body>

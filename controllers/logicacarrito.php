@@ -32,7 +32,7 @@ if (isset($_POST['btn-action'])) {
                 $mensaje .= "upps... cantidad incorrecto";
                 break;
             }
-
+                
             if (!isset($_SESSION['carrito'])) {
                 $producto = array(
                     'id' => $id,

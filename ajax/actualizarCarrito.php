@@ -2,6 +2,8 @@
 include '../model/config.php';
 
 
+
+
 if (isset($_POST['action'])) {
     $action = $_POST['action'];
     $id = isset($_POST['id']) ? $_POST['id'] : 0;
@@ -33,9 +35,11 @@ function aumentar($id, $cantidad)
     $res = 0;
 
     // validamos
-    if ($id > 0 && $cantidad > 0 && is_numeric($cantidad)) {
+    if ($id > 0 && $cantidad > 0 && is_numeric($cantidad)) {             
         // buscamos el id de la variable de sesión 
         if (isset($_SESSION['carrito']['productos'][$id])) {
+            echo $id;
+            echo $cantidad;
             // asignamos la cantidad para que actualice el carrito
             $_SESSION['carrito']['productos'][$id]['cantidad'] = $cantidad;
 
