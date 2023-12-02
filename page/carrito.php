@@ -120,7 +120,7 @@ include '../controllers/logicacarrito.php';
                 </button>
 
 
-                <button href="./productos.php" class="Elegir mas productos" id="btn-elegirmasproductos">
+                <button href="./productos.php" class="btn-cafe" id="btn-elegirmasproductos">
                     Elegir mas productos
                     <!-- <i class="fas fa-shopping-cart"></i> Icono de carrito -->
                 </button>
