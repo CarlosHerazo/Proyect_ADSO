@@ -60,7 +60,6 @@ include '../controllers/logicacarrito.php';
         if (!empty($_SESSION['carrito'])) {
 
         ?>
-
             <table class="table">
                 <tbody>
                     <tr>
@@ -76,11 +75,11 @@ include '../controllers/logicacarrito.php';
                         <tr>
                             <td width="40%"><?php echo htmlspecialchars($producto['nombre'], ENT_QUOTES, 'UTF-8') ?></td>
                             <td class="text-center d-flex justify-content-center">
-                                <button class="btn btn-outline-danger" onclick="decrement(<?php echo $indice; ?>)">-</button>
+                                <button class="btn btn-outline-danger" onclick="decrement(<?php echo $indice; ?>, <?php echo  $producto['id']; ?> )">-</button>
                                 <div class="d-flex align-items-center m-0 p-0" id="cantidadContainer_<?php echo $producto['id']; ?>">
                                     <span class="m-0 p-0" id="cantidad_<?php echo $indice; ?>"><?php echo $producto['cantidad'] ?></span>
                                 </div>
-                                <button class="btn btn-active btn-outline-success" value="agrega" onclick="increment(<?php echo $indice; ?>)">+</button>
+                                <button class="btn btn-active btn-outline-success" value="agrega" onclick="increment(<?php echo $indice; ?>,<?php echo $producto['id'] ?> )">+</button>
                             </td>
                             <td width="20%" class="text-center"><?php echo MONEDA . $producto['precio'] ?></td>
                             <td width="20%" id="subtotal_<?php echo $producto['id']; ?>" class="text-center"><?php echo MONEDA . number_format($producto['cantidad'] * $producto['precio'], 2) ?></td>
@@ -98,7 +97,7 @@ include '../controllers/logicacarrito.php';
                             <h3>Total</h3>
                         </td>
                         <td align="right">
-                            <h3>$<?php echo number_format($total, 2); ?></h3>
+                            <h3 id="totalCompra">$<?php echo number_format($total, 2); ?></h3>
                         </td>
                         <td></td>
                     </tr>
@@ -124,7 +123,6 @@ include '../controllers/logicacarrito.php';
             </form>
 
         <?php } else { ?>
-
             <div class="alert alert-success">
                 No hay productos en el carrito...
             </div>
@@ -143,25 +141,26 @@ include '../controllers/logicacarrito.php';
     <script src="../javascript/carrito.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
     <script>
-        function increment(productId) {
+        function increment(productId, id) {
             var cantidadElemento = document.getElementById('cantidad_' + productId);
             var cantidad = parseInt(cantidadElemento.textContent);
             let cant = cantidadElemento.textContent = cantidad + 1;
-            console.log(cant)
-            enviarDatos(productId, cant);
+            enviarDatos(productId, cant, id);
+            location.reload(); 
         }
 
-        function decrement(productId) {
+        function decrement(productId, id) {
             var cantidadElemento = document.getElementById('cantidad_' + productId);
             var cantidad = parseInt(cantidadElemento.textContent);
             if (cantidad > 1) {
                 let cant = cantidadElemento.textContent = cantidad - 1;
                 console.log(cant)
-                enviarDatos(productId, cant);
+                enviarDatos(productId, cant, id);
+                location.reload(); 
             }
         }
 
-        function enviarDatos(productId, cant) {
+        function enviarDatos(productId, cant, id) {
 
             var myHeaders = new Headers();
             myHeaders.append("Cookie", "PHPSESSID=64lsvf56ldb8ib5mh1971mma00");
@@ -170,7 +169,8 @@ include '../controllers/logicacarrito.php';
             formdata.append("action", "agregar");
             formdata.append("id", productId);
             formdata.append("cantidad", cant);
-           
+            formdata.append("product_id", id);
+
 
             var requestOptions = {
                 method: 'POST',
@@ -181,54 +181,14 @@ include '../controllers/logicacarrito.php';
 
             fetch("../ajax/actualizarCarrito.php", requestOptions)
                 .then(response => response.text())
-                .then(result => console.log(result))
-                .catch(error => console.log('error', error));
+                .then(result => {
+
+                    let sub = JSON.parse(result).sub                                        
+                })
 
 
-
-
-            // var myHeaders = new Headers();
-            // myHeaders.append("Content-Type", "application/json");
-
-            // var raw = JSON.stringify({
-            //     "action": "agregar",
-            //     "cantidad": cant,
-            //     "id": productId
-            // });
-
-            // var requestOptions = {
-            //     method: 'POST',
-            //     headers: myHeaders,
-            //     body: raw,
-            //     redirect: 'follow'
-            // };
-
-            // fetch("../ajax/actualizarCarrito.php", requestOptions)
-            //     .then(response => response.text())
-            //     .then(result => console.log(result))
-            //     .catch(error => console.log('error', error));
         }
     </script>
 </body>
 
 </html>
-
-
-<!-- 
-$.ajax({
-            type: 'POST',
-            url: url,
-            data: formData,
-            dataType: 'json',
-            processData: false,  // Evita que jQuery procese los datos
-            contentType: false   // Evita que jQuery establezca el tipo de contenido
-        })
-        .done(function(data) {
-            if (data.ok) {
-                let divSubtotal = $("#subtotal_" + productId);
-                divSubtotal.html(data.sub);
-            }
-        })
-        .fail(function(jqXHR, textStatus, errorThrown) {
-            console.error('Error en la petición Ajax:', errorThrown);
-        }); -->
