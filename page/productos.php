@@ -36,6 +36,7 @@ include '../global/cabecera.php';
 <body>
 
     <br><br><br>
+    <h1 class="titulo-page text-center">Nuestros Productos</h1>
     <?php if ($mensaje != "") { ?>
         <div class="alert alert-success" role="alert">
             <?php
@@ -47,8 +48,9 @@ include '../global/cabecera.php';
         </div>
     <?php } ?>
     <div class="div-todo">
-
+    
         <aside>
+            
             <div class="div-principal">
                 <div class="div-productos">
                     <div class="Producto" id="Producto1">
