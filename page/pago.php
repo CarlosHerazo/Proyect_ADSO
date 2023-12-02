@@ -72,7 +72,7 @@ if ($_POST) {
 
 <body>
 
-
+<br><br><br>
 
     <div class="jumbotron text-center container">
         <h1 class="display-4">¡Paso Final!</h1>

@@ -103,7 +103,7 @@ include '../controllers/logicacarrito.php';
                     </tr>
                 </tbody>
             </table>
-            <br><br><br><br>
+            <br><br>
             <form action="./pago.php" method="post">
                 <div class="alert alert-success" role="alert">
                     <div class="form-group">
@@ -114,21 +114,27 @@ include '../controllers/logicacarrito.php';
                         Los productos se enviairan a este correo
                     </small>
                 </div>
-                <button class="btn btn-primary btn-block" type="submit" name="btn-action" value="proceder">
+                <button class="btn-cafe" type="submit" name="btn-action" value="proceder">
                     Proceder a pagar
+                    <!-- <i class="fas fa-shopping-cart"></i> Icono de carrito -->
                 </button>
-                <a href="./productos.php" class="btn btn-primary btn-block" id="btn-elegirmasproductos">
+
+
+                <button href="./productos.php" class="Elegir mas productos" id="btn-elegirmasproductos">
                     Elegir mas productos
-                </a>
+                    <!-- <i class="fas fa-shopping-cart"></i> Icono de carrito -->
+                </button>
             </form>
 
         <?php } else { ?>
+
             <div class="alert alert-success">
                 No hay productos en el carrito...
             </div>
-            <button class="btn btn-primary btn-block " type="submit" id="btn-elegirmasproductos">
-                Elegir mas productos
+            <button class="btn-cafe" type="submit" id="btn-elegirmasproductos">
+            Elegir mas productos
             </button>
+
 
         <?php } ?>
 
@@ -146,7 +152,7 @@ include '../controllers/logicacarrito.php';
             var cantidad = parseInt(cantidadElemento.textContent);
             let cant = cantidadElemento.textContent = cantidad + 1;
             enviarDatos(productId, cant, id);
-            location.reload(); 
+            
         }
 
         function decrement(productId, id) {
@@ -154,9 +160,9 @@ include '../controllers/logicacarrito.php';
             var cantidad = parseInt(cantidadElemento.textContent);
             if (cantidad > 1) {
                 let cant = cantidadElemento.textContent = cantidad - 1;
-                console.log(cant)
+                
                 enviarDatos(productId, cant, id);
-                location.reload(); 
+                
             }
         }
 
@@ -182,8 +188,8 @@ include '../controllers/logicacarrito.php';
             fetch("../ajax/actualizarCarrito.php", requestOptions)
                 .then(response => response.text())
                 .then(result => {
-
-                    let sub = JSON.parse(result).sub                                        
+                    location.reload();
+                    let sub = JSON.parse(result).sub
                 })
 
 

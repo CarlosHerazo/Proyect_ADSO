@@ -11,23 +11,37 @@
 }
 .contenedor__logo{
   position: fixed; /*agregar el header fijo*/
-  left: 0;
-  top: 85%;
+  left: 72%;
+  top: 77%;
   width: 100%;
+  z-index: 999;
 
 }
 
+.logo_whatsappMedium img{
+  width: 20rem;
+  
+}
 .logo_whatsapp img{
-  width: 8rem;
+  display: none;
+  
 }
+
 
 @media screen and (max-width: 700px) {
   .contenedor__logo{
 
     left: 60%;
-    top: 80%;
+    top: 72%;
  }
+ .logo_whatsappMedium img{
+  display: none;
   
+}
+.logo_whatsapp img{
+  display: block;
+  width: 8rem;
+}
 }
   
  

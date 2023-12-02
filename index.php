@@ -198,7 +198,8 @@ include 'controllers/logicacarrito.php';
             </p>
         </section>
         <div class="contenedor__logo">
-            <a class="logo_whatsapp" href=""><img src="./img/logos/logo_whatsapp.webp" alt=""></a>
+            <a class="logo_whatsappMedium" href="https://wa.me/3137552703?text=Hola!! me interezan algunos de tus productos"><img src="./img/logos/WhatsAppButtonGreenMedium.png" alt=""></a>
+            <a class="logo_whatsapp" href="https://wa.me/3137552703?text=Hola!! me interezan algunos de tus productos"><img src="./img/logos/logo_whatsapp.webp" alt=""></a>
         </div>
 
     </main>
