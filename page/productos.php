@@ -25,6 +25,44 @@ include '../controllers/logicacarrito.php';
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 
     <title>AgroAdonai</title>
+
+    <style>
+        .carousel-fade .carousel-item {
+            opacity: 0;
+            transition: opacity ease-in-out .7s;
+        }
+
+        .carousel-fade .carousel-item.active {
+            opacity: 1;
+        }
+
+        /* Estilo para los botones de control del carrusel */ 
+        .carousel-control-prev,
+        .carousel-control-next {
+            width: 70px;
+            /* Ajusta el tamaño según tus necesidades */
+            height: 70px;
+            border-radius: 50%;
+            background-color: #dddddd;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Sombra suave */
+        }
+
+        /* Estilo para los íconos de los botones de control */
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+           
+           
+            border-radius: 50%;                                 
+        }
+
+        /* Estilo para resaltar los botones al pasar el mouse */
+        .carousel-control-prev:hover,
+        .carousel-control-next:hover {
+            background-color: #555;            
+            opacity: 1;
+            
+        }
+    </style>
 </head>
 <?php
 
@@ -48,9 +86,9 @@ include '../global/cabecera.php';
         </div>
     <?php } ?>
     <div class="div-todo">
-    
+
         <aside>
-            
+
             <div class="div-principal">
                 <div class="div-productos">
                     <div class="Producto" id="Producto1">
@@ -184,48 +222,64 @@ include '../global/cabecera.php';
             ?>
 
             <br><br>
-            <div class="row d-flex align-items-center justify-content-center">
+            <?php
+            $sentencia = $pdo->prepare("SELECT * FROM productos");
+            $sentencia->execute();
+            $listaproductos = $sentencia->fetchAll(PDO::FETCH_ASSOC);
+            // print_r($listaproductos);
+            ?>
+            <div id="productosCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <?php
+                    $contador = 0;
+                    $totalProductos = count($listaproductos);
+                    foreach ($listaproductos as $producto) {
+                        if ($contador % 3 == 0) {
+                            echo '<div class="carousel-item ' . (($contador / 3) == 0 ? 'active' : '') . '"><div class="row">';
+                        }
+                    ?>
+                        <div class="col-md m-3 text-center articulo">
+                            <div data-aos="zoom-in" class="card-article pb-3 bg-white">
+                                <img title="Titulo producto" width="200" height="200" class="img-fluid" alt="Titulo" src="<?php echo $producto['imagen'] ?>" data-bs-toggle="popover" data-bs-trigger="hover" data-bs-title="<?php echo $producto['nombre'] ?>" data-bs-content="<?php echo $producto['descripcion'] ?>" height="327px">
+                                <div class="card-body">
+                                    <span class="name-product"><?php echo $producto['nombre'] ?></span>
+                                    <h5 class="card-title">
+                                        <?php echo $producto['precio'] ?>
+                                    </h5>
+                                    <p class="card-text">
+                                        Description
+                                    </p>
 
-                <?php
-                $sentencia = $pdo->prepare("SELECT * FROM productos");
-                $sentencia->execute();
-                $listaproductos = $sentencia->fetchAll(PDO::FETCH_ASSOC);
-                // print_r($listaproductos);
-                ?>
+                                    <form action="" method="post">
 
-                <?php
+                                        <input type="hidden" name="id" id="id" value="<?php echo openssl_encrypt($producto['codigo'], COD, KEY) ?>">
+                                        <input class="text-success" type="hidden" name="nombre" id="nombre" value="<?php echo openssl_encrypt($producto['nombre'], COD, KEY) ?>">
+                                        <input type="hidden" name="precio" id="precio" value="<?php echo openssl_encrypt($producto['precio'], COD, KEY) ?>">
+                                        <input type="hidden" name="cantidad" id="cantidad" value="<?php echo openssl_encrypt(1, COD, KEY) ?>">
+                                        <button class="btn-cafe" name="btn-action" id="comprar" value="agregar" type="submit">
+                                            Agregar al carrito
+                                            <i class="fas fa-shopping-cart"></i>
+                                        </button>
 
-                foreach ($listaproductos as $producto) { ?>
-
-
-                    <div class="col-md m-3 text-center articulo">
-                        <div data-aos="zoom-in" class="card-article pb-3 bg-white">
-                            <img title="Titulo producto" width="200" height="200" class="" alt="Titulo" src="<?php echo $producto['imagen'] ?>" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="" data-bs-toggle="popover" data-bs-trigger="hover" data-bs-title="<?php echo $producto['nombre'] ?>" data-bs-content="<?php echo $producto['descripcion'] ?>" height="327px">
-                            <div class="card-body">
-                                <span class="name-product"><?php echo $producto['nombre'] ?></span>
-                                <h5 class="card-title">
-                                    <?php echo $producto['precio']  ?>
-                                </h5>
-                                <p class="card-text">
-                                    Description
-                                </p>
-
-                                <form action="" method="post">
-
-                                    <input type="hidden" name="id" id="id" value="<?php echo openssl_encrypt($producto['codigo'], COD, KEY)  ?>">
-                                    <input class="text-success" type="hidden" name="nombre" id="nombre" value="<?php echo openssl_encrypt($producto['nombre'], COD, KEY) ?>">
-                                    <input type="hidden" name="precio" id="precio" value="<?php echo openssl_encrypt($producto['precio'], COD, KEY) ?>">
-                                    <input type="hidden" name="cantidad" id="cantidad" value="<?php echo openssl_encrypt(1, COD, KEY) ?>">
-                                    <button class="btn-cafe" name="btn-action" id="comprar" value="agregar" type="submit">
-                                        Agregar al carrito
-                                        <i class="fas fa-shopping-cart"></i> <!-- Icono de carrito -->
-                                    </button>
-
-                                </form>
+                                    </form>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                <?php } ?>
+                    <?php
+                        $contador++;
+                        if ($contador % 3 == 0 || $contador == $totalProductos) {
+                            echo '</div></div>';
+                        }
+                    } ?>
+                </div>
+                <a class="carousel-control-prev" href="#productosCarousel" role="button" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#productosCarousel" role="button" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </a>
             </div>
         </section>
     </div>
