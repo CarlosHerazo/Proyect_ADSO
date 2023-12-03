@@ -1,5 +1,17 @@
 <!-- CONTENT HEADER -->
 <section class="content-header">
+<style>
+        .activo-color {
+            background-color: #4caf54;
+            font-weight: 700;
+        }
+
+        .inactivo-color {
+            background-color: #FF5252;
+            font-weight: 700;
+            color: #fff;
+        }
+    </style>
     <div class="container-fluid">
         <div class="row md-2">
             <div class="col-sm-6">
@@ -8,7 +20,7 @@
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="index.php">Inicio / </a></li>
-                    <li class="Breadcrumb-item active">Gestor de empleados</li>
+                    <li class="Breadcrumb-item active">Gestor de Productos</li>
                 </ol>
             </div>
         </div>
@@ -30,6 +42,9 @@
                 <th>Nombre</th>
                 <th>Precio</th>
                 <th>Descripcion</th>
+                <th>Cantidad</th>
+                <th>Estado</th>
+                <th>Categoria</th>
                 <th>Imagen</th>
                 <th>Acciones</th>
             </tr>
@@ -71,10 +86,28 @@
                         <label for="precioP">Precio</label>
                         <input type="number" class="form-control" name="precio" id="precioP">
                     </div>
+                    <div class="col-sm-4">
+                        <label for="cantidadP">Cantidad</label>
+                        <input type="number" class="form-control" name="cantidad" id="cantidadP">
+                    </div>
+                    <div class="col-sm-4">
+                        <label for="estadoP">Estado</label>
+                        <select type="text" class="form-control" name="estado" id="estadoP">
+                            <option value="Activo">Activo</option>
+                            <option value="Inactivo">Inactivo</option>
+                        </select>
+                    </div>
 
                     <div class="col-sm-4">
                         <label for="imagenP">Imagen</label>
                         <input type="text" class="form-control" name="imagen" id="imagenP" placeholder="ingrese la ruta de la imagen">
+                    </div>
+                    <div class="col-sm-4">
+                        <label for="categoriaP">categoria</label>
+                        <select type="number" class="form-control" name="estado" id="categoriaP">
+                            <option value="1">Tuberculos</option>
+                            <option value="2">Frutas</option>
+                        </select>
                     </div>
                     <div class="col-sm-4">
                         <label for="descripcionP">Descripcion</label>
@@ -296,11 +329,11 @@
             },
 
             "columnDefs": [{
-                "targets": 5,
+                "targets": 8,
                 "sortable": false,
                 "render": function(data, type, full, meta) {
                     return "<div style='display:flex;'>" +
-                        "<button style='whith:20px' type='button' class='btn btn-primary btn-sm btnEditar' data-toggle='modal' data-target='#modal-actualizar-producto'>" + "<i class='fas fa-pencil-alt'></i>" +
+                        "<button style='margin-right: 15px' type='button' class='btn btn-primary btn-sm btnEditar' data-toggle='modal' data-target='#modal-actualizar-producto'>" + "<i class='fas fa-pencil-alt'></i>" +
                         "</button>" +
                         "<button type='button' class='btn btn-danger btn-sm btnEliminar'> " + "<i class='fas fa-trash'></i>" +
                         "</button>" +
@@ -322,13 +355,31 @@
                 },
 
                 {
+                    "data": "cantidad"
+                },
+
+                {
+                    "data": "estado"
+                },
+                {
+                    "data": "categoria_id"
+                },
+
+                {
                     "data": "imagen"
                 },
                 {
                     "data": "acciones"
                 },
             ],
-
+            "createdRow": function(row, data, dataIndex) {
+                // Añade una clase CSS basada en el valor de la columna "rol"
+                if (data.estado === "Activo") {
+                    $(row).find('td:eq(5)').addClass('activo-color');
+                } else if (data.estado === "Inactivo") {
+                    $(row).find('td:eq(5)').addClass('inactivo-color');
+                }
+            },
         });
 
 
@@ -346,16 +397,27 @@
             nombre = $("#nombreP").val(),
                 precio = $("#precioP").val(),
                 descripcion = $("#descripcionP").val(),
+                estado = $("#estadoP").val(),
+                categoria = $("#categoriaP").val(),
+                cantidad = $("#cantidadP").val(),
                 imagen = $("#imagenP").val()
 
             let datos = new FormData();
+
             datos.append('codigo', id);
             datos.append('nombre', nombre);
             datos.append('precio', precio);
             datos.append('descripcion', descripcion);
+            datos.append('estado', estado);
+            datos.append('categoria', categoria);
+            datos.append('cantidad', cantidad);
             datos.append('imagen', imagen);
             datos.append('accion', accion);
 
+            console.log("Contenido de FormData:");
+            for (let pair of datos.entries()) {
+                console.log(pair[0] + ', ' + pair[1]);
+            }
             Swal.fire({
                 title: "¡CONFIRMAR!",
                 text: "¿Está seguro que desea registrar el producto?",
@@ -385,7 +447,10 @@
                             $("#nombreP").val("");
                             $("#precioP").val("");
                             $("#descripcionP").val("");
+                            $("#estadoP").val("");
+                            $("#cantidadP").val("");
                             $("#imagenP").val("");
+                            $("#categoriaP").val("");
 
                             Toast.fire({
                                 icon: 'success',
@@ -407,17 +472,19 @@
 
         $("#tablaProductos tbody").on('click', '.btnEditar', function() {
 
-           
+
 
             let data = table.row($(this).parents('tr')).data();
             accion = "actualizar";
             $("#idProducto").val(data[0]);
             $("#nombreP").val(data[1]);
             $("#precioP").val(data[2]);
-            $("#imagenP").val(data[3]);
-            $("#descripcionP").val(data[4]);
+            $("#descripcionP").val(data[3]);
+            $("#cantidadP").val(data[4]);
+            $("#estadoP").val(data[5]);
+            $("#categoriaP").val(data[6]);
+            $("#imagenP").val(data[6]);
 
-            
 
         })
 

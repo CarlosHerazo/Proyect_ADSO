@@ -4,21 +4,24 @@ require_once("conexion.php");
 
 class ModeloProducto{
     public static  function mdlMostrarProducto(){
-        $stnt = Conexion::conectar() -> prepare("SELECT `codigo`, `nombre`, `precio`,  `imagen`,`descripcion`,'x' as acciones FROM `productos`;");
+        $stnt = Conexion::conectar() -> prepare("SELECT `codigo`, `nombre`, `precio`,`descripcion`, `cantidad`,`estado`, `imagen`,`categoria_id`,'x' as acciones FROM `productos`;");
         $stnt -> execute();
         return $stnt -> fetchAll();
         // $stnt = null;
     }
 
-    static public function mdlRegistrarProducto($nombre, $precio, $descripcion, $imagen){
+    static public function mdlRegistrarProducto($nombre, $precio, $descripcion,$cantidad, $estado, $imagen,$categoria){
         // Preparar la consulta SQL (no es necesario usar comillas en los marcadores de posición)
-        $stmt = Conexion::conectar()->prepare("INSERT INTO `productos` (`nombre`, `precio`, `descripcion`, `imagen`) VALUES (:nombre, :precio, :descripcion, :imagen)");
+        $stmt = Conexion::conectar()->prepare("INSERT INTO `productos` (`nombre`, `precio`, `descripcion`, `cantidad`,`estado`, `imagen`,`categoria_id`) VALUES (:nombre, :precio, :descripcion, :cantidad, :estado, :imagen, :categoria)");
         
         // Vincular los valores a los marcadores de posición
         $stmt->bindParam(":nombre", $nombre, PDO::PARAM_STR);
         $stmt->bindParam(":precio", $precio, PDO::PARAM_STR);
         $stmt->bindParam(":descripcion", $descripcion, PDO::PARAM_STR);
+        $stmt->bindParam(":cantidad", $cantidad, PDO::PARAM_INT);
+        $stmt->bindParam(":estado", $estado, PDO::PARAM_STR);
         $stmt->bindParam(":imagen", $imagen, PDO::PARAM_STR);
+        $stmt->bindParam(":categoria", $categoria, PDO::PARAM_INT);
         
         // Ejecutar la consulta
         if($stmt->execute()){
@@ -54,7 +57,7 @@ class ModeloProducto{
         
     }
 
-    static public function mdlActualizarProducto($codigo, $nombre, $precio, $descripcion, $imagen){
+    static public function mdlActualizarProducto($codigo, $nombre, $precio, $descripcion,$cantidad, $estado, $imagen,$categoria){
       
         // Preparar la consulta SQL
         $stmt = Conexion::conectar()->prepare("UPDATE `productos` 
@@ -62,7 +65,10 @@ class ModeloProducto{
                                                 SET nombre = :nombre,
                                                     precio = :precio,
                                                     descripcion = :descripcion,
-                                                    imagen = :imagen
+                                                    cantidad = :cantidad,
+                                                    estado = :estado,
+                                                    imagen = :imagen,
+                                                    categoria_id = :categoria
                                                     
                                                 WHERE codigo = :codigo");
         
@@ -71,7 +77,10 @@ class ModeloProducto{
         $stmt->bindParam(":nombre", $nombre, PDO::PARAM_STR);
         $stmt->bindParam(":precio", $precio, PDO::PARAM_STR);
         $stmt->bindParam(":descripcion", $descripcion, PDO::PARAM_STR);
+        $stmt->bindParam(":cantidad", $cantidad, PDO::PARAM_INT);
+        $stmt->bindParam(":estado", $estado, PDO::PARAM_STR);     
         $stmt->bindParam(":imagen", $imagen, PDO::PARAM_STR);
+        $stmt->bindParam(":categoria", $categoria, PDO::PARAM_INT);
         
         // Ejecutar la consulta
         if($stmt->execute()){

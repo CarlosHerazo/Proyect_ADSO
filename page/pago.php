@@ -72,7 +72,7 @@ if ($_POST) {
 
 <body>
 
-<br><br><br>
+    <br><br><br>
 
     <div class="jumbotron text-center container">
         <h1 class="display-4">¡Paso Final!</h1>
@@ -147,12 +147,12 @@ if ($_POST) {
                 </div>
             </div>
             <button class="position-absolute bottom-1 end-0 m-5 btn btn-danger">Cancelar el pedido</button>
-        </div>    
+        </div>
         <div>
-       
-    </div>
+
+        </div>
     </main>
-    
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="https://www.paypal.com/sdk/js?client-id=<?php echo CLIENT_ID; ?>&currency=<?php echo CURRENCY; ?>"></script>
@@ -176,7 +176,11 @@ if ($_POST) {
 
             onApprove: function(data, actions) {
                 actions.order.capture().then(function(detalles) {
-                    //redirection
+                    Swal.fire({
+                        title:"Pago fue exitoso!",
+                        text: "Acabas de pagar una de candidad: " + <?php echo MONEDA. $total; ?>,
+                        icon: "success"
+                    });
                 });
             },
 

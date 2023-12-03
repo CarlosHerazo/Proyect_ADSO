@@ -6,13 +6,13 @@ class ControladorProducto{
         return $respuesta;
     }
 
-    static public function crtRegistrarProducto($nombre, $precio, $descripcion, $imagen){
-        $respuesta = ModeloProducto::mdlRegistrarProducto($nombre, $precio, $descripcion, $imagen);
+    static public function crtRegistrarProducto($nombre, $precio, $descripcion,  $cantidad,$estado, $imagen, $categoria){
+        $respuesta = ModeloProducto::mdlRegistrarProducto($nombre, $precio, $descripcion, $cantidad,$estado, $imagen, $categoria);
         return $respuesta;
     }
 
-    static public function crtActualizarProducto($codigo, $nombre, $precio, $descripcion, $imagen){
-        $respuesta = ModeloProducto::mdlActualizarProducto($codigo, $nombre, $precio, $descripcion, $imagen);
+    static public function crtActualizarProducto($codigo, $nombre, $precio, $descripcion,$cantidad, $estado,  $imagen, $categoria){
+        $respuesta = ModeloProducto::mdlActualizarProducto($codigo, $nombre, $precio, $descripcion, $cantidad, $estado, $imagen, $categoria);
         return $respuesta;
     }
     static public function crtEliminarProducto($codigo){    
