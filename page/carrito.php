@@ -120,10 +120,10 @@ include '../controllers/logicacarrito.php';
                 </button>
 
 
-                <button href="./productos.php" class="btn-cafe" id="btn-elegirmasproductos">
+                <a href="./productos.php" class="btn-cafe" id="btn-elegirmasproductos">
                     Elegir mas productos
                     <!-- <i class="fas fa-shopping-cart"></i> Icono de carrito -->
-                </button>
+                    </a>
             </form>
 
         <?php } else { ?>
@@ -131,9 +131,9 @@ include '../controllers/logicacarrito.php';
             <div class="alert alert-success">
                 No hay productos en el carrito...
             </div>
-            <button class="btn-cafe" type="submit" id="btn-elegirmasproductos">
+            <a class="btn-cafe" type="submit" id="btn-elegirmasproductos">
             Elegir mas productos
-            </button>
+        </a>
 
 
         <?php } ?>

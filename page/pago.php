@@ -146,7 +146,7 @@ if ($_POST) {
                     <div id="paypal-button-container"></div>
                 </div>
             </div>
-            <button class="position-absolute bottom-1 end-0 m-5 btn btn-danger">Cancelar el pedido</button>
+            <a href="./carrito.php" class="position-absolute bottom-1 end-0 m-5 btn btn-danger">Regresar al Carrito</a>
         </div>
         <div>
 

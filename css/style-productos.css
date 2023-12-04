@@ -797,3 +797,17 @@ html {
   font-size: 20px;
   border-radius: 20px;
 }
+
+.blurred-section-img{
+  display: none;
+}
+
+@media(max-width: 780px){
+  .blurred-section-img{
+    display: block;
+  }
+
+  .blurred-section-text{
+    display: none;
+  }
+}

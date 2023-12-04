@@ -201,10 +201,12 @@ include '../global/cabecera.php';
                             <img src="<?php echo $productos['imagen'] ?>" type="jfif" id="producto-info">
                         </div>
                         <div id="Texto-info-producto">
-                            <p><?php echo $productos['descripcion'] ?></p>
+                            <p><?php echo $productos['descripcion'] ?></p> <br>
+
                             <br><br><br>
                         </div>
                         <p id="precio-producto">Precio por Unidad: <?php echo $productos['precio'] ?></p>
+
                     </div>
                     <div id="comprar">
                         <form action="" method="post">
@@ -251,7 +253,7 @@ include '../global/cabecera.php';
                                         <?php echo $producto['precio'] ?>
                                     </h5>
                                     <p class="card-text">
-                                        Description
+                                        <b> Bultos Dispodibles: <?php echo $producto['cantidad'] ?></b>
                                     </p>
 
                                     <form action="" method="post">
@@ -320,7 +322,7 @@ include '../global/cabecera.php';
                                         <?php echo $producto['precio'] ?>
                                     </h5>
                                     <p class="card-text">
-                                        Description
+                                        <b> Bultos Dispodibles: <?php echo $producto['cantidad'] ?></b>
                                     </p>
 
                                     <form action="" method="post">
@@ -368,18 +370,18 @@ include '../global/cabecera.php';
             $listaproductos = $sentencia->fetchAll(PDO::FETCH_ASSOC);
             // print_r($listaproductos);
             ?>
-            <div id="productosCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+            <div id="productosCarousel3" class="carousel slide carousel-fade" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     <?php
                     $contador = 0;
                     $totalProductos = count($listaproductos);
                     foreach ($listaproductos as $producto) {
-                        if ($contador % 3 == 0) {
+                        if ($contador % 4 == 0) {
                             echo '<div class="carousel-item ' . (($contador / 4) == 0 ? 'active' : '') . '"><div class="row">';
                         }
                     ?>
                         <div class="col-md m-3 text-center articulo">
-                            <div data-aos="zoom-in" class="card-article pb-3 bg-white">
+                            <div data-aos="flip-left" class="card-article pb-3 bg-white">
                                 <img title="Titulo producto" width="200" height="200" class="img-fluid" alt="Titulo" src="<?php echo $producto['imagen'] ?>" data-bs-toggle="popover" data-bs-trigger="hover" data-bs-title="<?php echo $producto['nombre'] ?>" data-bs-content="<?php echo $producto['descripcion'] ?>" height="327px">
                                 <div class="card-body">
                                     <span class="name-product"><?php echo $producto['nombre'] ?></span>
@@ -387,7 +389,7 @@ include '../global/cabecera.php';
                                         <?php echo $producto['precio'] ?>
                                     </h5>
                                     <p class="card-text">
-                                        Description
+                                        <b> Bultos Dispodibles: <?php echo $producto['cantidad'] ?></b>
                                     </p>
 
                                     <form action="" method="post">
@@ -412,16 +414,34 @@ include '../global/cabecera.php';
                         }
                     } ?>
                 </div>
-                <a class="carousel-control-prev" href="#productosCarousel" role="button" data-bs-slide="prev">
+                <a class="carousel-control-prev" href="#productosCarousel3" role="button" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Previous</span>
                 </a>
-                <a class="carousel-control-next" href="#productosCarousel" role="button" data-bs-slide="next">
+                <a class="carousel-control-next" href="#productosCarousel3" role="button" data-bs-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Next</span>
                 </a>
             </div>
         </div>
+    </section>
+    <br><br>
+
+    <section class="container text-center">
+        <hr class="my-2">
+        <div class="row featurette ">
+            <div  class="col-md-7 d-flex justify-content-center align-items-center flex-column ">
+                <h2 class="featurette-heading">Recetas Rústicas y Sabrosas con Productos Campesinos <span class="text-muted">Deleitate.</span></h2>
+                <p class="lead">Descubre el verdadero sabor del campo con nuestras recetas, creadas con amor y dedicación usando los productos más frescos y naturales, directamente de la tierra. Cada plato es una celebración de la cocina campesina, donde la simplicidad se encuentra con la riqueza de sabores.</p>
+                <button  class="btn-cafe bg-danger blurred-section-text" name="btn-action">  Ver Recetas   <i class="fas fa-utensils"></i></button>
+            </div>
+           
+            <div  class="col-md-5 d-flex justify-content-center align-items-center flex-column ">
+                <img src="../img/imagenes_banner/comida_campesina.png" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" role="img" style="border-radius: 50%;" aria-label="Placeholder: 500x500" />
+                <button  class="btn-cafe bg-danger blurred-section-img mt-3" name="btn-action">  Ver Recetas   <i class="fas fa-utensils"></i></button>
+            </div>
+        </div>
+        <hr class="my-2">
     </section>
     <br><br>
     <?php include "../global/footer.php"; ?>
