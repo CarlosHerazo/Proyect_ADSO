@@ -5,7 +5,7 @@ require '../model/config.php';
 require '../model/conexion.php';
 
 $json = file_get_contents('php://input');
-var_dump($json);
+
 $datos = json_decode($json, true);
 
     $id_transaccion = $datos['detalles']['id'];
