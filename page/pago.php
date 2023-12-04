@@ -215,7 +215,7 @@ if ($_POST) {
                     footer: '<a href="../index.php">Regrese al inicio</a>'
                 })
             }
-        }).render('#paypal-button-container')
+        }).render('#paypal-button-container');
     </script>
 </body>
 
