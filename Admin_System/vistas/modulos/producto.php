@@ -326,7 +326,7 @@
                     }
                 },
                 "info": "Mostrando de _START_ a _END_ de _TOTAL_ entradas"
-            },
+            }, "lengthMenu": [[3, 5, -1], [3, 5, "Todos"]],
 
             "columnDefs": [{
                 "targets": 8,
