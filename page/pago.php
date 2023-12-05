@@ -6,20 +6,11 @@ include '../controllers/logicacarrito.php';
 <?php
 if ($_POST) {
     $total = 0;
-    $sid = session_id();
-    $correo = $_POST['email'];
+   
     foreach ($_SESSION['carrito'] as $indice => $producto) {
         $total = $total + ($producto['precio'] * $producto['cantidad']);
     }
 
-    $sentencia = $pdo->prepare("INSERT INTO `pedido` (`id`, `clave_transacion`, `paypal_datos`, `fecha`, `correo`, `total`, `status`) 
-    VALUES (NULL, :claveTransacion, '', NOW(), :correo, :total, 'pendiente');");
-
-    $sentencia->bindParam(":claveTransacion", $sid);
-    $sentencia->bindParam(":correo", $correo);
-    $sentencia->bindParam(":total", $total);
-    $sentencia->execute();
-    $idVenta = $pdo->lastInsertId();
 
     foreach ($_SESSION['carrito'] as $indice => $producto) {
         $idProducto = $producto['id'];
@@ -27,16 +18,15 @@ if ($_POST) {
         $cantidad = $producto['cantidad'];
 
         // Verificar que $idProducto no sea nulo antes de ejecutar la consulta
-        if (!is_null($idProducto)) {
-            $sentencia = $pdo->prepare("INSERT INTO `detallepedido` (`id`, `id_venta`, `id_producto`, `precio_unitario`, `cantidad`, `descargado`)
-            VALUES (NULL, :idVenta, :idProducto, :precioUnitario, :cantidad, '0');");
+        $sentencia = $pdo->prepare("INSERT INTO `detallepedido`( `id_venta`, `id_producto`, `nombre`, `precio_unitario`, `cantidad`) 
+        VALUES (:idVenta,:idProducto,:nombreP,:precioUnitario,:cantidad");
 
-            $sentencia->bindParam(":idVenta", $idVenta);
-            $sentencia->bindParam(":idProducto", $idProducto);
-            $sentencia->bindParam(":precioUnitario", $precioUnitario);
-            $sentencia->bindParam(":cantidad", $cantidad);
-            $sentencia->execute();
-        }
+    $sentencia->bindParam(":idVenta", $idVenta);
+    $sentencia->bindParam(":idProducto", $idProducto);
+    $sentencia->bindParam(":nombreP", $nombre);
+    $sentencia->bindParam(":precioUnitario", $precioUnitario);
+    $sentencia->bindParam(":cantidad", $cantidad);
+   echo $sentencia->execute();
     }
 }
 
