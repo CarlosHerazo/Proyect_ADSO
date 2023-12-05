@@ -58,7 +58,7 @@ if(isset($_SESSION['nombre'])){
                         <li class="nav-item">
                             <a onclick="cargarContenido('content-wrapper','vistas/modulos/empleados.php')" class="nav-link" style="cursor: pointer;">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Empleados</p>
+                                <p>User Admin</p>
                             </a>
                         </li>
 
