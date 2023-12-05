@@ -1,6 +1,6 @@
 <?php
 require_once '../controllers/detallesPedido.controlador.php';
-require_once '../modelo/detallesPedido.controlador.php';
+require_once '../modelo/detallesPedido.modelo.php';
 
 class AjaxDetallesPedido{
 
@@ -11,3 +11,6 @@ class AjaxDetallesPedido{
     }
 
 }
+
+$respuesta = new AjaxDetallesPedido();
+$respuesta -> mostrarDetallesP();
