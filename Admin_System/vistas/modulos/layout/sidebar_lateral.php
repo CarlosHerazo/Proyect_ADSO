@@ -65,6 +65,34 @@ if(isset($_SESSION['nombre'])){
                     </ul>
 
                 </li>
+                <li class="nav-item">
+                     <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-chart-pie"></i>
+                        <p>
+                          Gestor Pedidos
+                          <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+
+                    <ul class="nav nav-treeview">
+
+                        <li class="nav-item">
+                            <a onclick="cargarContenido('content-wrapper','vistas/modulos/pedidos.php')" class="nav-link" style="cursor: pointer;">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Pedidos</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a onclick="cargarContenido('content-wrapper','vistas/modulos/detallesPedido.php')" class="nav-link" style="cursor: pointer;">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>detalles pedido</p>
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </li>
                 
             </ul>
 
