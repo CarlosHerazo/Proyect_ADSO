@@ -12,22 +12,7 @@ if ($_POST) {
     }
 
 
-    foreach ($_SESSION['carrito'] as $indice => $producto) {
-        $idProducto = $producto['id'];
-        $precioUnitario = $producto['precio'];
-        $cantidad = $producto['cantidad'];
-
-        // Verificar que $idProducto no sea nulo antes de ejecutar la consulta
-        $sentencia = $pdo->prepare("INSERT INTO `detallepedido`( `id_venta`, `id_producto`, `nombre`, `precio_unitario`, `cantidad`) 
-        VALUES (:idVenta,:idProducto,:nombreP,:precioUnitario,:cantidad");
-
-    $sentencia->bindParam(":idVenta", $idVenta);
-    $sentencia->bindParam(":idProducto", $idProducto);
-    $sentencia->bindParam(":nombreP", $nombre);
-    $sentencia->bindParam(":precioUnitario", $precioUnitario);
-    $sentencia->bindParam(":cantidad", $cantidad);
-   echo $sentencia->execute();
-    }
+  
 }
 
 ?>
