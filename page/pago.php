@@ -143,7 +143,7 @@ if ($_POST) {
 
                 <div class="col">
 
-                    <div id="paypal-button-container"></div>
+                    <div id="paypal-button-container" data-total="<?php echo $total; ?>"></div>
                 </div>
             </div>
             <a href="./carrito.php" class="position-absolute bottom-1 end-0 m-5 btn btn-danger">Regresar al Carrito</a>
@@ -157,66 +157,7 @@ if ($_POST) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="https://www.paypal.com/sdk/js?client-id=<?php echo CLIENT_ID; ?>&currency=<?php echo CURRENCY; ?>"></script>
 
-    <script>
-        paypal.Buttons({
-            style: {
-                color: 'blue',
-                shape: 'pill',
-                label: 'pay'
-            },
-            createOrder: function(data, actions) {
-                return actions.order.create({
-                    purchase_units: [{
-                        amount: {
-                            value: <?php echo $total; ?>
-                        }
-                    }]
-                });
-            },
-
-            onApprove: function(data, actions) {
-                actions.order.capture().then(function(detalles) {
-                    if (data) {
-                        let url = '../checkout/captura_paypal.php';
-                        fetch(url, {
-                                method: 'POST',
-                                headers: {
-                                    'Content-Type': 'application/json'
-                                },
-                                body: JSON.stringify({
-                                    detalles: detalles
-                                })
-                            })
-                            .then(response => response.json())
-                            .then(data => {
-                                // Manejar la respuesta del servidor
-                                console.log(data);
-
-                                Swal.fire({
-                                    title: "El Pago fue exitoso!",
-                                    text: "Gracias por su compra",
-                                    icon: "success"
-                                });
-                            })
-                            .catch(error => {
-                                // Manejar errores de la solicitud
-                                console.error('Error en la solicitud:', error);
-                            });
-                    }
-                });
-            },
-
-
-            onCancel: function(data) {
-                Swal.fire({
-                    icon: "error",
-                    title: "Oops...",
-                    text: "TU PAGO FUE CANCELADO!",
-                    footer: '<a href="../index.php">Regrese al inicio</a>'
-                })
-            }
-        }).render('#paypal-button-container');
-    </script>
+    <script src="../javascript/pago.js"></script>
 </body>
 
 </html>

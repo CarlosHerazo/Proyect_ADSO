@@ -432,13 +432,13 @@ include '../global/cabecera.php';
         <div class="row featurette ">
             <div  class="col-md-7 d-flex justify-content-center align-items-center flex-column ">
                 <h2 class="featurette-heading">Recetas Rústicas y Sabrosas con Productos Campesinos <span class="text-muted">Deleitate.</span></h2>
-                <p class="lead">Descubre el verdadero sabor del campo con nuestras recetas, creadas con amor y dedicación usando los productos más frescos y naturales, directamente de la tierra. Cada plato es una celebración de la cocina campesina, donde la simplicidad se encuentra con la riqueza de sabores.</p>
-                <button  class="btn-cafe bg-danger blurred-section-text" name="btn-action">  Ver Recetas   <i class="fas fa-utensils"></i></button>
+                <p class="lead">Descubre el verdadero sabor del campo con recetas, usando los productos más frescos y naturales, directamente de la tierra. Cada plato es una celebración de la cocina campesina, donde la simplicidad se encuentra con la riqueza de sabores.</p>
+                <!-- <button  class="btn-cafe bg-danger blurred-section-text"><a style="text-decoration: none; color:#fff;" href="./recetas.php">Ver recetas</a> <i class="fas fa-utensils"></i></button> -->
             </div>
            
             <div  class="col-md-5 d-flex justify-content-center align-items-center flex-column ">
                 <img src="../img/imagenes_banner/comida_campesina.png" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" role="img" style="border-radius: 50%;" aria-label="Placeholder: 500x500" />
-                <button  class="btn-cafe bg-danger blurred-section-img mt-3" name="btn-action">  Ver Recetas   <i class="fas fa-utensils"></i></button>
+                <!-- <button  class="btn-cafe bg-danger blurred-section-img mt-3"><a style="text-decoration: none; color:#fff;" href="./recetas.php">Ver recetas</a> <i class="fas fa-utensils"></i></button> -->
             </div>
         </div>
         <hr class="my-2">

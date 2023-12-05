@@ -2,8 +2,6 @@
 include '../model/config.php';
 
 
-
-
 if (isset($_POST['action'])) {
     $action = $_POST['action'];
     $id = isset($_POST['id']) ? $_POST['id'] : 0;
