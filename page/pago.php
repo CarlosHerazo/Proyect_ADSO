@@ -4,16 +4,12 @@ include '../model/conexion.php';
 include '../controllers/logicacarrito.php';
 ?>
 <?php
-if ($_POST) {
+
     $total = 0;
    
     foreach ($_SESSION['carrito'] as $indice => $producto) {
         $total = $total + ($producto['precio'] * $producto['cantidad']);
     }
-
-
-  
-}
 
 ?>
 

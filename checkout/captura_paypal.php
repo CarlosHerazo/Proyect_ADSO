@@ -10,8 +10,9 @@ $total = 0;
 $json = file_get_contents('php://input');
 $datos = json_decode($json, true);
 
+
+$resultados = []; // Inicializa un array para almacenar los resultados o errores
 if (is_array($datos)) {
-    echo $datos;
     $id_transaccion = $datos['detalles']['id'];
     $monto = $datos['detalles']['purchase_units'][0]['amount']['value'];
     $status = $datos['detalles']['status'];
@@ -36,13 +37,13 @@ if (is_array($datos)) {
         $idVenta = $pdo->lastInsertId();
         $_SESSION["idVenta"] = $idVenta;
         if ($sentencia->rowCount() > 0) {
-            echo "consulta exitosa";
+            $resultados[] = ["mensaje" => "consulta exitosa"];
         } else {
-            echo "ninguna fila insertada";
+            $resultados[] = ["mensaje" => "no se inserto ninguna fila"];
         }
     } catch (PDOException $e) {
-        echo "Error: " . $e->getMessage();
-        print_r($sentencia->errorInfo());
+       
+        $resultados[] = ["error" => $e->getMessage()];
     }
 }
 
@@ -50,35 +51,31 @@ if (is_array($datos)) {
 foreach ($_SESSION['carrito'] as $indice => $producto) {
     $cantidad = $producto['cantidad'];
     $idProducto = $producto['id'];
-    $idVenta = ($_SESSION['idVenta']);
-    $sentencia = $pdo->prepare("SELECT `codigo`, `nombre`, `precio` FROM `productos` WHERE codigo = ? AND estado ='Activo'");
-    $sentencia->execute([$idProducto]);
-    $row_proc = $sentencia->fetch(PDO::FETCH_ASSOC);
-    $nombre = $row_proc['nombre'];
-    $precioUnitario = $row_proc['precio'];
+    $idVenta = $_SESSION['idVenta'];
 
+    $sentenciaProducto = $pdo->prepare("SELECT `codigo`, `nombre`, `precio` FROM `productos` WHERE codigo = ? AND estado ='Activo'");
+    $sentenciaProducto->execute([$idProducto]);
+    $row_proc = $sentenciaProducto->fetch(PDO::FETCH_ASSOC);
 
-    // Verificar que $idProducto no sea nulo antes de ejecutar la consulta
+    if ($row_proc) {
+        $nombre = $row_proc['nombre'];
+        $precioUnitario = $row_proc['precio'];
 
-    $sentencia = $pdo->prepare("INSERT INTO `detallepedido`( `id_venta`, `id_producto`, `nombre`, `precio_unitario`, `cantidad`) 
-        VALUES (:idVenta,:idProducto,:nombreP,:precioUnitario,:cantidad)");
-
-    $sentencia->bindParam(":idVenta", $idVenta);
-    $sentencia->bindParam(":idProducto", $idProducto);
-    $sentencia->bindParam(":nombreP", $nombre);
-    $sentencia->bindParam(":precioUnitario", $precioUnitario);
-    $sentencia->bindParam(":cantidad", $cantidad);
-    try {
-        $sentencia->execute();
-        if ($sentencia->rowCount() > 0) {
-            echo "consulta exitosa";
-        } else {
-            echo "ninguna fila insertada";
+        $sentenciaDetalle = $pdo->prepare("INSERT INTO `detallepedido`(`id_venta`, `id_producto`, `nombre`, `precio_unitario`, `cantidad`) VALUES (:idVenta, :idProducto, :nombreP, :precioUnitario, :cantidad)");
+        $sentenciaDetalle->bindParam(":idVenta", $idVenta);
+        $sentenciaDetalle->bindParam(":idProducto", $idProducto);
+        $sentenciaDetalle->bindParam(":nombreP", $nombre);
+        $sentenciaDetalle->bindParam(":precioUnitario", $precioUnitario);
+        $sentenciaDetalle->bindParam(":cantidad", $cantidad);
+        
+        try {
+            $sentenciaDetalle->execute();
+            $resultados[] = ["mensaje" => $e->getMessage()];
+        } catch (PDOException $e) {
+            $resultados[] = ["error" => $e->getMessage()];
+            break; // detener el bucle en caso de error
         }
-    } catch (PDOException $e) {
-        echo "Error: " . $e->getMessage();
-        print_r($sentencia->errorInfo());
     }
 }
 
-
+echo json_encode($resultados);

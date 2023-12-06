@@ -29,20 +29,31 @@ document.addEventListener("DOMContentLoaded", function () {
                         },
                         body: JSON.stringify({ detalles: detalles })
                     })
-                        .then(response => {
-                            if (!response.ok) {
-                                throw new Error('Network response was not ok');
-                            }
-                            return response.json(); // Convierte la respuesta a JSON
-                        })
-                        .then(data => {
-                            console.log("Datos recibidos del servidor:", data);
-                            // Aquí puedes manejar los datos recibidos
-                        })
-                        .catch(error => {
-                            console.error("Error al procesar la respuesta:", error);
-                        });
-
+                    .then(data => {
+                        if (data.error) {
+                            console.error("Error desde el servidor:", data);
+                            Swal.fire(
+                                'Error',
+                                'Hubo un problema con tu transacción: ' + data.error,
+                                'error'
+                            );
+                        } else {
+                            console.log("Mensaje del servidor:", data);
+                            Swal.fire(
+                                '¡Éxito!',
+                                'Tu transacción se ha completado satisfactoriamente.',
+                                'success'
+                            );
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Error al procesar la respuesta:", error);
+                        Swal.fire(
+                            'Error',
+                            'Hubo un problema con tu transacción.',
+                            'error'
+                        );
+                    });
                 }
             });
         },

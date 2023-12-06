@@ -105,7 +105,7 @@ include '../controllers/logicacarrito.php';
             </table>
             <br><br>
             <form action="./pago.php" method="post">
-                <div class="alert alert-success" role="alert">
+                <!-- <div class="alert alert-success" role="alert">
                     <div class="form-group">
                         <label for="">Correo de contacto</label>
                         <input type="email" name="email" id="email" class="form-control" placeholder="Por favor escribe tu correo" aria-describedby="helpId" required>
@@ -113,7 +113,7 @@ include '../controllers/logicacarrito.php';
                     <small class="form-text text-muted">
                         Los productos se enviairan a este correo
                     </small>
-                </div>
+                </div> -->
                 <button class="btn-cafe" type="submit" name="btn-action" value="proceder">
                     Proceder a pagar
                     <!-- <i class="fas fa-shopping-cart"></i> Icono de carrito -->

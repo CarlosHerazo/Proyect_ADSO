@@ -15,7 +15,7 @@
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="../index.php">Inicio</a>
             </li>
-            <li class="nav-item dropdown">
+            <li class="nav-item dropdown disabled">
               <a class="nav-link dropdown-toggle" href="../index.php/#NuestrosServicios" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Servicios
               </a>
