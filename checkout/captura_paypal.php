@@ -48,51 +48,39 @@ if (is_array($datos)) {
 }
 
 
-foreach ($_SESSION['carrito'] as $indice => $producto) {
-    $cantidad = $producto['cantidad'];
-    $idProducto = $producto['id'];
-    $idVenta = $_SESSION['idVenta'];
+    foreach ($_SESSION['carrito'] as $indice => $producto) {
+        $cantidad = $producto['cantidad'];
+        $idProducto = $producto['id'];
+        $idVenta = $_SESSION['idVenta'];
+    
+        $sentenciaProducto = $pdo->prepare("SELECT `codigo`, `nombre`, `precio` FROM `productos` WHERE codigo = ?");
+        $sentenciaProducto->execute([$idProducto]);
+        $row_proc = $sentenciaProducto->fetch(PDO::FETCH_ASSOC);
+    
+        if ($row_proc) {
+            $nombre = $row_proc['nombre'];
+            $precioUnitario = $row_proc['precio'];
+    
+            $sentenciaDetalle = $pdo->prepare("INSERT INTO `detallepedido`(`id_venta`, `id_producto`, `nombre`, `precio_unitario`, `cantidad`) VALUES (:idVenta, :idProducto, :nombreP, :precioUnitario, :cantidad)");
+            $sentenciaDetalle->bindParam(":idVenta", $idVenta);
+            $sentenciaDetalle->bindParam(":idProducto", $idProducto);
+            $sentenciaDetalle->bindParam(":nombreP", $nombre);
+            $sentenciaDetalle->bindParam(":precioUnitario", $precioUnitario);
+            $sentenciaDetalle->bindParam(":cantidad", $cantidad);
+            
+            try {
+                $sentenciaDetalle->execute();
+                $resultados[] = ["mensaje" => "Datos enviados con exito"];
+            } catch (PDOException) {
+                $resultados[] = ["error" => "Error en la consulta"];
 
-    $sentenciaProducto = $pdo->prepare("SELECT `codigo`, `nombre`, `precio` FROM `productos` WHERE codigo = ? AND estado ='Activo'");
-    $sentenciaProducto->execute([$idProducto]);
-    $row_proc = $sentenciaProducto->fetch(PDO::FETCH_ASSOC);
-
-    if ($row_proc) {
-        $nombre = $row_proc['nombre'];
-        $precioUnitario = $row_proc['precio'];
-
-        $sentenciaDetalle = $pdo->prepare("INSERT INTO `detallepedido`(`id_venta`, `id_producto`, `nombre`, `precio_unitario`, `cantidad`) VALUES (:idVenta, :idProducto, :nombreP, :precioUnitario, :cantidad)");
-        $sentenciaDetalle->bindParam(":idVenta", $idVenta);
-        $sentenciaDetalle->bindParam(":idProducto", $idProducto);
-        $sentenciaDetalle->bindParam(":nombreP", $nombre);
-        $sentenciaDetalle->bindParam(":precioUnitario", $precioUnitario);
-        $sentenciaDetalle->bindParam(":cantidad", $cantidad);
-        
-        try {
-            $sentenciaDetalle->execute();
-            $resultados[] = ["mensaje" => $e->getMessage()];
-        } catch (PDOException $e) {
-            $resultados[] = ["error" => $e->getMessage()];
-            break; // detener el bucle en caso de error
+            }
         }
     }
-}
+    // Destruir solo la parte del carrito
+unset($_SESSION['carrito'] );
 
 
-// Destruir solo la parte del carrito
-unset($_SESSION['carrito']);
-
-// O para destruir toda la sesión
-
-
-// Si quieres eliminar también la cookie de sesión
-if (ini_get("session.use_cookies")) {
-    $params = session_get_cookie_params();
-    setcookie(session_name(), '', time() - 42000,
-        $params["path"], $params["domain"],
-        $params["secure"], $params["httponly"]
-    );
-}
 
 // Enviar la respuesta
 echo json_encode($resultados);

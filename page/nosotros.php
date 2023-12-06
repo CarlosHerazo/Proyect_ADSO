@@ -115,6 +115,32 @@ include '../controllers/logicacarrito.php';
       </section>
 
       <hr class="featurette-divider">
+
+      <!-- <div class="formulario-agricultor container">
+        <h2 class="h2-nosotros">Queremos Conocerte</h2>
+        <form action="/submit_formulario" method="post">
+            <label for="nombre">Nombre completo *</label>
+            <input type="text" id="nombre" name="nombre" required>
+
+            <label for="email">Correo electrónico *</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="producto">Producto de interés</label>
+            <select id="producto" name="producto">
+                <option value="mango">Mango</option>
+                <option value="ñame">Ñame</option>
+                <option value="platano">Plátano</option>
+                <option value="yuca">Yuca</option>
+                <option value="papaya">Papaya</option>
+               Puedes agregar más opciones aquí 
+            </select>
+
+            <label for="mensaje">Cuéntanos más sobre ti</label>
+            <textarea id="mensaje" name="mensaje" rows="4"></textarea>
+
+            <button type="submit">Enviar</button>
+        </form>
+    </div> -->
     </div>
 
 
