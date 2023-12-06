@@ -88,7 +88,7 @@ include '../global/cabecera.php';
         </div>  -->
     <? // } 
     ?>
-    <div class="div-todo container">
+    <div id="div-todo-container" class="div-todo container">
 
         <aside>
 
@@ -461,6 +461,24 @@ include '../global/cabecera.php';
             easing: 'ease-out-back',
             duration: 1000
         });
+    </script>
+       <script>
+        window.addEventListener('resize', function() {
+            var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+
+            if (width <= 768) { // 768px es un ancho común para dispositivos móviles
+                document.getElementById('div-todo-container').classList.remove('container');
+            }
+        });
+
+        // Ejecutar también al cargar la página
+        window.addEventListener = function() {
+            var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+
+            if (width <= 768) {
+                document.getElementById('div-todo-container').classList.remove('container');
+            }
+        };
     </script>
 </body>
 

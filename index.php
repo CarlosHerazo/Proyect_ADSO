@@ -57,8 +57,8 @@ include 'controllers/logicacarrito.php';
                             <li class="nav-item">
                                 <a class="nav-link" href="./page/productos.php">Productos</a>
                             </li>
-                            <li class="nav-link" style ="position: relative;">
-                            <div style=" position:absolute; top: 0%; left: 60%;" id="cantidad-carrito"><?php echo (empty($_SESSION['carrito'])) ? 0 : count($_SESSION['carrito']); ?></div>
+                            <li class="nav-link" style="position: relative;">
+                                <div style=" position:absolute; top: 0%; left: 60%;" id="cantidad-carrito"><?php echo (empty($_SESSION['carrito'])) ? 0 : count($_SESSION['carrito']); ?></div>
                                 <div class="icon-nav">
 
                                     <a href="./page/carrito.php"> <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512">
@@ -213,6 +213,7 @@ include 'controllers/logicacarrito.php';
             duration: 1000
         });
     </script>
+ 
 </body>
 
 </html>
