@@ -88,7 +88,7 @@ include '../global/cabecera.php';
         </div>  -->
     <? // } 
     ?>
-    <div class="div-todo">
+    <div class="div-todo container">
 
         <aside>
 

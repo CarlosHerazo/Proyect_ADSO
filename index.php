@@ -100,7 +100,7 @@ include 'controllers/logicacarrito.php';
             <p class="texto-sesion">Del campo a tu mesa. <br>
                 productos perecederos<br>
                 frescos y nutritivos para tu bienestar.</p>
-            <a href="#" class="link-sesion">Conocenos</a>
+            <a href="./page/nosotros.php" class="link-sesion">Conocenos</a>
         </section>
     </div>
     <!--Termina la sesion1-->

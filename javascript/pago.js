@@ -29,31 +29,35 @@ document.addEventListener("DOMContentLoaded", function () {
                         },
                         body: JSON.stringify({ detalles: detalles })
                     })
-                    .then(data => {
-                        if (data.error) {
-                            console.error("Error desde el servidor:", data);
+                        .then(data => {
+                            if (data.error) {
+                                console.error("Error desde el servidor:", data);
+                                Swal.fire(
+                                    'Error',
+                                    'Hubo un problema con tu transacción: ' + data.error,
+                                    'error'
+                                );
+                            } else {
+                                console.log("Mensaje del servidor:", data);
+                                Swal.fire(
+                                    '¡Éxito!',
+                                    'Tu transacción se ha completado satisfactoriamente.',
+                                    'success'
+                                ).then(() => {
+                                    window.location.href = '../page/carrito.php'; // URL de redirección
+                                    // Eliminar datos del carrito del almacenamiento local o de la sesión
+                                    
+                                });
+                            }
+                        })
+                        .catch(error => {
+                            console.error("Error al procesar la respuesta:", error);
                             Swal.fire(
                                 'Error',
-                                'Hubo un problema con tu transacción: ' + data.error,
+                                'Hubo un problema con tu transacción.',
                                 'error'
                             );
-                        } else {
-                            console.log("Mensaje del servidor:", data);
-                            Swal.fire(
-                                '¡Éxito!',
-                                'Tu transacción se ha completado satisfactoriamente.',
-                                'success'
-                            );
-                        }
-                    })
-                    .catch(error => {
-                        console.error("Error al procesar la respuesta:", error);
-                        Swal.fire(
-                            'Error',
-                            'Hubo un problema con tu transacción.',
-                            'error'
-                        );
-                    });
+                        });
                 }
             });
         },

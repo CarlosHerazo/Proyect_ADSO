@@ -27,7 +27,7 @@ include '../controllers/logicacarrito.php';
     <style>
         button {
 
-            font-size: 16px;
+            font-size: 20px;
             margin: 0 5px;
             cursor: pointer;
             background-color: #808080;

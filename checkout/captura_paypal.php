@@ -78,4 +78,21 @@ foreach ($_SESSION['carrito'] as $indice => $producto) {
     }
 }
 
+
+// Destruir solo la parte del carrito
+unset($_SESSION['carrito']);
+
+// O para destruir toda la sesión
+
+
+// Si quieres eliminar también la cookie de sesión
+if (ini_get("session.use_cookies")) {
+    $params = session_get_cookie_params();
+    setcookie(session_name(), '', time() - 42000,
+        $params["path"], $params["domain"],
+        $params["secure"], $params["httponly"]
+    );
+}
+
+// Enviar la respuesta
 echo json_encode($resultados);
