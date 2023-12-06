@@ -57,7 +57,7 @@ include '../controllers/logicacarrito.php';
           <div data-aos="fade-left" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false">
             <title>Placeholder</title>
             <rect width="100%" height="100%" fill="var(--bs-secondary-bg)" /><text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em"></text>
-            <img class="peliculas img-fluid" src="./../build/img/nosotros/campesino_platano.webp" alt="">
+            <img class="peliculas img-fluid" src="./../build/img/nosotros/campesino_platano.webp" alt="imagen-campesino" type="webp" title="campesino cargando platanos">
           </div>
         </div>
       </div>
@@ -89,7 +89,7 @@ include '../controllers/logicacarrito.php';
         <div class="col-md-5">
           <div data-aos="fade-left" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false">
             <rect width="100%" height="100%" fill="var(--bs-secondary-bg)" /><text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em"></text>
-            <img class="peliculas img-fluid" src="./../build/img/nosotros/campesino_recoleccion.webp" alt="">
+            <img class="peliculas img-fluid" src="./../build/img/nosotros/campesino_recoleccion.webp" alt="imagen-campesino" type="webp" title="campesino plantando">
           </div>
         </div>
         <div data-aos="fade-right" class="col-md-7 text-center centered-text">
