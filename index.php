@@ -41,7 +41,7 @@ include 'controllers/logicacarrito.php';
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#NuestrosServicios" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Servicios
+                                    Servicio
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li><a class="dropdown-item" href="#NuestrosServicios">Envios a domicilio</a></li>
