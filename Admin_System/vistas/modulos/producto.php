@@ -1,6 +1,6 @@
 <!-- CONTENT HEADER -->
 <section class="content-header">
-<style>
+    <style>
         .activo-color {
             background-color: #4caf54;
             font-weight: 700;
@@ -30,30 +30,32 @@
 <!--  Content-->
 <section class="container-fluid">
 
-    <div class="btn-agregar-producto btn-agregar">
+    <div class="btn-agregar-producto btn-agregar ">
         <button type="button" class="btn btn-info btn-sm mb-4" data-toggle="modal" data-target="#modal-actualizar-producto" data-dismiss="modal"><i class="fas fa-plus-square"></i>
             Agregar Producto </button>
     </div>
-
-    <table id="tablaProductos" class="table table-striped text-center">
-        <thead>
-            <tr>
-                <th>Codigo</th>
-                <th>Nombre</th>
-                <th>Precio</th>
-                <th>Descripcion</th>
-                <th>Cantidad</th>
-                <th>Estado</th>
-                <th>Categoria</th>
-                <th>Imagen</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-
-        </tbody>
-    </table>
 </section>
+<div class="container-fluid">
+    <div class="table-responsive">
+        <table id="tablaProductos" class="table table-striped text-center">
+            <thead class="table-dark">
+                <tr>
+                    <th>Codigo</th>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                    <th>Cantidad</th>
+                    <th>Estado</th>
+                    <th>Categoria</th>
+                    <th>Imagen</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody class="table table-striped table-hover">
+
+            </tbody>
+        </table>
+    </div>
+</div>
 <!-- ./Content -->
 
 <!-- ventana modal para registro y actualizacion -->
@@ -326,10 +328,14 @@
                     }
                 },
                 "info": "Mostrando de _START_ a _END_ de _TOTAL_ entradas"
-            }, "lengthMenu": [[3, 5, -1], [3, 5, "Todos"]],
+            },
+            "lengthMenu": [
+                [3, 5, -1],
+                [3, 5, "Todos"]
+            ],
 
             "columnDefs": [{
-                "targets": 8,
+                "targets": 7,
                 "sortable": false,
                 "render": function(data, type, full, meta) {
                     return "<div style='display:flex;'>" +
@@ -349,9 +355,6 @@
                 },
                 {
                     "data": "precio"
-                },
-                {
-                    "data": "descripcion"
                 },
 
                 {

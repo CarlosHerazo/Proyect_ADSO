@@ -16,7 +16,6 @@ include '../controllers/logicacarrito.php';
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../css/style-productos.css">
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
@@ -245,7 +244,7 @@ include '../global/cabecera.php';
                         }
                     ?>
                         <div class="col-md m-3 text-center articulo">
-                            <div data-aos="zoom-in" class="card-article pb-3 bg-white">
+                            <div class="card-article pb-3 bg-white">
                                 <img title="Titulo producto" width="200" height="200" class="img-fluid" alt="Titulo" src="<?php echo $producto['imagen'] ?>" data-bs-toggle="popover" data-bs-trigger="hover" data-bs-title="<?php echo $producto['nombre'] ?>" data-bs-content="<?php echo $producto['descripcion'] ?>" height="327px">
                                 <div class="card-body">
                                     <span class="name-product"><?php echo $producto['nombre'] ?></span>
@@ -253,21 +252,30 @@ include '../global/cabecera.php';
                                         <?php echo $producto['precio'] ?>
                                     </h5>
                                     <p class="card-text">
-                                        <b> Bultos Dispodibles: <?php echo $producto['cantidad'] ?></b>
-                                    </p>
+                                        <?php if ($producto['cantidad'] > 0) { ?>
+                                            <b> Bultos Dispodibles: <?php echo $producto['cantidad'] ?></b>
 
-                                    <form action="" method="post">
+                                        <?php } else { ?>
+                                    <div class="alert alert-danger m-4" role="alert">
+                                        Producto agotado por el momento
+                                    </div>
 
-                                        <input type="hidden" name="id" id="id" value="<?php echo openssl_encrypt($producto['codigo'], COD, KEY) ?>">
-                                        <input class="text-success" type="hidden" name="nombre" id="nombre" value="<?php echo openssl_encrypt($producto['nombre'], COD, KEY) ?>">
-                                        <input type="hidden" name="precio" id="precio" value="<?php echo openssl_encrypt($producto['precio'], COD, KEY) ?>">
-                                        <input type="hidden" name="cantidad" id="cantidad" value="<?php echo openssl_encrypt(1, COD, KEY) ?>">
-                                        <button class="btn-cafe" name="btn-action" id="comprar" value="agregar" type="submit">
-                                            Agregar al carrito
-                                            <i class="fas fa-shopping-cart"></i>
-                                        </button>
+                                <?php  } ?>
+                                </p>
 
-                                    </form>
+
+                                <form action="" method="post">
+
+                                    <input type="hidden" name="id" id="id" value="<?php echo openssl_encrypt($producto['codigo'], COD, KEY) ?>">
+                                    <input class="text-success" type="hidden" name="nombre" id="nombre" value="<?php echo openssl_encrypt($producto['nombre'], COD, KEY) ?>">
+                                    <input type="hidden" name="precio" id="precio" value="<?php echo openssl_encrypt($producto['precio'], COD, KEY) ?>">
+                                    <input type="hidden" name="cantidad" id="cantidad" value="<?php echo openssl_encrypt(1, COD, KEY) ?>">
+                                    <button class="btn-cafe" name="btn-action" id="comprar" value="agregar" type="submit">
+                                        Agregar al carrito
+                                        <i class="fas fa-shopping-cart"></i>
+                                    </button>
+
+                                </form>
                                 </div>
                             </div>
                         </div>
@@ -314,7 +322,7 @@ include '../global/cabecera.php';
                         }
                     ?>
                         <div class="col-md m-3 text-center articulo">
-                            <div data-aos="zoom-in" class="card-article pb-3 bg-white">
+                            <div class="card-article pb-3 bg-white">
                                 <img title="Titulo producto" width="200" height="200" class="img-fluid" alt="Titulo" src="<?php echo $producto['imagen'] ?>" data-bs-toggle="popover" data-bs-trigger="hover" data-bs-title="<?php echo $producto['nombre'] ?>" data-bs-content="<?php echo $producto['descripcion'] ?>" height="327px">
                                 <div class="card-body">
                                     <span class="name-product"><?php echo $producto['nombre'] ?></span>
@@ -381,7 +389,7 @@ include '../global/cabecera.php';
                         }
                     ?>
                         <div class="col-md m-3 text-center articulo">
-                            <div data-aos="flip-left" class="card-article pb-3 bg-white">
+                            <div class="card-article pb-3 bg-white">
                                 <img title="Titulo producto" width="200" height="200" class="img-fluid" alt="Titulo" src="<?php echo $producto['imagen'] ?>" data-bs-toggle="popover" data-bs-trigger="hover" data-bs-title="<?php echo $producto['nombre'] ?>" data-bs-content="<?php echo $producto['descripcion'] ?>" height="327px">
                                 <div class="card-body">
                                     <span class="name-product"><?php echo $producto['nombre'] ?></span>
@@ -430,13 +438,13 @@ include '../global/cabecera.php';
     <section class="container text-center">
         <hr class="my-2">
         <div class="row featurette ">
-            <div  class="col-md-7 d-flex justify-content-center align-items-center flex-column ">
+            <div class="col-md-7 d-flex justify-content-center align-items-center flex-column ">
                 <h2 class="featurette-heading">Recetas Rústicas y Sabrosas con Productos Campesinos <span class="text-muted">Deleitate.</span></h2>
                 <p class="lead">Descubre el verdadero sabor del campo con recetas, usando los productos más frescos y naturales, directamente de la tierra. Cada plato es una celebración de la cocina campesina, donde la simplicidad se encuentra con la riqueza de sabores.</p>
                 <!-- <button  class="btn-cafe bg-danger blurred-section-text"><a style="text-decoration: none; color:#fff;" href="./recetas.php">Ver recetas</a> <i class="fas fa-utensils"></i></button> -->
             </div>
-           
-            <div  class="col-md-5 d-flex justify-content-center align-items-center flex-column ">
+
+            <div class="col-md-5 d-flex justify-content-center align-items-center flex-column ">
                 <img src="../img/imagenes_banner/comida_campesina.png" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" role="img" style="border-radius: 50%;" aria-label="Placeholder: 500x500" />
                 <!-- <button  class="btn-cafe bg-danger blurred-section-img mt-3"><a style="text-decoration: none; color:#fff;" href="./recetas.php">Ver recetas</a> <i class="fas fa-utensils"></i></button> -->
             </div>
@@ -462,7 +470,7 @@ include '../global/cabecera.php';
             duration: 1000
         });
     </script>
-       <script>
+    <script>
         window.addEventListener('resize', function() {
             var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 

@@ -21,7 +21,7 @@ class ModeloEmpleados
         // Preparar la consulta SQL (no es necesario usar comillas en los marcadores de posición)
         $stmt = Conexion::conectar()->prepare("INSERT INTO `admin` (`contra`, `usuario`,`rol`, `nombre`) VALUES (:pass, :usuario, :rol, :nombre)");
 
-        $stmt->bindParam(":pass", $contrasenaSha1, PDO::PARAM_STR); 
+        $stmt->bindParam(":pass", $contrasenaSha1, PDO::PARAM_STR);
         $stmt->bindParam(":usuario", $user, PDO::PARAM_STR);
         $stmt->bindParam(":rol", $rol, PDO::PARAM_STR);
         $stmt->bindParam(":nombre", $nombre, PDO::PARAM_STR);
@@ -39,30 +39,30 @@ class ModeloEmpleados
     }
 
 
-// eliminar un empleado
+    // eliminar un empleado
     public static function mdlEliminiarEmpleados($id)
     {
         // Preparar la consulta SQL 
         $stmt = Conexion::conectar()->prepare("DELETE FROM `admin` WHERE id = :id");
-        
+
         // Vincular los valores a los marcadores de posición
         $stmt->bindParam(":id", $id, PDO::PARAM_INT);
-        
+
         // Ejecutar la consulta
-        if($stmt->execute()){
+        if ($stmt->execute()) {
             return "El Usuario se elimino perfectamente";
         } else {
             return "Error, no se pudo eliminar el Usuario";
         }
-        
+
         // Cerrar la declaración 
         $stmt = null;
     }
 
-    public static function mdlActualizarEmpleados($id,$rol, $nombre, $user, $contra)
+    public static function mdlActualizarEmpleados($id, $rol, $nombre, $user, $contra)
     {
         // Convertir la contraseña a SHA-1
-        $contrasenaSha1 = sha1($contra);     
+        $contrasenaSha1 = sha1($contra);
         // Preparar la consulta SQL
         $stmt = Conexion::conectar()->prepare("UPDATE `admin` 
                                                 
@@ -74,7 +74,7 @@ class ModeloEmpleados
                                                     
                                                     
                                                 WHERE id = :id");
-        
+
         // Vincular los valores a los marcadores de posición
         $stmt->bindParam(":id", $id, PDO::PARAM_INT);
         $stmt->bindParam(":nombre", $nombre, PDO::PARAM_STR);
@@ -82,20 +82,17 @@ class ModeloEmpleados
         $stmt->bindParam(":rol", $rol, PDO::PARAM_STR);
         $stmt->bindParam(":pass", $contrasenaSha1, PDO::PARAM_STR);
 
-        
+
         // Ejecutar la consulta
-        if($stmt->execute()){
+        if ($stmt->execute()) {
             return "El usuario se actualizo perfectamente";
         } else {
             return "Error, no se pudo actualizar el usuario";
         }
-        
+
         // Cerrar la declaración 
         $stmt = null;
     }
-
-
 }
 
 $productos = ModeloEmpleados::mdlMostrarEmpleados();
-

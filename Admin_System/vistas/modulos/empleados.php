@@ -37,21 +37,24 @@
         </button>
     </div>
     <br>
-    <table id="tablaEmpleados" class="table table-striped text-center">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Contraseña</th>
-                <th>Usuario</th>
-                <th>Rol</th>
-                <th>Nombre</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
+    <div class="container-fluid">
+        <div class="table-responsive">
+            <table id="tablaEmpleados" class="table table-striped text-center">
+                <thead class="table-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Usuario</th>
+                        <th>Rol</th>
+                        <th>Nombre</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
 
-        </tbody>
-    </table>
+                </tbody class="table table-striped table-hover">
+            </table>
+        </div>
+    </div>
 </section>
 <!-- ./Content -->
 
@@ -313,7 +316,7 @@
                 "info": "Mostrando de _START_ a _END_ de _TOTAL_ entradas"
             },
             "columnDefs": [{
-                "targets": 5,
+                "targets": 4,
                 "sortable": false,
                 "render": function(data, type, full, meta) {
                     return "<center>" +
@@ -330,9 +333,7 @@
             "columns": [{
                     "data": "id"
                 },
-                {
-                    "data": "contra"
-                },
+
                 {
                     "data": "usuario"
                 },
