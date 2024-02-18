@@ -541,12 +541,4 @@
         })
 
     })
-
-
-    // yuca: https://www.semana.com/resizer/wpm5cy7iLgNmWLwHGfjyNbMAnNc=/1280x0/smart/filters:format(jpg):quality(80)/cloudfront-us-east-1.images.arcpublishing.com/semana/2B666A7UU5CTLPPSF7MU7KOGTE.jpg
-    // platano: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYOmDQZqOauRN3-FseBJG0FU5pmdZw29DI7e33Z0chkK_HAzWDC3op5oUpJp0Tm4Zw1PI&usqp=CAU
-    // auyama: https://www.mercadoscampesinos.gov.co/wp-content/uploads/2021/04/Auyama-comun-400x400.jpg
-    // Limon: https://frutasaida.com/cdn/shop/products/criollo_1024x1024.jpg?v=1590512394
-    // ñame: https://jumbocolombiaio.vtexassets.com/arquivos/ids/203173/1380.jpg?v=637814193870330000
-    // guayaba: https://5aldia.cl/wp-content/uploads/2021/03/guayaba.jpeg
 </script>

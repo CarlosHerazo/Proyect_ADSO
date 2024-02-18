@@ -1,7 +1,9 @@
 <?php
 include '../model/config.php';
+include '../model/conexion.php';
 include '../controllers/logicacarrito.php';
 ?>
+
 
 <!DOCTYPE html>
 <html lang="es">
@@ -21,7 +23,6 @@ include '../controllers/logicacarrito.php';
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200;300;400&family=Roboto:ital,wght@0,100;0,400;0,700;1,100&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-
     <title>Carrito</title>
 
     <style>
@@ -71,15 +72,24 @@ include '../controllers/logicacarrito.php';
                     </tr>
                     <?php $total = 0; ?>
                     <?php
-                    foreach ($_SESSION['carrito'] as $indice => $producto) {  ?>
+                    foreach ($_SESSION['carrito'] as $indice => $producto) {
+                        $idProducto = $producto['id'];
+                        $sentencia = $pdo->prepare("SELECT cantidad FROM `productos` WHERE codigo = $idProducto;");
+                        $sentencia->execute();
+                        $cantidadId = $sentencia->fetchAll(PDO::FETCH_ASSOC);
+                        $cantidad = $cantidadId[0]['cantidad'];
+
+                    ?>
+
+
                         <tr>
                             <td width="40%"><?php echo htmlspecialchars($producto['nombre'], ENT_QUOTES, 'UTF-8') ?></td>
                             <td class="text-center d-flex justify-content-center">
-                                <button class="btn btn-outline-danger" onclick="decrement(<?php echo $indice; ?>, <?php echo  $producto['id']; ?> )">-</button>
+                                <button class="btn btn-outline-danger" onclick="decrement(<?php echo $indice; ?>, <?php echo $producto['id']; ?>)">-</button>
                                 <div class="d-flex align-items-center m-0 p-0" id="cantidadContainer_<?php echo $producto['id']; ?>">
                                     <span class="m-0 p-0" id="cantidad_<?php echo $indice; ?>"><?php echo $producto['cantidad'] ?></span>
                                 </div>
-                                <button class="btn btn-active btn-outline-success" value="agrega" onclick="increment(<?php echo $indice; ?>,<?php echo $producto['id'] ?> )">+</button>
+                                <button class="btn btn-active btn-outline-success" value="agrega" onclick="increment(<?php echo $indice; ?>,<?php echo $producto['id'] ?>,<?php echo $cantidad  ?> )">+</button>
                             </td>
                             <td width="20%" class="text-center"><?php echo MONEDA . $producto['precio'] ?></td>
                             <td width="20%" id="subtotal_<?php echo $producto['id']; ?>" class="text-center"><?php echo MONEDA . number_format($producto['cantidad'] * $producto['precio'], 2) ?></td>
@@ -123,7 +133,7 @@ include '../controllers/logicacarrito.php';
                 <a href="./productos.php" class="btn-cafe" id="btn-elegirmasproductos">
                     Elegir mas productos
                     <!-- <i class="fas fa-shopping-cart"></i> Icono de carrito -->
-                    </a>
+                </a>
             </form>
 
         <?php } else { ?>
@@ -132,8 +142,8 @@ include '../controllers/logicacarrito.php';
                 No hay productos en el carrito...
             </div>
             <a class="btn-cafe" type="submit" id="btn-elegirmasproductos">
-            Elegir mas productos
-        </a>
+                Elegir mas productos
+            </a>
 
 
         <?php } ?>
@@ -145,6 +155,7 @@ include '../controllers/logicacarrito.php';
 
     <!--Termina el contenido-->
     <script src="../javascript/carrito.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
     <script src="../javascript/pCarrito.js"></script>
 </body>

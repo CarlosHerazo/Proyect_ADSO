@@ -150,13 +150,14 @@ include '../global/cabecera.php';
         <section class="info-producto">
             <?php
             if (isset($_GET["codigo"])) {
-                $codigo = $_GET["codigo"];
+                echo  $codigo = $_GET["codigo"];
                 $sentencia = $pdo->prepare("SELECT * FROM `productos` WHERE codigo = $codigo;");
                 $sentencia->execute();
                 $producto = $sentencia->fetchAll(PDO::FETCH_ASSOC);
 
                 foreach ($producto as $productos) {
                     // Mostrar los detalles del producto
+
             ?>
 
                     <div id="producto2" class="producto-info">
@@ -176,9 +177,10 @@ include '../global/cabecera.php';
                             <input type="hidden" name="nombre" id="nombre" value="<?php echo openssl_encrypt($productos['nombre'], COD, KEY) ?>">
                             <input type="hidden" name="precio" id="precio" value="<?php echo openssl_encrypt($productos['precio'], COD, KEY) ?>">
                             <input type="hidden" name="cantidad" id="cantidad" value="<?php echo openssl_encrypt(1, COD, KEY) ?>">
-                            <button class="btn btn-success  w-100" name="btn-action" value="agregar" id="comprar" type="submit">Agregar al carrito</button>
+
+                            <button class="btn btn-success  w-100" name="btn-action" value="agregar" id="comprar" type="submit" data-cantidadP="<?php echo intval($producto['cantidad']); ?>">Agregar al carrito</button>
                         </form>
-                        <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512">
+                        <svg xmlns=" http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512">
                             <!-- Icono SVG aquí -->
                         </svg>
                     </div>
@@ -207,19 +209,26 @@ include '../global/cabecera.php';
                         <p id="precio-producto">Precio por Unidad: <?php echo $productos['precio'] ?></p>
 
                     </div>
-                    <div id="comprar">
-                        <form action="" method="post">
-                            <input type="hidden" name="id" id="id" value="<?php echo openssl_encrypt($productos['codigo'], COD, KEY) ?>">
-                            <input type="hidden" name="nombre" id="nombre" value="<?php echo openssl_encrypt($productos['nombre'], COD, KEY) ?>">
-                            <input type="hidden" name="precio" id="precio" value="<?php echo openssl_encrypt($productos['precio'], COD, KEY) ?>">
-                            <input type="hidden" name="cantidad" id="cantidad" value="<?php echo openssl_encrypt(1, COD, KEY) ?>">
-                            <button class="btn btn-success w-100" name="btn-action" id="comprar" value="agregar" type="submit">Agregar al carrito</button>
-                        </form>
-                        <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512">
-                            <!-- Icono SVG aquí -->
-                        </svg>
-                    </div>
+                    <?php if ($productos['cantidad'] == 0) { ?>
+                        <button class="btn btn-success w-100 disabled" name="btn-action" id="comprar" value="agregar" type="submit" data-cantidadP="<?php echo intval($productos['cantidad']); ?>">Agregar al carrito</button>
+                    <?php
+                    } else {
 
+                    ?>
+
+                        <div id="comprar">
+                            <form action="" method="post">
+                                <input type="hidden" name="id" id="id" value="<?php echo openssl_encrypt($productos['codigo'], COD, KEY) ?>">
+                                <input type="hidden" name="nombre" id="nombre" value="<?php echo openssl_encrypt($productos['nombre'], COD, KEY) ?>">
+                                <input type="hidden" name="precio" id="precio" value="<?php echo openssl_encrypt($productos['precio'], COD, KEY) ?>">
+                                <input type="hidden" name="cantidad" id="cantidad" value="<?php echo openssl_encrypt(1, COD, KEY) ?>">
+                                <button class="btn btn-success w-100" name="btn-action" id="comprar" value="agregar" type="submit">Agregar al carrito</button>
+                            </form>
+                            <svg xmlns=" http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512">
+                                <!-- Icono SVG aquí -->
+                            </svg>
+                        </div>
+                    <?php  } ?>
             <?php
                 }
             }
@@ -257,25 +266,35 @@ include '../global/cabecera.php';
 
                                         <?php } else { ?>
                                     <div class="alert alert-danger m-4" role="alert">
-                                        Producto agotado por el momento
+                                        Producto agotado
                                     </div>
 
                                 <?php  } ?>
                                 </p>
 
+                                <?php if ($producto['cantidad'] > 0) { ?>
+                                    <form action="" method="post">
 
-                                <form action="" method="post">
+                                        <form action="" method="post">
 
-                                    <input type="hidden" name="id" id="id" value="<?php echo openssl_encrypt($producto['codigo'], COD, KEY) ?>">
-                                    <input class="text-success" type="hidden" name="nombre" id="nombre" value="<?php echo openssl_encrypt($producto['nombre'], COD, KEY) ?>">
-                                    <input type="hidden" name="precio" id="precio" value="<?php echo openssl_encrypt($producto['precio'], COD, KEY) ?>">
-                                    <input type="hidden" name="cantidad" id="cantidad" value="<?php echo openssl_encrypt(1, COD, KEY) ?>">
-                                    <button class="btn-cafe" name="btn-action" id="comprar" value="agregar" type="submit">
-                                        Agregar al carrito
+                                            <input type="hidden" name="id" id="id" value="<?php echo openssl_encrypt($producto['codigo'], COD, KEY) ?>">
+                                            <input class="text-success" type="hidden" name="nombre" id="nombre" value="<?php echo openssl_encrypt($producto['nombre'], COD, KEY) ?>">
+                                            <input type="hidden" name="precio" id="precio" value="<?php echo openssl_encrypt($producto['precio'], COD, KEY) ?>">
+                                            <input type="hidden" name="cantidad" id="cantidad" value="<?php echo openssl_encrypt(1, COD, KEY) ?>">
+                                            <button class="btn-cafe" name="btn-action" id="comprar" value="agregar" type="submit">
+                                                Agregar al carrito
+                                                <i class="fas fa-shopping-cart"></i>
+                                            </button>
+
+                                        </form>
+                                    </form>
+                                <?php } else { ?>
+                                    <button class="btn-cafe disabled" name="btn-action" id="comprar" value="agregar" type="submit" data-cantidadP="<?php echo intval($producto['cantidad']); ?>">
+                                        Deshabilitado
                                         <i class="fas fa-shopping-cart"></i>
                                     </button>
+                                <?php } ?>
 
-                                </form>
                                 </div>
                             </div>
                         </div>
@@ -333,18 +352,40 @@ include '../global/cabecera.php';
                                         <b> Bultos Dispodibles: <?php echo $producto['cantidad'] ?></b>
                                     </p>
 
+                                    <p class="card-text">
+                                        <?php if ($producto['cantidad'] > 0) { ?>
+                                            <b> Bultos Dispodibles: <?php echo $producto['cantidad'] ?></b>
+
+                                        <?php } else { ?>
+                                    <div class="alert alert-danger m-4" role="alert">
+                                        Producto agotado
+                                    </div>
+
+                                <?php  } ?>
+                                </p>
+
+                                <?php if ($producto['cantidad'] > 0) { ?>
                                     <form action="" method="post">
+                                        <!-- ... Otros campos ocultos ... -->
+                                        <form action="" method="post">
 
-                                        <input type="hidden" name="id" id="id" value="<?php echo openssl_encrypt($producto['codigo'], COD, KEY) ?>">
-                                        <input class="text-success" type="hidden" name="nombre" id="nombre" value="<?php echo openssl_encrypt($producto['nombre'], COD, KEY) ?>">
-                                        <input type="hidden" name="precio" id="precio" value="<?php echo openssl_encrypt($producto['precio'], COD, KEY) ?>">
-                                        <input type="hidden" name="cantidad" id="cantidad" value="<?php echo openssl_encrypt(1, COD, KEY) ?>">
-                                        <button class="btn-cafe" name="btn-action" id="comprar" value="agregar" type="submit">
-                                            Agregar al carrito
-                                            <i class="fas fa-shopping-cart"></i>
-                                        </button>
+                                            <input type="hidden" name="id" id="id" value="<?php echo openssl_encrypt($producto['codigo'], COD, KEY) ?>">
+                                            <input class="text-success" type="hidden" name="nombre" id="nombre" value="<?php echo openssl_encrypt($producto['nombre'], COD, KEY) ?>">
+                                            <input type="hidden" name="precio" id="precio" value="<?php echo openssl_encrypt($producto['precio'], COD, KEY) ?>">
+                                            <input type="hidden" name="cantidad" id="cantidad" value="<?php echo openssl_encrypt(1, COD, KEY) ?>">
+                                            <button class="btn-cafe" name="btn-action" id="comprar" value="agregar" type="submit">
+                                                Agregar al carrito
+                                                <i class="fas fa-shopping-cart"></i>
+                                            </button>
 
+                                        </form>
                                     </form>
+                                <?php } else { ?>
+                                    <button class="btn-cafe disabled" name="btn-action" id="comprar" value="agregar" type="submit" data-cantidadP="<?php echo intval($producto['cantidad']); ?>">
+                                        Deshabilitado
+                                        <i class="fas fa-shopping-cart"></i>
+                                    </button>
+                                <?php } ?>
                                 </div>
                             </div>
                         </div>
@@ -396,22 +437,40 @@ include '../global/cabecera.php';
                                     <h5 class="card-title">
                                         <?php echo $producto['precio'] ?>
                                     </h5>
+
                                     <p class="card-text">
-                                        <b> Bultos Dispodibles: <?php echo $producto['cantidad'] ?></b>
-                                    </p>
+                                        <?php if ($producto['cantidad'] > 0) { ?>
+                                            <b> Bultos Dispodibles: <?php echo $producto['cantidad'] ?></b>
 
+                                        <?php } else { ?>
+                                    <div class="alert alert-danger m-4" role="alert">
+                                        Producto agotado
+                                    </div>
+
+                                <?php  } ?>
+                                </p>
+                                <?php if ($producto['cantidad'] > 0) { ?>
                                     <form action="" method="post">
+                                        <!-- ... Otros campos ocultos ... -->
+                                        <form action="" method="post">
 
-                                        <input type="hidden" name="id" id="id" value="<?php echo openssl_encrypt($producto['codigo'], COD, KEY) ?>">
-                                        <input class="text-success" type="hidden" name="nombre" id="nombre" value="<?php echo openssl_encrypt($producto['nombre'], COD, KEY) ?>">
-                                        <input type="hidden" name="precio" id="precio" value="<?php echo openssl_encrypt($producto['precio'], COD, KEY) ?>">
-                                        <input type="hidden" name="cantidad" id="cantidad" value="<?php echo openssl_encrypt(1, COD, KEY) ?>">
-                                        <button class="btn-cafe" name="btn-action" id="comprar" value="agregar" type="submit">
-                                            Agregar al carrito
-                                            <i class="fas fa-shopping-cart"></i>
-                                        </button>
+                                            <input type="hidden" name="id" id="id" value="<?php echo openssl_encrypt($producto['codigo'], COD, KEY) ?>">
+                                            <input class="text-success" type="hidden" name="nombre" id="nombre" value="<?php echo openssl_encrypt($producto['nombre'], COD, KEY) ?>">
+                                            <input type="hidden" name="precio" id="precio" value="<?php echo openssl_encrypt($producto['precio'], COD, KEY) ?>">
+                                            <input type="hidden" name="cantidad" id="cantidad" value="<?php echo openssl_encrypt(1, COD, KEY) ?>">
+                                            <button class="btn-cafe" name="btn-action" id="comprar" value="agregar" type="submit">
+                                                Agregar al carrito
+                                                <i class="fas fa-shopping-cart"></i>
+                                            </button>
 
+                                        </form>
                                     </form>
+                                <?php } else { ?>
+                                    <button class="btn-cafe disabled" name="btn-action" id="comprar" value="agregar" type="submit" data-cantidadP="<?php echo intval($producto['cantidad']); ?>">
+                                        Deshabilitado
+                                        <i class="fas fa-shopping-cart"></i>
+                                    </button>
+                                <?php } ?>
                                 </div>
                             </div>
                         </div>
@@ -464,6 +523,7 @@ include '../global/cabecera.php';
     </script>
     <script src="./../javascript/hoverProductos.js"></script>
     <script src="./../javascript/buscador.js"></script>
+    <script src="./../javascript/pCarrito.js"></script>
     <script>
         AOS.init({
             easing: 'ease-out-back',
