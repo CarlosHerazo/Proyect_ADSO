@@ -150,7 +150,7 @@ include '../global/cabecera.php';
         <section class="info-producto">
             <?php
             if (isset($_GET["codigo"])) {
-                echo  $codigo = $_GET["codigo"];
+                $codigo = $_GET["codigo"];
                 $sentencia = $pdo->prepare("SELECT * FROM `productos` WHERE codigo = $codigo;");
                 $sentencia->execute();
                 $producto = $sentencia->fetchAll(PDO::FETCH_ASSOC);
@@ -171,22 +171,31 @@ include '../global/cabecera.php';
                         </div>
                         <p id="precio-producto">Precio por Unidad: <?php echo $productos['precio'] ?></p>
                     </div>
-                    <div id="comprar">
-                        <form action="" method="post">
-                            <input type="hidden" name="id" id="id" value="<?php echo openssl_encrypt($productos['codigo'], COD, KEY) ?>">
-                            <input type="hidden" name="nombre" id="nombre" value="<?php echo openssl_encrypt($productos['nombre'], COD, KEY) ?>">
-                            <input type="hidden" name="precio" id="precio" value="<?php echo openssl_encrypt($productos['precio'], COD, KEY) ?>">
-                            <input type="hidden" name="cantidad" id="cantidad" value="<?php echo openssl_encrypt(1, COD, KEY) ?>">
+                    <?php if ($productos['cantidad'] > 0) { ?>
+                        <div id="comprar">
+                            <form action="" method="post">
+                                <input type="hidden" name="id" id="id" value="<?php echo openssl_encrypt($productos['codigo'], COD, KEY) ?>">
+                                <input type="hidden" name="nombre" id="nombre" value="<?php echo openssl_encrypt($productos['nombre'], COD, KEY) ?>">
+                                <input type="hidden" name="precio" id="precio" value="<?php echo openssl_encrypt($productos['precio'], COD, KEY) ?>">
+                                <input type="hidden" name="cantidad" id="cantidad" value="<?php echo openssl_encrypt(1, COD, KEY) ?>">
+                                <button class="btn btn-success w-100" name="btn-action" id="comprar" value="agregar" type="submit">Agregar al carrito</button>
+                            </form>
 
-                            <button class="btn btn-success  w-100" name="btn-action" value="agregar" id="comprar" type="submit" data-cantidadP="<?php echo intval($producto['cantidad']); ?>">Agregar al carrito</button>
-                        </form>
-                        <svg xmlns=" http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512">
-                            <!-- Icono SVG aquí -->
-                        </svg>
-                    </div>
+                        </div>
+                    <?php
+                    } else {
 
+                    ?>
+                        <button class="btn btn-success w-100 disabled" name="btn-action" id="comprar" value="agregar" type="submit" data-cantidadP="<?php echo intval($productos['cantidad']); ?>">Agregar al carrito</button>
+
+                    <?php  } ?>
                 <?php
                 }
+
+                ?>
+
+                <?php
+
             } else {
                 $codigo = 1;
                 $sentencia = $pdo->prepare("SELECT * FROM `productos` WHERE codigo = $codigo;");
@@ -209,13 +218,7 @@ include '../global/cabecera.php';
                         <p id="precio-producto">Precio por Unidad: <?php echo $productos['precio'] ?></p>
 
                     </div>
-                    <?php if ($productos['cantidad'] == 0) { ?>
-                        <button class="btn btn-success w-100 disabled" name="btn-action" id="comprar" value="agregar" type="submit" data-cantidadP="<?php echo intval($productos['cantidad']); ?>">Agregar al carrito</button>
-                    <?php
-                    } else {
-
-                    ?>
-
+                    <?php if ($productos['cantidad'] > 0) { ?>
                         <div id="comprar">
                             <form action="" method="post">
                                 <input type="hidden" name="id" id="id" value="<?php echo openssl_encrypt($productos['codigo'], COD, KEY) ?>">
@@ -228,92 +231,101 @@ include '../global/cabecera.php';
                                 <!-- Icono SVG aquí -->
                             </svg>
                         </div>
-                    <?php  } ?>
-            <?php
+
+                    <?php
+                    } else {
+
+                    ?>
+                        <button class="btn-cafe disabled" name="btn-action" id="comprar" value="agregar" type="submit" data-cantidadP="<?php echo intval($producto['cantidad']); ?>">
+                            Deshabilitado
+                            <i class="fas fa-shopping-cart"></i>
+
+                        <?php  } ?>
+                <?php
                 }
             }
-            ?>
+                ?>
 
-            <br><br>
-            <h1 class="titulo-page text-center">Productos Frescos</h1>
-            <?php
-            $sentencia = $pdo->prepare("SELECT * FROM productos WHERE estado ='Activo'");
-            $sentencia->execute();
-            $listaproductos = $sentencia->fetchAll(PDO::FETCH_ASSOC);
-            // print_r($listaproductos);
-            ?>
-            <div id="productosCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
-                <div class="carousel-inner">
-                    <?php
-                    $contador = 0;
-                    $totalProductos = count($listaproductos);
-                    foreach ($listaproductos as $producto) {
-                        if ($contador % 3 == 0) {
-                            echo '<div class="carousel-item ' . (($contador / 3) == 0 ? 'active' : '') . '"><div class="row">';
-                        }
-                    ?>
-                        <div class="col-md m-3 text-center articulo">
-                            <div class="card-article pb-3 bg-white">
-                                <img title="Titulo producto" width="200" height="200" class="img-fluid" alt="Titulo" src="<?php echo $producto['imagen'] ?>" data-bs-toggle="popover" data-bs-trigger="hover" data-bs-title="<?php echo $producto['nombre'] ?>" data-bs-content="<?php echo $producto['descripcion'] ?>" height="327px">
-                                <div class="card-body">
-                                    <span class="name-product"><?php echo $producto['nombre'] ?></span>
-                                    <h5 class="card-title">
-                                        <?php echo $producto['precio'] ?>
-                                    </h5>
-                                    <p class="card-text">
-                                        <?php if ($producto['cantidad'] > 0) { ?>
-                                            <b> Bultos Dispodibles: <?php echo $producto['cantidad'] ?></b>
+                <br><br>
+                <h1 class="titulo-page text-center">Productos Frescos</h1>
+                <?php
+                $sentencia = $pdo->prepare("SELECT * FROM productos WHERE estado ='Activo'");
+                $sentencia->execute();
+                $listaproductos = $sentencia->fetchAll(PDO::FETCH_ASSOC);
+                // print_r($listaproductos);
+                ?>
+                <div id="productosCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <?php
+                        $contador = 0;
+                        $totalProductos = count($listaproductos);
+                        foreach ($listaproductos as $producto) {
+                            if ($contador % 3 == 0) {
+                                echo '<div class="carousel-item ' . (($contador / 3) == 0 ? 'active' : '') . '"><div class="row">';
+                            }
+                        ?>
+                            <div class="col-md m-3 text-center articulo">
+                                <div class="card-article pb-3 bg-white">
+                                    <img title="Titulo producto" width="200" height="200" class="img-fluid" alt="Titulo" src="<?php echo $producto['imagen'] ?>" data-bs-toggle="popover" data-bs-trigger="hover" data-bs-title="<?php echo $producto['nombre'] ?>" data-bs-content="<?php echo $producto['descripcion'] ?>" height="327px">
+                                    <div class="card-body">
+                                        <span class="name-product"><?php echo $producto['nombre'] ?></span>
+                                        <h5 class="card-title">
+                                            <?php echo $producto['precio'] ?>
+                                        </h5>
+                                        <p class="card-text">
+                                            <?php if ($producto['cantidad'] > 0) { ?>
+                                                <b> Bultos Dispodibles: <?php echo $producto['cantidad'] ?></b>
 
-                                        <?php } else { ?>
-                                    <div class="alert alert-danger m-4" role="alert">
-                                        Producto agotado
-                                    </div>
+                                            <?php } else { ?>
+                                        <div class="alert alert-danger m-4" role="alert">
+                                            Producto agotado
+                                        </div>
 
-                                <?php  } ?>
-                                </p>
+                                    <?php  } ?>
+                                    </p>
 
-                                <?php if ($producto['cantidad'] > 0) { ?>
-                                    <form action="" method="post">
-
+                                    <?php if ($producto['cantidad'] > 0) { ?>
                                         <form action="" method="post">
 
-                                            <input type="hidden" name="id" id="id" value="<?php echo openssl_encrypt($producto['codigo'], COD, KEY) ?>">
-                                            <input class="text-success" type="hidden" name="nombre" id="nombre" value="<?php echo openssl_encrypt($producto['nombre'], COD, KEY) ?>">
-                                            <input type="hidden" name="precio" id="precio" value="<?php echo openssl_encrypt($producto['precio'], COD, KEY) ?>">
-                                            <input type="hidden" name="cantidad" id="cantidad" value="<?php echo openssl_encrypt(1, COD, KEY) ?>">
-                                            <button class="btn-cafe" name="btn-action" id="comprar" value="agregar" type="submit">
-                                                Agregar al carrito
-                                                <i class="fas fa-shopping-cart"></i>
-                                            </button>
+                                            <form action="" method="post">
 
+                                                <input type="hidden" name="id" id="id" value="<?php echo openssl_encrypt($producto['codigo'], COD, KEY) ?>">
+                                                <input class="text-success" type="hidden" name="nombre" id="nombre" value="<?php echo openssl_encrypt($producto['nombre'], COD, KEY) ?>">
+                                                <input type="hidden" name="precio" id="precio" value="<?php echo openssl_encrypt($producto['precio'], COD, KEY) ?>">
+                                                <input type="hidden" name="cantidad" id="cantidad" value="<?php echo openssl_encrypt(1, COD, KEY) ?>">
+                                                <button class="btn-cafe" name="btn-action" id="comprar" value="agregar" type="submit">
+                                                    Agregar al carrito
+                                                    <i class="fas fa-shopping-cart"></i>
+                                                </button>
+
+                                            </form>
                                         </form>
-                                    </form>
-                                <?php } else { ?>
-                                    <button class="btn-cafe disabled" name="btn-action" id="comprar" value="agregar" type="submit" data-cantidadP="<?php echo intval($producto['cantidad']); ?>">
-                                        Deshabilitado
-                                        <i class="fas fa-shopping-cart"></i>
-                                    </button>
-                                <?php } ?>
+                                    <?php } else { ?>
+                                        <button class="btn-cafe disabled" name="btn-action" id="comprar" value="agregar" type="submit" data-cantidadP="<?php echo intval($producto['cantidad']); ?>">
+                                            Deshabilitado
+                                            <i class="fas fa-shopping-cart"></i>
+                                        </button>
+                                    <?php } ?>
 
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    <?php
-                        $contador++;
-                        if ($contador % 3 == 0 || $contador == $totalProductos) {
-                            echo '</div></div>';
-                        }
-                    } ?>
+                        <?php
+                            $contador++;
+                            if ($contador % 3 == 0 || $contador == $totalProductos) {
+                                echo '</div></div>';
+                            }
+                        } ?>
+                    </div>
+                    <a class="carousel-control-prev" href="#productosCarousel" role="button" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#productosCarousel" role="button" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </a>
                 </div>
-                <a class="carousel-control-prev" href="#productosCarousel" role="button" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#productosCarousel" role="button" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </a>
-            </div>
         </section>
     </div>
     <br><br>
@@ -524,12 +536,7 @@ include '../global/cabecera.php';
     <script src="./../javascript/hoverProductos.js"></script>
     <script src="./../javascript/buscador.js"></script>
     <script src="./../javascript/pCarrito.js"></script>
-    <script>
-        AOS.init({
-            easing: 'ease-out-back',
-            duration: 1000
-        });
-    </script>
+
     <script>
         window.addEventListener('resize', function() {
             var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;

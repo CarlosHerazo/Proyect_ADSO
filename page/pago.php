@@ -5,11 +5,11 @@ include '../controllers/logicacarrito.php';
 ?>
 <?php
 
-    $total = 0;
-   
-    foreach ($_SESSION['carrito'] as $indice => $producto) {
-        $total = $total + ($producto['precio'] * $producto['cantidad']);
-    }
+$total = 0;
+
+foreach ($_SESSION['carrito'] as $indice => $producto) {
+    $total = $total + ($producto['precio'] * $producto['cantidad']);
+}
 
 ?>
 
@@ -61,29 +61,6 @@ include '../controllers/logicacarrito.php';
         <div class="container  alert alert-success ">
             <h4>Detalles del Pago</h4>
             <div class="row">
-
-                <!-- <div class="col-md">
-                    <form>
-                        <div class="form-group">
-                            <label for="celular">Número de Celular</label>
-                            <input type="tel" class="form-control" id="celular" placeholder="Ingrese su número de celular" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="direccion">Dirección</label>
-                            <input type="text" class="form-control" id="direccion" placeholder="Ingrese su dirección" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="nombre">Nombre</label>
-                            <input type="text" class="form-control" id="nombre" placeholder="Ingrese su nombre" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="apellido">Apellido</label>
-                            <input type="text" class="form-control" id="apellido" placeholder="Ingrese su apellido" required>
-                        </div>
-                    </form>
-
-                </div> -->
-
                 <div class="col">
 
                     <table class="table">
@@ -113,8 +90,39 @@ include '../controllers/logicacarrito.php';
 
 
                 <div class="col">
-
                     <div id="paypal-button-container" data-total="<?php echo $total; ?>"></div>
+                    <div class="text-end">
+                        <?php
+                        $llaveSecreta = "4Vj8eK4rloUd272L48hsrarnUA";
+                        $merchantId = "508029";
+                        $referenceCode = "Adonai" . substr(md5(uniqid()), 0, 10);
+                        $signature = hash('md5', "$llaveSecreta~$merchantId~$referenceCode~$total~COP");
+
+                        ?>
+
+                        <form method="post" action="https://sandbox.checkout.payulatam.com/ppp-web-gateway-payu/">
+                            <input name="merchantId" type="hidden" value="<?php echo $merchantId; ?>">
+                            <input name="accountId" type="hidden" value="512321">
+                            <input name="description" type="hidden" value="PAGO ADONAI">
+                            <input name="referenceCode" type="hidden" value="<?php echo $referenceCode; ?>">
+                            <input name="amount" type="hidden" value="<?php echo $total; ?>">
+                            <input name="tax" type="hidden" value="0">
+                            <input name="taxReturnBase" type="hidden" value="0">
+                            <input name="currency" type="hidden" value="COP">
+                            <input name="signature" type="hidden" value="<?php echo $signature; ?>">
+                            <input name="test" type="hidden" value="1">
+                            <input name="buyerEmail" type="hidden" value="">
+                            <input name="shippingAddress" type="hidden" value="">
+                            <input name="shippingCity" type="hidden" value="">
+                            <input name="shippingCountry" type="hidden" value="">
+                            <input name="responseUrl" type="hidden" value="http://localhost/proyect1/page/confirmacion.php">
+                            <input name="confirmationUrl" type="hidden" value="http://localhost/proyect1/page/carrito.php">
+
+                            <input class="btn btn-success" name="Submit" type="submit" value="Pagar con Payu">
+                        </form>
+
+
+                    </div>
                 </div>
             </div>
             <a href="./carrito.php" class="position-absolute bottom-1 end-0 m-5 btn btn-danger">Regresar al Carrito</a>

@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                 ).then(() => {
                                     window.location.href = '../page/carrito.php'; // URL de redirección
                                     // Eliminar datos del carrito del almacenamiento local o de la sesión
-                                    
+
                                 });
                             }
                         })
@@ -72,4 +72,9 @@ document.addEventListener("DOMContentLoaded", function () {
             })
         }
     }).render('#paypal-button-container');
+
+
+
 });
+
+
