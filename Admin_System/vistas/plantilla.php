@@ -37,7 +37,8 @@
     <script src="vistas/assets/plugins/bootstrap/js/bootstrap.bundle.js"></script>
     <!-- AdminLTE App -->
     <script src="vistas/assets/dist/js/adminlte.js"></script>
-
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- Datatable js -->
     <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
@@ -45,6 +46,7 @@
     <!-- SwetAlert2 -->
     <script src="vistas/assets/plugins/sweetalert2/sweetalert2.min.js"></script>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+
     <!-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
 
 
@@ -93,6 +95,7 @@
 
     <!-- ./wrapper -->
     <script src="vistas/assets/dist/js/demo.js"></script>
+    <script src="vistas/assets/dist/js/chart.js"></script>
 
     <script>
         function cargarContenido(contenedor, contenido) {

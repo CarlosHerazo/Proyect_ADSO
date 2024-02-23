@@ -1,3 +1,88 @@
+<style>
+    .card {
+        background-color: #fff !important;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) !important;
+        border-radius: 8px !important;
+        overflow: hidden !important;
+        margin: 1rem !important;
+        width: 300px !important;
+    }
+
+    .card:hover {
+        transform: scale(1.1);
+        transition: transform 0.3s ease;
+
+    }
+
+
+    .card-header {
+        background-color: #333 !important;
+        color: #fff !important;
+        padding: 1rem !important;
+        text-align: center !important;
+        font-size: 20px;
+    }
+
+    .card-body {
+        padding: 1rem !important;
+    }
+
+    .fa-users {
+        font-size: 24px;
+        margin-right: 5px;
+    }
+
+    #cantidad-usuarios {
+        font-size: 20px;
+        font-weight: 500;
+        position: end;
+    }
+
+
+    /* Estilos para la tarjeta */
+    .tarjeta {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+        padding: 20px;
+    }
+
+    /* Estilos para el encabezado de la tarjeta */
+    .card-header {
+        background-color: #007BFF;
+        color: #fff;
+        padding: 10px;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+    }
+
+    /* Estilos para la fila */
+    .row {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding: 20px;
+    }
+
+    /* Estilos para la columna */
+    .col {
+        flex: 1;
+    }
+
+    /* Estilos para el contenedor del canvas */
+    .container-canvas {
+        max-width: 100%;
+    }
+
+    /* Estilos específicos para el canvas con ID "myChart" */
+    #myChart {
+        width: 100%;
+        height: auto;
+    }
+</style>
+
+
 <section class="content-header">
 
     <div class="container-fluid">
@@ -20,31 +105,49 @@
             </div>
         </div>
     </div>
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <!-- Card con información dinámica -->
+            <div class="card">
+                <div class="card-header">Usuarios <i class="fas fa-users"></i></div>
+                <div class="card-body">
+                    <p id="cantidad-usuarios">Cargando...</p>
+                </div>
+            </div>
 
-</section>
+            <!-- Otras tarjetas (sin información dinámica en este ejemplo) -->
+            <div class="card">
+                <div class="card-header">Productos <i class="fas fa-tag"></i></div>
+                <div class="card-body">
+                    <p id="cantidad-usuarios">Cargando...</p>
+                </div>
+            </div>
 
-<section class="container">
-    <div class="row justify-content-between">
-        <div class="card text-white bg-danger text-center" style="width: 18rem;">
-            <div class="card-header">Total Ventas</div>
-            <div class="card-body">
-            <p class="card-title text-center">$100,000</p>
-                
+            <div class="card">
+                <div class="card-header">Ventas <i class="fas fa-shopping-bag"></i> </div>
+                <div class="card-body">
+                    <p id="cantidad-usuarios">Cargando...</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row justify-content-center ">
+            <div class="tarjeta" style="width: 100%;">
+                <div class="card-header">Productos - Cantidad</div>
+                <div class="card-body">
+                    <div class="contenedor-canvas"><canvas id="myChart"></canvas></div>
+                </div>
+
+            </div>
+            <div class="tarjeta" style="width: 100%;">
+                <div class="card-header">Productos mas vendidos - Cantidad</div>
+                <div class="card-body">
+                    <div class="contenedor-canvas"><canvas id="myChart"></canvas></div>
+                </div>
+
             </div>
         </div>
-        <div class="card text-white bg-warning text-center" style="width: 18rem;">
-            <div class="card-header">Empleados Administrativos</div>
-            <div class="card-body">
-                <h2 class="card-title text-center">10</h2>
-                
-            </div>
-        </div>
-        <div class="card text-white bg-success" style="width: 18rem;">
-            <div class="card-header text-center">Productos en Stock</div>
-            <div class="card-body">
-            <h2 class="card-title text-center">100</h2>
-            </div>
-        </div>
-
     </div>
 </section>
