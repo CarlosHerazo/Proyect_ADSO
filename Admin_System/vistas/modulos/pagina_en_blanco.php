@@ -6,6 +6,7 @@
         overflow: hidden !important;
         margin: 1rem !important;
         width: 300px !important;
+
     }
 
     .card:hover {
@@ -32,7 +33,7 @@
         margin-right: 5px;
     }
 
-    #cantidad-usuarios {
+    .cantidad {
         font-size: 20px;
         font-weight: 500;
         position: end;
@@ -111,7 +112,7 @@
             <div class="card">
                 <div class="card-header">Usuarios <i class="fas fa-users"></i></div>
                 <div class="card-body">
-                    <p id="cantidad-usuarios">Cargando...</p>
+                    <p id="cantidad-usuarios" class="cantidad">Cargando...</p>
                 </div>
             </div>
 
@@ -119,14 +120,14 @@
             <div class="card">
                 <div class="card-header">Productos <i class="fas fa-tag"></i></div>
                 <div class="card-body">
-                    <p id="cantidad-usuarios">Cargando...</p>
+                    <p id="cantidad-productos" class="cantidad">Cargando...</p>
                 </div>
             </div>
 
             <div class="card">
                 <div class="card-header">Ventas <i class="fas fa-shopping-bag"></i> </div>
                 <div class="card-body">
-                    <p id="cantidad-usuarios">Cargando...</p>
+                    <p id="cantidad-ventas" class="cantidad">Cargando...</p>
                 </div>
             </div>
 
