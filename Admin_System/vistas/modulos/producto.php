@@ -147,8 +147,6 @@
                 "url": "ajax/producto.ajax.php",
                 "type": "POST",
                 "dataSrc": ""
-
-
             },
             "language": {
                 "processing": "Procesando...",
@@ -403,7 +401,8 @@
                 estado = $("#estadoP").val(),
                 categoria = $("#categoriaP").val(),
                 cantidad = $("#cantidadP").val(),
-                imagen = $("#imagenP").val()
+                img = $("#imagenP").val()
+                imagen = `<img src="${img} " style="border-radius: 10px" alt='' width="150"/>` 
 
             let datos = new FormData();
 

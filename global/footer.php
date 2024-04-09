@@ -13,7 +13,7 @@
         <div>
             <h3>Nuestra empresa</h3>
             <br>
-            <p>¿Quienes somos?</p>
+            <a href="../page/nosotros.php">¿Quienes Somos?</a>
             <p>Aviso de privacidad</p>
             <p>Política de privacidad</p>
         </div>
