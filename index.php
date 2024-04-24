@@ -1,7 +1,7 @@
 <?php
-include 'model/config.php';
-include 'model/conexion.php';
-include 'controllers/logicacarrito.php';
+include_once 'model/config.php';
+include_once 'model/conexion.php';
+include_once 'controllers/logicacarrito.php';
 ?>
 
 <!DOCTYPE html>

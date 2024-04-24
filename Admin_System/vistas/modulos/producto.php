@@ -369,7 +369,7 @@
                 {
                     "data": "imagen",
                     "render": function(data, type, row) {
-                        return '<img src="' + data + '" alt="imagen" style="width: 100px; height: auto;">';
+                        return '<img src="' + data + '" alt="imagen" style="width: 150px; height: auto; border-radius:20px;">';
                     }
                 },
                 {
@@ -405,7 +405,7 @@
                 categoria = $("#categoriaP").val(),
                 cantidad = $("#cantidadP").val(),
                 img = $("#imagenP").val()
-                imagen = `<img src="${img} " style="border-radius: 10px" alt='' width="150"/>` 
+                //imagen = `<img src="${img} " style="border-radius: 10px" alt='' width="150"/>` 
 
             let datos = new FormData();
 
@@ -416,7 +416,7 @@
             datos.append('estado', estado);
             datos.append('categoria', categoria);
             datos.append('cantidad', cantidad);
-            datos.append('imagen', imagen);
+            datos.append('imagen', img);
             datos.append('accion', accion);
 
             console.log("Contenido de FormData:");

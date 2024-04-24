@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-12-2023 a las 12:38:42
+-- Tiempo de generación: 24-04-2024 a las 15:33:36
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -39,7 +39,7 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id`, `usuario`, `contra`, `nombre`) VALUES
-(1, 'admin', '7b902e6ff1db9f560443f2048974fd7d386975b0', 'AgroAdonai');
+(1, 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'AgroAdonai');
 
 -- --------------------------------------------------------
 
@@ -165,8 +165,8 @@ CREATE TABLE `productos` (
 --
 
 INSERT INTO `productos` (`codigo`, `nombre`, `precio`, `descripcion`, `estado`, `cantidad`, `imagen`, `categoria_id`) VALUES
-(1, 'yuca', 400.00, 'La yuca es un tubérculo del arbusto Manihot Esculenta, de aspecto leñoso por fuera, ya que está recubierto por una cáscara de gran dureza y de color marrón que no es comestible. Esta consistencia firme también se encuentra en su pulpa, de color blanco y que presenta fibras longitudinales.\r\n', 'Activo', 1, 'https://www.semana.com/resizer/wpm5cy7iLgNmWLwHGfjyNbMAnNc=/1280x0/smart/filters:format(jpg):quality(80)/cloudfront-us-east-1.images.arcpublishing.com/semana/2B666A7UU5CTLPPSF7MU7KOGTE.jpg', 1),
-(3, 'Platano Verde', 500.00, 'El plátano que ofrecemos es de la más alta calidad y frescura garantizada. Cada fruto de plátano es cuidadosamente seleccionado y cultivado en nuestras tierras, utilizando métodos sostenibles y respetuosos con el medio ambiente.', 'Activo', 1, 'http://localhost/Proyect_ADSO/build/img/Productos/descarga.jfif', 1),
+(1, 'yuca', 400.00, 'La yuca es un tubérculo del arbusto Manihot Esculenta, de aspecto leñoso por fuera, ya que está recubierto por una cáscara de gran dureza y de color marrón que no es comestible. Esta consistencia firme también se encuentra en su pulpa, de color blanco y que presenta fibras longitudinales.\r\n', 'Activo', 4, 'https://elpoderdelconsumidor.org/wp-content/uploads/2017/02/yuca.jpg', 1),
+(3, 'Platano Verde', 500.00, 'El plátano que ofrecemos es de la más alta calidad y frescura garantizada. Cada fruto de plátano es cuidadosamente seleccionado y cultivado en nuestras tierras, utilizando métodos sostenibles y respetuosos con el medio ambiente.', 'Activo', 3, 'http://localhost/Proyect_ADSO/build/img/Productos/descarga.jfif', 1),
 (4, 'Auyama', 400.00, 'La auyama o ahuyama (ambas formas son correctas según la Real Academia de la Lengua Española-RAE) es uno de los alimentos con múltiples beneficios para el organismo. Este vegetal contiene calcio, sodio, magnesio, zinc, hierro, potasio, fósforo, vitaminas A, C y B.\r\n', 'Activo', 1, 'https://www.mercadoscampesinos.gov.co/wp-content/uploads/2021/04/Auyama-comun-400x400.jpg', 1),
 (6, 'Limon Criollo', 300.00, 'El limón es redondo y ligeramente alargado, pertenece a la familia de los agrios y por tanto comparte muchas de las características de otras especies de cítricos, como es tener una piel gruesa. La pulpa es color amarillo pálido, jugosa y de sabor ácido dividida en gajos. El color de la corteza es amarillo y especialmente brillante cuando está maduro.\r\n', 'Activo', 1, 'https://www.merkapp.com/cdn/shop/products/fyv105_1614010809.png?v=1638507322', 2),
 (7, 'Ñame', 600.00, 'Los ñames son tubérculos almidonados de origen africano que son un alimento básico en América del Sur, África, las Antillas y las Islas del Pacífico. Además, es un alimento popular en las Islas Canarias, donde además existen plantaciones. A pesar de su contenido en almidón, el ñame tiene un bajo índice glucémico pues aporta carbohidratos complejos y fibra dietética.\r\n', 'Activo', 1, 'https://jumbocolombiaio.vtexassets.com/arquivos/ids/203173/1380.jpg?v=637814193870330000', 1),
