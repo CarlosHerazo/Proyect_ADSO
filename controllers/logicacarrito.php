@@ -1,5 +1,9 @@
 <?php
 
+include_once '../model/config.php';
+include_once '../model/conexion.php';
+
+
 $mensaje = "";
 
 if (isset($_POST['btn-action'])) {
@@ -32,7 +36,7 @@ if (isset($_POST['btn-action'])) {
                 $mensaje .= "upps... cantidad incorrecto";
                 break;
             }
-                
+
             if (!isset($_SESSION['carrito'])) {
                 $producto = array(
                     'id' => $id,
@@ -44,11 +48,27 @@ if (isset($_POST['btn-action'])) {
                 $mensaje = "Producto agregado al carrito";
             } else {
                 $idProductos = array_column($_SESSION['carrito'], 'id');
+
                 if (in_array($id, $idProductos)) {
+                    $sql = "SELECT cantidad FROM productos WHERE codigo = :id";
+                    $stmt = $pdo->prepare($sql);
+                    $stmt->bindParam(":id", $id, PDO::PARAM_INT); // Corregido aquí
+                    $stmt->execute();
+                    // El producto existe en la base de datos
+                    $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
+                    $cantidad_bulto = $resultado['cantidad'];
+
                     // Producto ya existe en el carrito, aumenta la cantidad
                     foreach ($_SESSION['carrito'] as $indice => $producto) {
                         if ($producto['id'] == $id) {
-                            $_SESSION['carrito'][$indice]['cantidad'] += $cantidad;
+                            $cantidad_actual =  $_SESSION['carrito'][$indice]['cantidad'];
+
+                            if ($cantidad_actual == $cantidad_bulto) {
+                                echo "<script>alert('Ya no hay mas bultos');</script>";
+                            } else {
+
+                                $_SESSION['carrito'][$indice]['cantidad'] += $cantidad;
+                            }
                         }
                     }
                     $mensaje = "Cantidad de producto aumentada en el carrito";
@@ -65,27 +85,24 @@ if (isset($_POST['btn-action'])) {
                 }
             }
             break;
-    
 
 
-case 'eliminar':
-    if(is_numeric( openssl_decrypt($_POST['id'], COD, KEY))){
-        $id = openssl_decrypt($_POST['id'], COD, KEY);
-        foreach($_SESSION['carrito'] as $indice => $producto){
-            if($producto['id']==$id){
-                unset($_SESSION['carrito'][$indice]);
-                echo "<script>alert('Elemento borrado...')<script/>";
-                header("Location: carrito.php");
+
+
+
+        case 'eliminar':
+            if (is_numeric(openssl_decrypt($_POST['id'], COD, KEY))) {
+                $id = openssl_decrypt($_POST['id'], COD, KEY);
+                foreach ($_SESSION['carrito'] as $indice => $producto) {
+                    if ($producto['id'] == $id) {
+                        unset($_SESSION['carrito'][$indice]);
+                        echo "<script>alert('Elemento borrado...')<script/>";
+                        header("Location: carrito.php");
+                    }
+                }
+            } else {
+                $mensaje .= "upps... Id incorrecto";
             }
-        }
+            break;
     }
-    else{
-        $mensaje.= "upps... Id incorrecto";                    
-    }  
-    break;
-    }
-
-} 
-
-
-?>
+}

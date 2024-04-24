@@ -42,43 +42,42 @@ if (is_array($datos)) {
             $resultados[] = ["mensaje" => "no se inserto ninguna fila"];
         }
     } catch (PDOException $e) {
-       
+
         $resultados[] = ["error" => $e->getMessage()];
     }
 }
 
 
-    foreach ($_SESSION['carrito'] as $indice => $producto) {
-        $cantidad = $producto['cantidad'];
-        $idProducto = $producto['id'];
-        $idVenta = $_SESSION['idVenta'];
-    
-        $sentenciaProducto = $pdo->prepare("SELECT `codigo`, `nombre`, `precio` FROM `productos` WHERE codigo = ?");
-        $sentenciaProducto->execute([$idProducto]);
-        $row_proc = $sentenciaProducto->fetch(PDO::FETCH_ASSOC);
-    
-        if ($row_proc) {
-            $nombre = $row_proc['nombre'];
-            $precioUnitario = $row_proc['precio'];
-    
-            $sentenciaDetalle = $pdo->prepare("INSERT INTO `detallepedido`(`id_venta`, `id_producto`, `nombre`, `precio_unitario`, `cantidad`) VALUES (:idVenta, :idProducto, :nombreP, :precioUnitario, :cantidad)");
-            $sentenciaDetalle->bindParam(":idVenta", $idVenta);
-            $sentenciaDetalle->bindParam(":idProducto", $idProducto);
-            $sentenciaDetalle->bindParam(":nombreP", $nombre);
-            $sentenciaDetalle->bindParam(":precioUnitario", $precioUnitario);
-            $sentenciaDetalle->bindParam(":cantidad", $cantidad);
-            
-            try {
-                $sentenciaDetalle->execute();
-                $resultados[] = ["mensaje" => "Datos enviados con exito"];
-            } catch (PDOException) {
-                $resultados[] = ["error" => "Error en la consulta"];
+foreach ($_SESSION['carrito'] as $indice => $producto) {
+    $cantidad = $producto['cantidad'];
+    $idProducto = $producto['id'];
+    $idVenta = $_SESSION['idVenta'];
 
-            }
+    $sentenciaProducto = $pdo->prepare("SELECT `codigo`, `nombre`, `precio` FROM `productos` WHERE codigo = ?");
+    $sentenciaProducto->execute([$idProducto]);
+    $row_proc = $sentenciaProducto->fetch(PDO::FETCH_ASSOC);
+
+    if ($row_proc) {
+        $nombre = $row_proc['nombre'];
+        $precioUnitario = $row_proc['precio'];
+
+        $sentenciaDetalle = $pdo->prepare("INSERT INTO `detallepedido`(`id_venta`, `id_producto`, `nombre`, `precio_unitario`, `cantidad`) VALUES (:idVenta, :idProducto, :nombreP, :precioUnitario, :cantidad)");
+        $sentenciaDetalle->bindParam(":idVenta", $idVenta);
+        $sentenciaDetalle->bindParam(":idProducto", $idProducto);
+        $sentenciaDetalle->bindParam(":nombreP", $nombre);
+        $sentenciaDetalle->bindParam(":precioUnitario", $precioUnitario);
+        $sentenciaDetalle->bindParam(":cantidad", $cantidad);
+
+        try {
+            $sentenciaDetalle->execute();
+            $resultados[] = ["mensaje" => "Datos enviados con exito"];
+        } catch (PDOException) {
+            $resultados[] = ["error" => "Error en la consulta"];
         }
     }
-    // Destruir solo la parte del carrito
-unset($_SESSION['carrito'] );
+}
+// Destruir solo la parte del carrito
+unset($_SESSION['carrito']);
 
 
 

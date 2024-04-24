@@ -369,7 +369,10 @@
                 },
 
                 {
-                    "data": "imagen"
+                    "data": "imagen",
+                    "render": function(data, type, row) {
+                        return '<img src="' + data + '" alt="imagen" style="width: 100px; height: auto;">';
+                    }
                 },
                 {
                     "data": "acciones"
