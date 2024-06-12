@@ -1,4 +1,5 @@
-const ctx = document.getElementById('myChart');
+const barCtx = document.getElementById('barChart').getContext('2d');
+const pieCtx = document.getElementById('pieChart').getContext('2d');
 const cProductos = document.getElementById('cantidad-productos');
 
 function CargarDatos() {
@@ -7,25 +8,34 @@ function CargarDatos() {
         type: "POST"
     }).done(function (resp) {
         var data = JSON.parse(resp);
-        var titulo = [];
-        var cantidad = [];
+        titulo_bar = []
+        cantidad_bar = []
 
-        for (let i = 0; i < data.length; i++) {
-            titulo.push(data[i].nombre);
-            cantidad.push(data[i].cantidad);
+        titulo_circle = []
+        cantidad_circle = []
+        console.log(data)
+        for (let i = 0; i < data.grafico_bar.length; i++) {
+            titulo_bar.push(data.grafico_bar[i].nombre);
+            cantidad_bar.push(data.grafico_bar[i].cantidad);
 
         }
 
-        console.log(titulo);
-        console.log(cantidad);
+        for (let i = 0; i < data.grafico_circular.length; i++) {
+            titulo_bar.push(data.grafico_circular[i].nombre);
+            cantidad_bar.push(data.total_cantidad[i].cantidad);
 
-        new Chart(ctx, {
+        }
+
+        console.log(titulo_bar);
+        console.log(cantidad_bar);
+
+        new Chart(barCtx, {
             type: 'bar',
             data: {
-                labels: titulo,
+                labels: titulo_bar,
                 datasets: [{
-                    label: `cantidad de productos: ${data.length}`,
-                    data: cantidad,
+                    label: `cantidad de productos: ${data.grafico_bar.length}`,
+                    data: cantidad_bar,
                     borderColor: '#fff',
                     backgroundColor: '#333',
                 }]
@@ -38,6 +48,39 @@ function CargarDatos() {
                 }
             }
         });
+
+        // fin graficoo de barras
+        // Crear el gráfico circular
+        new Chart(pieCtx, {
+            type: 'pie',
+            data: {
+                labels: titulo_bar,
+                datasets: [{
+                    data: cantidad_bar,
+                    backgroundColor: '#333',
+                    borderColor: '#fff',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function (tooltipItem) {
+                                return `${tooltipItem.label}: ${tooltipItem.raw}`;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+
+
     });
 }
 

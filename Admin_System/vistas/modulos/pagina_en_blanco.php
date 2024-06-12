@@ -134,21 +134,23 @@
         </div>
     </div>
     <div class="container-fluid">
-        <div class="row justify-content-center ">
-            <div class="tarjeta" style="width: 100%;">
-                <div class="card-header">Productos - Cantidad</div>
-                <div class="card-body">
-                    <div class="contenedor-canvas"><canvas id="myChart"></canvas></div>
-                </div>
-
+    <div class="row justify-content-center">
+        <!-- Gráfico de Barras -->
+        <div class="tarjeta" style="width: 100%;">
+            <div class="card-header">Productos - Cantidad</div>
+            <div class="card-body">
+                <div class="contenedor-canvas"><canvas id="barChart"></canvas></div>
             </div>
-            <div class="tarjeta" style="width: 100%;">
-                <div class="card-header">Productos mas vendidos - Cantidad</div>
-                <div class="card-body">
-                    <div class="contenedor-canvas"><canvas id="myChart"></canvas></div>
-                </div>
+        </div>
 
+        <!-- Gráfico Circular -->
+        <div class="tarjeta" style="width: 100%;">
+            <div class="card-header">Productos más vendidos - Cantidad</div>
+            <div class="card-body">
+                <div class="contenedor-canvas"><canvas id="pieChart"></canvas></div>
             </div>
         </div>
     </div>
+</div>
+
 </section>
