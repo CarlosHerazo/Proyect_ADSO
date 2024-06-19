@@ -55,4 +55,63 @@ class Modelo_Grafico
             return array();
         }
     }
+
+    function CantidadUsuariosCard()
+    {
+        try {
+            $sql = "CALL SP_DATOSCARD_USER";
+            $consulta = $this ->conexion->conectar()->query($sql);
+            if($consulta) {
+                while ($consulta_VU = $consulta->fetch(PDO::FETCH_ASSOC)) {
+                    $arreglo[] = $consulta_VU;
+                    return $arreglo;
+                }
+            } else {
+                return array();
+            }
+        } catch (PDOException $e) {
+            echo "Error al realizar la consulta: " . $e->getMessage();
+            return array();
+        }
+    }
+
+
+    function CantidadproductosCard()
+    {
+        try {
+            $sql = "CALL SP_DATOSCARD_PRODUCTS";
+            $consulta = $this ->conexion->conectar()->query($sql);
+            if($consulta) {
+                while ($consulta_VU = $consulta->fetch(PDO::FETCH_ASSOC)) {
+                    $arreglo[] = $consulta_VU;
+                    return $arreglo;
+                }
+            } else {
+                return array();
+            }
+        } catch (PDOException $e) {
+            echo "Error al realizar la consulta: " . $e->getMessage();
+            return array();
+        }
+    }
+
+
+    function CantidadVentasCard()
+    {
+        try {
+            $sql = "CALL SP_DATOSCARD_VENTAS";
+            $consulta = $this ->conexion->conectar()->query($sql);
+            if($consulta) {
+                while ($consulta_VU = $consulta->fetch(PDO::FETCH_ASSOC)) {
+                    $arreglo[] = $consulta_VU;
+                    return $arreglo;
+                }
+            } else {
+                return array();
+            }
+        } catch (PDOException $e) {
+            echo "Error al realizar la consulta: " . $e->getMessage();
+            return array();
+        }
+    }
 }

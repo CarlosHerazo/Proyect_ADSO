@@ -1,6 +1,8 @@
 :root{
   --fuente-principal: 'Raleway', sans-serif;
   --fuente-segundaria: 'Roboto', sans-serif;
+  --card-height: 300px;
+  --card-width: calc(var(--card-height) / 1.5);
 }
 
 *{
@@ -336,6 +338,10 @@ html{
 .contenido-principal{
     margin-top: 80px;
 }
+.container h2 {
+  font-size: 40px;
+  margin-top: 20px;
+}
 .contenido-principal h2{
     text-align: center;
 }
@@ -431,11 +437,14 @@ html{
 
 /**Diseño de sesion**/
 .section__background{
-  background-color: #2f1d04;
+  display: flex;
+  background-color: #291c0a;
   color: #fff;
   padding-bottom: 2rem;
   border-top: solid 2px #333;
   border-bottom: solid 2px #333;
+  margin: auto;
+  padding: 15px;
 }
 
 .sesion-frase{
@@ -505,3 +514,5 @@ html{
 #btn-elegirmasproductos{
   text-decoration: none;
 }
+
+

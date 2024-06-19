@@ -107,46 +107,44 @@ include_once 'controllers/logicacarrito.php';
     <!--Termina la sesion1-->
 
     <main class="main__container">
-        <div class="section__background">
-            <h2 class="titulo__productos">¿Necesitas comer sano?</h2>
-            <div class="productos">
-                <section class="producto">
-                    <div class="imagen__producto-container">
-                        <img class="imagen__producto" src="./build/img/Productos/platano.webp" class="platano">
-                        <div class="descripcion-emergente"> La dulce tentación tropical. Una fruta versátil que te enamorará
-                            con su suavidad en cada mordisco. ¿A qué esperas para probar su delicia tropical?</div>
-                    </div>
-                    <h3>Platano Verde</h3>
-                    <div class="link-contenido">
-                        <a href="page/productos.php">Ver mas</a>
-                    </div>
-                </section>
-                <section class="producto">
-                    <div class="imagen__producto-container">
-                        <img class="imagen__producto" src="./build/img/Productos/yuca.webp">
-                        <div class="descripcion-emergente">El secreto mejor guardado de los tropicales. Un tesoro tuberoso
-                            lleno de energía y versatilidad culinaria que te conquistará con su sabor y textura única.</div>
-                    </div>
-                    <h3>Yuca</h3>
-                    <div class="link-contenido">
-                        <a href="page/productos.php">Ver mas</a>
-                    </div>
-                </section>
-                <section class="producto">
-                    <div class="imagen__producto-container">
-                        <img class="imagen__producto" src="./build/img/Productos/guayaba.webp">
-                        <div class="descripcion-emergente"> La guayaba, el exótico placer jugoso. Un estallido de sabor
-                            tropical que desatará una fiesta en tu paladar. ¡Descubre el encanto de esta fruta apasionante!
-                        </div>
-                    </div>
-                    <h3>Guayaba</h3>
-                    <div class="link-contenido">
-                        <a href="page/productos.php">Ver mas</a>
-                    </div>
-                </section>
 
+        <div class="container">
+            <h2>Productos mas vendidos</h2>
+        <div class="row justify-content-center p-4 text-center">
+            <div class="col-md-4 col-sm-6 mb-4">
+                <div class="card">
+                    <img class="card-img-top" src="img/productos/platano.jpg" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Platano Verde</h5>
+                        <p class="card-text">Platanos verdes de alta calidad, productos 100% natural</p>
+                        <a href="./page/productos.php" class="btn-cafe">Ver mas</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6 mb-4">
+                <div class="card">
+                    <img class="card-img-top" src="img/productos/yuca.jpg" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Yuca</h5>
+                        <p class="card-text">Yuca de alta calidad, productos 100% natural</p>
+                        <a href="./page/productos.php" class="btn-cafe">Ver mas</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6 mb-4">
+                <div class="card">
+                    <img class="card-img-top" src="img/productos/guayaba.jpg" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Guayaba</h5>
+                        <p class="card-text">Guayaba de alta calidad, productos 100% natural</p>
+                        <a href="./page/productos.php" class="btn-cafe">Ver mas</a>
+                    </div>
+                </div>
             </div>
         </div>
+           
+        </div>
+        
         <!--Termina la sesion2 (productos)-->
 
         <div class="section-services">
@@ -213,7 +211,7 @@ include_once 'controllers/logicacarrito.php';
             duration: 1000
         });
     </script>
- 
+
 </body>
 
 </html>

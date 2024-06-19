@@ -99,29 +99,6 @@ foreach ($_SESSION['carrito'] as $indice => $producto) {
                         $signature = hash('md5', "$llaveSecreta~$merchantId~$referenceCode~$total~COP");
 
                         ?>
-
-                        <form method="post" action="https://sandbox.checkout.payulatam.com/ppp-web-gateway-payu/">
-                            <input name="merchantId" type="hidden" value="<?php echo $merchantId; ?>">
-                            <input name="accountId" type="hidden" value="512321">
-                            <input name="description" type="hidden" value="PAGO ADONAI">
-                            <input name="referenceCode" type="hidden" value="<?php echo $referenceCode; ?>">
-                            <input name="amount" type="hidden" value="<?php echo $total; ?>">
-                            <input name="tax" type="hidden" value="0">
-                            <input name="taxReturnBase" type="hidden" value="0">
-                            <input name="currency" type="hidden" value="COP">
-                            <input name="signature" type="hidden" value="<?php echo $signature; ?>">
-                            <input name="test" type="hidden" value="1">
-                            <input name="buyerEmail" type="hidden" value="">
-                            <input name="shippingAddress" type="hidden" value="">
-                            <input name="shippingCity" type="hidden" value="">
-                            <input name="shippingCountry" type="hidden" value="">
-                            <input name="responseUrl" type="hidden" value="http://localhost/proyect1/page/confirmacion.php">
-                            <input name="confirmationUrl" type="hidden" value="http://localhost/proyect1/page/carrito.php">
-
-                            <input class="btn btn-success" name="Submit" type="submit" value="Pagar con Payu">
-                        </form>
-
-
                     </div>
                 </div>
             </div>

@@ -1,7 +1,7 @@
 <?php
 
-include_once '../model/config.php';
-include_once '../model/conexion.php';
+// include_once '../model/config.php';
+// include_once '../model/conexion.php';
 
 
 $mensaje = "";

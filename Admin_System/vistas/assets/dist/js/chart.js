@@ -7,12 +7,19 @@ function CargarDatos() {
         url: 'http://localhost/Proyect_ADSO/Admin_System/controllers/controlador_grafico.php',
         type: "POST"
     }).done(function (resp) {
+        console.log(resp)
         var data = JSON.parse(resp);
+
+
+
+
+
         titulo_bar = []
         cantidad_bar = []
 
         titulo_circle = []
         cantidad_circle = []
+
         console.log(data)
         for (let i = 0; i < data.grafico_bar.length; i++) {
             titulo_bar.push(data.grafico_bar[i].nombre);
@@ -29,6 +36,15 @@ function CargarDatos() {
         console.log(titulo_bar);
         console.log(cantidad_bar);
 
+        // CARDS
+
+        cardUser = document.getElementById("cantidad-usuarios").textContent = `${data.dataUser[0]['COUNT(*)']}`;
+        cardUser = document.getElementById("cantidad-productos").textContent = `${data.dataProducts[0]['COUNT(*)']}`;
+        cardUser = document.getElementById("cantidad-ventas").textContent = `$${data.dataVenta[0]['SUM( total )']}`;
+
+
+
+        // CHART
         new Chart(barCtx, {
             type: 'bar',
             data: {
