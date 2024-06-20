@@ -90,6 +90,8 @@ foreach ($_SESSION['carrito'] as $indice => $producto) {
         }
     }
 }
+
+
 // Destruir solo la parte del carrito
 unset($_SESSION['carrito']);
 
