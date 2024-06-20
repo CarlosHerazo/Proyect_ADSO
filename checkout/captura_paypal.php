@@ -47,20 +47,21 @@ if (is_array($datos)) {
     }
 }
 
-
 foreach ($_SESSION['carrito'] as $indice => $producto) {
     $cantidad = $producto['cantidad'];
     $idProducto = $producto['id'];
     $idVenta = $_SESSION['idVenta'];
 
-    $sentenciaProducto = $pdo->prepare("SELECT `codigo`, `nombre`, `precio` FROM `productos` WHERE codigo = ?");
+    $sentenciaProducto = $pdo->prepare("SELECT `codigo`, `nombre`, `precio`, `cantidad` FROM `productos` WHERE codigo = ?");
     $sentenciaProducto->execute([$idProducto]);
     $row_proc = $sentenciaProducto->fetch(PDO::FETCH_ASSOC);
 
     if ($row_proc) {
         $nombre = $row_proc['nombre'];
         $precioUnitario = $row_proc['precio'];
+        $cantidadDisponible = $row_proc['cantidad'];
 
+        // Insertar detalle del pedido
         $sentenciaDetalle = $pdo->prepare("INSERT INTO `detallepedido`(`id_venta`, `id_producto`, `nombre`, `precio_unitario`, `cantidad`) VALUES (:idVenta, :idProducto, :nombreP, :precioUnitario, :cantidad)");
         $sentenciaDetalle->bindParam(":idVenta", $idVenta);
         $sentenciaDetalle->bindParam(":idProducto", $idProducto);
@@ -69,10 +70,23 @@ foreach ($_SESSION['carrito'] as $indice => $producto) {
         $sentenciaDetalle->bindParam(":cantidad", $cantidad);
 
         try {
+            $pdo->beginTransaction();
+
             $sentenciaDetalle->execute();
-            $resultados[] = ["mensaje" => "Datos enviados con exito"];
-        } catch (PDOException) {
-            $resultados[] = ["error" => "Error en la consulta"];
+
+            // Actualizar la cantidad disponible del producto
+            $nuevaCantidad = $cantidadDisponible - $cantidad;
+            $sentenciaActualizar = $pdo->prepare("UPDATE `productos` SET `cantidad` = :nuevaCantidad WHERE `codigo` = :idProducto");
+            $sentenciaActualizar->bindParam(":nuevaCantidad", $nuevaCantidad);
+            $sentenciaActualizar->bindParam(":idProducto", $idProducto);
+            $sentenciaActualizar->execute();
+
+            $pdo->commit();
+
+            $resultados[] = ["mensaje" => "Datos enviados con éxito"];
+        } catch (PDOException $e) {
+            $pdo->rollBack();
+            $resultados[] = ["error" => "Error en la consulta: " . $e->getMessage()];
         }
     }
 }
