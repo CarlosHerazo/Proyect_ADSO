@@ -1,5 +1,5 @@
 const barCtx = document.getElementById('barChart').getContext('2d');
-const pieCtx = document.getElementById('pieChart').getContext('2d');
+// const pieCtx = document.getElementById('pieChart').getContext('2d');
 const cProductos = document.getElementById('cantidad-productos');
 
 function CargarDatos() {
@@ -28,8 +28,8 @@ function CargarDatos() {
         }
 
         for (let i = 0; i < data.grafico_circular.length; i++) {
-            titulo_bar.push(data.grafico_circular[i].nombre);
-            cantidad_bar.push(data.total_cantidad[i].cantidad);
+            titulo_circle.push(data.grafico_circular[i].nombre);
+            cantidad_circle.push(data.grafico_circular[i].cantidad);
 
         }
 
@@ -67,33 +67,33 @@ function CargarDatos() {
 
         // fin graficoo de barras
         // Crear el gráfico circular
-        new Chart(pieCtx, {
-            type: 'pie',
-            data: {
-                labels: titulo_bar,
-                datasets: [{
-                    data: cantidad_bar,
-                    backgroundColor: '#333',
-                    borderColor: '#fff',
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: {
-                        position: 'top',
-                    },
-                    tooltip: {
-                        callbacks: {
-                            label: function (tooltipItem) {
-                                return `${tooltipItem.label}: ${tooltipItem.raw}`;
-                            }
-                        }
-                    }
-                }
-            }
-        });
+        // new Chart(pieCtx, {
+        //     type: 'pie',
+        //     data: {
+        //         labels: titulo_circle,
+        //         datasets: [{
+        //             data: cantidad_circle,
+        //             backgroundColor: '#333',
+        //             borderColor: '#fff',
+        //             borderWidth: 1
+        //         }]
+        //     },
+        //     options: {
+        //         responsive: true,
+        //         plugins: {
+        //             legend: {
+        //                 position: 'top',
+        //             },
+        //             tooltip: {
+        //                 callbacks: {
+        //                     label: function (tooltipItem) {
+        //                         return `${tooltipItem.label}: ${tooltipItem.raw}`;
+        //                     }
+        //                 }
+        //             }
+        //         }
+        //     }
+        // });
 
 
 

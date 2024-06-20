@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-04-2024 a las 15:33:36
+-- Tiempo de generación: 20-06-2024 a las 15:39:25
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -20,6 +20,39 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `bd_adso`
 --
+
+DELIMITER $$
+--
+-- Procedimientos
+--
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_DATOSCARD_PRODUCTS` ()   BEGIN
+    SELECT COUNT(*) FROM productos;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_DATOSCARD_USER` ()   BEGIN
+    SELECT COUNT(*) FROM admin;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_DATOSCARD_VENTAS` ()   BEGIN
+SELECT SUM( total )
+FROM pedido
+WHERE pedido.status = 'COMPLETED';
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_DATOSGRAFICO_BAR` ()   BEGIN
+    SELECT nombre, cantidad
+    FROM productos
+    WHERE estado = 'activo'; 
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_DATOSGRAFICO_CIRCULE` ()   BEGIN
+    SELECT nombre, SUM(cantidad) AS total_cantidad
+    FROM detallepedido
+    GROUP BY nombre
+    ORDER BY total_cantidad DESC; -- Ordenar por la cantidad total vendida, de mayor a menor
+END$$
+
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -39,7 +72,7 @@ CREATE TABLE `admin` (
 -- Volcado de datos para la tabla `admin`
 --
 
-INSERT INTO `admin` (`id`, `usuario`, `contra`, `nombre`,`rol`) VALUES
+INSERT INTO `admin` (`id`, `usuario`, `contra`, `nombre`, `rol`) VALUES
 (1, 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'AgroAdonai', 'admin');
 
 -- --------------------------------------------------------
@@ -89,6 +122,13 @@ CREATE TABLE `detallepedido` (
   `precio_unitario` decimal(60,2) NOT NULL,
   `cantidad` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `detallepedido`
+--
+
+INSERT INTO `detallepedido` (`id`, `id_venta`, `id_producto`, `nombre`, `precio_unitario`, `cantidad`) VALUES
+(1, 5, 1, 'yuca', 400.00, 1);
 
 -- --------------------------------------------------------
 
@@ -142,7 +182,8 @@ INSERT INTO `pedido` (`id`, `clave_transacion`, `fecha`, `correo`, `id_Cliente`,
 (1, '2ED91868XN207915DhOLA', '2023-12-05 07:46:00', 'sb-pqfg127785797@personal.example.com', 'HG5Q89HU2AY5L', 6500.00, 'COMPLETED'),
 (2, '66J64862TD9687819hOLA', '2023-12-05 07:47:48', 'sb-pqfg127785797@personal.example.com', 'HG5Q89HU2AY5L', 7500.00, 'COMPLETED'),
 (3, '2ED6020874140423UhOLA', '2023-12-05 07:52:10', 'sb-pqfg127785797@personal.example.com', 'HG5Q89HU2AY5L', 7500.00, 'COMPLETED'),
-(4, '87V61645H04504020', '2023-12-05 07:54:21', 'sb-pqfg127785797@personal.example.com', 'HG5Q89HU2AY5L', 7500.00, 'COMPLETED');
+(4, '87V61645H04504020', '2023-12-05 07:54:21', 'sb-pqfg127785797@personal.example.com', 'HG5Q89HU2AY5L', 7500.00, 'COMPLETED'),
+(5, '30E51312092032409', '2024-06-20 15:26:38', 'sb-nxk8p30826541@personal.example.com', 'MBDQBBWQVLR8L', 400.00, 'COMPLETED');
 
 -- --------------------------------------------------------
 
@@ -166,7 +207,7 @@ CREATE TABLE `productos` (
 --
 
 INSERT INTO `productos` (`codigo`, `nombre`, `precio`, `descripcion`, `estado`, `cantidad`, `imagen`, `categoria_id`) VALUES
-(1, 'yuca', 400.00, 'La yuca es un tubérculo del arbusto Manihot Esculenta, de aspecto leñoso por fuera, ya que está recubierto por una cáscara de gran dureza y de color marrón que no es comestible. Esta consistencia firme también se encuentra en su pulpa, de color blanco y que presenta fibras longitudinales.\r\n', 'Activo', 4, 'https://elpoderdelconsumidor.org/wp-content/uploads/2017/02/yuca.jpg', 1),
+(1, 'yuca', 400.00, 'La yuca es un tubérculo del arbusto Manihot Esculenta, de aspecto leñoso por fuera, ya que está recubierto por una cáscara de gran dureza y de color marrón que no es comestible. Esta consistencia firme también se encuentra en su pulpa, de color blanco y que presenta fibras longitudinales.\r\n', 'Activo', 3, 'https://elpoderdelconsumidor.org/wp-content/uploads/2017/02/yuca.jpg', 1),
 (3, 'Platano Verde', 500.00, 'El plátano que ofrecemos es de la más alta calidad y frescura garantizada. Cada fruto de plátano es cuidadosamente seleccionado y cultivado en nuestras tierras, utilizando métodos sostenibles y respetuosos con el medio ambiente.', 'Activo', 3, 'http://localhost/Proyect_ADSO/build/img/Productos/descarga.jfif', 1),
 (4, 'Auyama', 400.00, 'La auyama o ahuyama (ambas formas son correctas según la Real Academia de la Lengua Española-RAE) es uno de los alimentos con múltiples beneficios para el organismo. Este vegetal contiene calcio, sodio, magnesio, zinc, hierro, potasio, fósforo, vitaminas A, C y B.\r\n', 'Activo', 1, 'https://www.mercadoscampesinos.gov.co/wp-content/uploads/2021/04/Auyama-comun-400x400.jpg', 1),
 (6, 'Limon Criollo', 300.00, 'El limón es redondo y ligeramente alargado, pertenece a la familia de los agrios y por tanto comparte muchas de las características de otras especies de cítricos, como es tener una piel gruesa. La pulpa es color amarillo pálido, jugosa y de sabor ácido dividida en gajos. El color de la corteza es amarillo y especialmente brillante cuando está maduro.\r\n', 'Activo', 1, 'https://www.merkapp.com/cdn/shop/products/fyv105_1614010809.png?v=1638507322', 2),
@@ -277,7 +318,7 @@ ALTER TABLE `cliente`
 -- AUTO_INCREMENT de la tabla `detallepedido`
 --
 ALTER TABLE `detallepedido`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `direccion`
@@ -289,7 +330,7 @@ ALTER TABLE `direccion`
 -- AUTO_INCREMENT de la tabla `pedido`
 --
 ALTER TABLE `pedido`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`
