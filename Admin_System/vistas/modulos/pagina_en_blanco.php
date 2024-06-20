@@ -144,12 +144,12 @@
         </div>
 
         <!-- Gráfico Circular -->
-        <div class="tarjeta" style="width: 100%;">
+        <!-- <div class="tarjeta" style="width: 100%;">
             <div class="card-header">Productos más vendidos - Cantidad</div>
             <div class="card-body">
                 <div class="contenedor-canvas"><canvas id="pieChart"></canvas></div>
             </div>
-        </div>
+        </div> -->
     </div>
 </div>
 
