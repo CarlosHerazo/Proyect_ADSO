@@ -31,15 +31,16 @@ CREATE TABLE `admin` (
   `id` int(11) NOT NULL,
   `usuario` varchar(100) NOT NULL,
   `contra` varchar(100) NOT NULL,
-  `nombre` varchar(100) NOT NULL
+  `nombre` varchar(100) NOT NULL,
+  `rol` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `admin`
 --
 
-INSERT INTO `admin` (`id`, `usuario`, `contra`, `nombre`) VALUES
-(1, 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'AgroAdonai');
+INSERT INTO `admin` (`id`, `usuario`, `contra`, `nombre`,`rol`) VALUES
+(1, 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'AgroAdonai', 'admin');
 
 -- --------------------------------------------------------
 

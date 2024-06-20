@@ -358,9 +358,6 @@ include '../global/cabecera.php';
                                     <h5 class="card-title">
                                         <?php echo $producto['precio'] ?>
                                     </h5>
-                                    <p class="card-text">
-                                        <b> Bultos Dispodibles: <?php echo $producto['cantidad'] ?></b>
-                                    </p>
 
                                     <p class="card-text">
                                         <?php if ($producto['cantidad'] > 0) { ?>
