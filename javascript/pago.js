@@ -39,12 +39,13 @@ document.addEventListener("DOMContentLoaded", function () {
                                 );
                             } else {
                                 console.log("Mensaje del servidor:", data);
+                                console.log(detalles)
                                 Swal.fire(
                                     '¡Éxito!',
                                     'Tu transacción se ha completado satisfactoriamente.',
                                     'success'
                                 ).then(() => {
-                                    window.location.href = '../page/carrito.php'; // URL de redirección
+                                    window.location.href = '../ticket/ticket_venta.php?id_venta='+detalles.id; // URL de redirección
                                     // Eliminar datos del carrito del almacenamiento local o de la sesión
 
                                 });
