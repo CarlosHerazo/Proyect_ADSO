@@ -43,7 +43,7 @@ if (isset($_GET['id_venta'])) {
         }
 
         // Crear instancia de FPDF
-        $pdf = new FPDF('P', 'mm', array(80, 200));
+        $pdf = new FPDF('P', 'mm', array(80, 150));
         $pdf->AddPage();
         $pdf->SetMargins(5, 5, 5);
         $pdf->SetFont('Arial', 'B', 9);
@@ -56,25 +56,59 @@ if (isset($_GET['id_venta'])) {
 
         $pdf->Ln(1);
         $pdf->SetFont('Arial', 'B', 8);
-        $pdf->Cell(20, 5, 'Id de pedido: ', 0, 0, 'L');
+        $pdf->Cell(20, 5, 'Id de pedido: '.$row['id'], 0, 0, 'L');
+
+        $pdf->Ln(8);
+
         $pdf->SetFont('Arial', '', 8);
-        $pdf->Cell(15, 5,  $row['id'], 0, 1, 'L');
+        $pdf->Cell(20,5, 'fecha: '. $row['fecha'], 0, 0, 'L');
+
+        $pdf->Ln(8);
+        
 
         $pdf->Cell(70, 2, '--------------------------------------------------------------------------', 0, 1, 'L');
         
-        $pdf->Cell(10,4, 'Cant.', 0, 0, 'L');
-        $pdf->Cell(30,4, 'Nombre', 0, 0, 'L');
-        $pdf->Cell(15,4, 'Precio U..', 0, 0, 'L');
+        $pdf->Cell(12,4, 'Cant.', 0, 0, 'L');
+        $pdf->Cell(20,4, 'Nombre', 0, 0, 'L');
+        $pdf->Cell(15,4, 'Precio U.', 0, 0, 'L');
         $pdf->Cell(15,4, 'Precio Subtotal', 0, 1, 'L');
 
         $pdf->Cell(70, 2, '--------------------------------------------------------------------------', 0, 1, 'L');
 
+        $pdf->Ln(1);
 
-        // foreach ($result as $productos) {
-        //     $pdf->Cell(0, 10, 'Producto: ' . htmlspecialchars($productos['nombre_producto']), 0, 1);
-        // }
+        $precioTotal;
 
-        // Limpiar el búfer de salida y enviar el PDF al navegador
+        $produtos_venta = True; 
+        foreach ($result as $productos) {
+            $precio_subTotal = $productos['precio_unitario'] * $productos['precio_unitario'];
+
+            $pdf->Cell(12, 4,  htmlspecialchars($productos['cantidad']), 0, 0, 'L');
+            $pdf->Cell(20, 4,  htmlspecialchars($productos['nombre']), 0, 0, 'L');
+            $pdf->Cell(15, 4,  htmlspecialchars($productos['precio_unitario']), 0, 0, 'L');
+            $pdf->Cell(15, 4,  htmlspecialchars($productos['precio_unitario']), 0, 0, 'L');
+            $pdf->Ln(7);
+        };
+
+        $pdf->Cell(70,4, 'Numero de productos: ' . count($result), 0, 1, 'L');
+
+
+
+        $pdf->SetFont('Arial', 'B', 8);
+        $pdf->Ln(7);
+        $pdf->Cell(70,5, 'Total: ' . MONEDA.''.$row['total']. 0, 1, 'L');
+
+        $pdf->Ln(7);
+        $pdf->MultiCell(70, 5, 'Agradecemos tu compra, este pdf sera enviado a tu correo, vuelve pronto.', 0 ,'C'); 
+
+     
+
+       
+
+      
+
+
+        
         ob_end_clean();
         $pdf->Output();
         exit();
