@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                     console.log(usuario, correoUsuario)
 
 
-                                    window.location.href = '../ticket/ticket_venta.php?id_venta='+detalles.id+'&correo='+correoUsuario; // URL de redirección
+                                    window.location.href = `../ticket/ticket_venta.php?id_venta=${detalles.id}&correo=${correoUsuario}`; // URL de redirección
                                     // Eliminar datos del carrito del almacenamiento local o de la sesión
 
                                 });

@@ -108,7 +108,7 @@ if (isset($_GET['id_venta']) && isset($_GET['correo'])) {
 
             // Destinatario y contenido del correo
             $mail->setFrom('luisroca647@gmail.com', 'Soporte AgroAdonai');
-            $mail->addAddress('agroadonai7@gmail.com', 'Destinatario');
+            $mail->addAddress($correo, 'Destinatario');
             $mail->isHTML(true);
             $mail->Subject = "Factura de compra - Pedido #$id_venta";
             $mail->Body    = "Te saluda AgroAdonai <br> Hacemos envio de la factura de tu compra. Gracias por tu compra. <br> Estas ayudando a muchos campesinos.";

@@ -19,6 +19,8 @@ if (is_array($datos)) {
     $fecha = $datos['detalles']['update_time'];
     $fecha_nueva = date('Y-m-d H:i:s', strtotime($fecha));
     $email = $datos['detalles']['payer']['email_address'];
+    $_SESSION['correo'] = $email;
+    
     $id_cliente = $datos['detalles']['payer']['payer_id'];
 
 
