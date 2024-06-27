@@ -45,7 +45,14 @@ document.addEventListener("DOMContentLoaded", function () {
                                     'Tu transacción se ha completado satisfactoriamente.',
                                     'success'
                                 ).then(() => {
-                                    window.location.href = '../ticket/ticket_venta.php?id_venta='+detalles.id; // URL de redirección
+
+                                    var usuario = detalles.payer
+                                    var correoUsuario = usuario.email_address
+
+                                    console.log(usuario, correoUsuario)
+
+
+                                    window.location.href = '../ticket/ticket_venta.php?id_venta='+detalles.id+'&correo='+correoUsuario; // URL de redirección
                                     // Eliminar datos del carrito del almacenamiento local o de la sesión
 
                                 });
