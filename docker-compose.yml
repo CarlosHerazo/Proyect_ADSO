@@ -26,14 +26,22 @@ services:
       - "traefik.http.routers.phpapp.rule=Host(`tusitio.com`)"
       - "traefik.http.routers.phpapp.entrypoints=websecure"
       - "traefik.http.routers.phpapp.tls.certresolver=letsencrypt"
-
   db:
     image: mysql:8.0
+    container_name: mysql_db
+    restart: always
     environment:
       MYSQL_ROOT_PASSWORD: rootpass
       MYSQL_DATABASE: myapp
       MYSQL_USER: myuser
       MYSQL_PASSWORD: mypassword
+    ports:
+      - "3307:3306"          # 👈 Permite conectarte desde tu PC al puerto 3307
+    volumes:
+      - mysql_data:/var/lib/mysql  # 👈 Persiste la base de datos
+    networks:
+      - dokploy_net               # 👈 Conecta con PHP u otros servicios
+
 
 
 networks:
