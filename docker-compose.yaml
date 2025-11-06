@@ -29,17 +29,12 @@ services:
 
   db:
     image: mysql:8.0
-    container_name: mysql_db
-    restart: always
     environment:
       MYSQL_ROOT_PASSWORD: rootpass
       MYSQL_DATABASE: myapp
       MYSQL_USER: myuser
       MYSQL_PASSWORD: mypassword
-    volumes:
-      - db_data:/var/lib/mysql
-    networks:
-      - dokploy_net
+
 
 networks:
   dokploy_net:
