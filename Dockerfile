@@ -9,4 +9,4 @@ COPY . /var/www/html/
 # Ajustar permisos
 RUN chown -R www-data:www-data /var/www/html
 
-EXPOSE 81
+EXPOSE 82
