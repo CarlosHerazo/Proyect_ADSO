@@ -38,7 +38,7 @@ services:
     ports:
       - "3307:3306"          # 👈 Permite conectarte desde tu PC al puerto 3307
     volumes:
-      - mysql_data:/var/lib/mysql  # 👈 Persiste la base de datos
+      - db_data:/var/lib/mysql  # 👈 Persiste la base de datos
     networks:
       - dokploy_net               # 👈 Conecta con PHP u otros servicios
 
