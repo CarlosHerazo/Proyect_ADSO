@@ -4,7 +4,7 @@ const cProductos = document.getElementById('cantidad-productos');
 
 function CargarDatos() {
     $.ajax({
-        url: 'https://agro.testbydevelopment.space/Proyect_ADSO/Admin_System/controllers/controlador_grafico.php',
+        url: 'https://agro.testbydevelopment.space/Admin_System/controllers/controlador_grafico.php',
         type: "POST"
     }).done(function (resp) {
         console.log(resp)
