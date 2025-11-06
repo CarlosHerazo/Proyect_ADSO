@@ -1,0 +1,49 @@
+version: "3.9"
+
+services:
+  app:
+    container_name: php_app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "8081:81"   
+    environment:
+      APP_ENV: production
+      APP_DEBUG: "false"
+      DB_HOST: db
+      DB_DATABASE: myapp
+      DB_USERNAME: myuser
+      DB_PASSWORD: mypassword
+    volumes:
+      - ./:/var/www/html
+    networks:
+      - dokploy_net
+    labels:
+      # 🔹 Estas etiquetas las usa Traefik (Dokploy las detecta automáticamente)
+      - "traefik.enable=true"
+      - "traefik.http.routers.phpapp.rule=Host(`tusitio.com`)"
+      - "traefik.http.routers.phpapp.entrypoints=websecure"
+      - "traefik.http.routers.phpapp.tls.certresolver=letsencrypt"
+
+  db:
+    image: mysql:8.0
+    container_name: mysql_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: myapp
+      MYSQL_USER: myuser
+      MYSQL_PASSWORD: mypassword
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - dokploy_net
+
+networks:
+  dokploy_net:
+    external: true  # Usa la red que Dokploy crea (normalmente "dokploy")
+
+volumes:
+  db_data:
